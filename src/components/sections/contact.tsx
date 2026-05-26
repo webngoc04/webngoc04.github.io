@@ -32,15 +32,28 @@ export default function Contact() {
             </svg>
           </a>
           <a
-            href="mailto:kei@webngoc04.dev"
+            href="mailto:dangnguyenngoc04@gmail.com"
             className="glass glass-hover flex size-12 items-center justify-center rounded-full"
             aria-label="Email"
           >
             <Mail className="size-5" />
           </a>
         </div>
+        <div className="mt-8 text-left">
+          <div className="glass glass-hover mx-auto inline-block rounded-2xl p-4 sm:p-5">
+            <p className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
+              🔐 GPG Fingerprint
+            </p>
+            <code className="block break-all text-xs text-muted-foreground sm:text-sm">
+              012F C938 02BA C1FE 39D0 &nbsp;DC2D E016 3CBB 19B5 FFC1
+            </code>
+            <p className="mt-1 text-xs text-muted-foreground/60">
+              dangnguyenngoc04@gmail.com
+            </p>
+          </div>
+        </div>
       </div>
-      <footer className="mt-20 text-center text-sm text-muted-foreground">
+      <footer className="mt-16 text-center text-sm text-muted-foreground">
         <p className="flex items-center justify-center gap-1.5">
           Made with{" "}
           <span className="inline-block animate-pulse">🩷</span>
