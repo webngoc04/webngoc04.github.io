@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { useReveal } from "@/hooks/use-reveal"
-import Globe from "@/components/ui/globe"
 
 const roles = [
   "Linux Kernel hacker",
@@ -51,12 +50,6 @@ export default function Hero() {
         <div className="absolute -bottom-32 -right-32 size-96 animate-blob rounded-full bg-purple-300/20 blur-3xl" style={{ animationDelay: "-3s" }} />
       </div>
 
-      <div className="absolute right-4 top-24 z-10 sm:right-8 sm:top-20 md:right-12">
-        <div className="rounded-full border border-pink-200/40 bg-card/40 p-2 backdrop-blur-md">
-          <Globe className="size-44 sm:size-56 md:size-72" />
-        </div>
-      </div>
-
       <div ref={ref} className="relative z-20 flex max-w-2xl flex-col items-start gap-6 text-left reveal">
         <div className="space-y-3">
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
@@ -75,10 +68,10 @@ export default function Hero() {
 
         <div className="flex gap-3">
           <a
-            href="#dashboard"
+            href="#projects"
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-lg"
           >
-            <span className="relative z-10">Xem dashboard</span>
+            <span className="relative z-10">Xem projects</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
           </a>
           <a

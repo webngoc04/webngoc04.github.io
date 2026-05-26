@@ -18,11 +18,10 @@ export default function Projects() {
           <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
         </div>
 
-        <div className="glass glass-hover rounded-2xl p-8 text-center">
-          <div className="mb-3 text-4xl">🚧</div>
-          <h3 className="mb-2 text-lg font-semibold">Đang cập nhật...</h3>
+        <div className="glass rounded-2xl p-8 text-center">
+          <h3 className="mb-2 text-lg font-semibold">Chưa công khai project nào ở đây</h3>
           <p className="text-sm text-muted-foreground">
-            Sắp có projects ở đây nha, đợi tí~
+            Mình sẽ cập nhật khi có repository phù hợp để chia sẻ.
           </p>
         </div>
       </div>
