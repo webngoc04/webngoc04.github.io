@@ -1,78 +1,29 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+"use client"
 
-const projects = [
-  {
-    title: "linux-kernel-hacks",
-    desc: "Một số kernel module và patch tự viết cho vui.",
-    tags: ["C", "Linux Kernel", "Modules"],
-    href: "https://github.com/webngoc04",
-  },
-  {
-    title: "dotfiles",
-    desc: "Dotfiles cho Arch Linux với i3wm, rice cực cute.",
-    tags: ["Bash", "i3", "Neovim"],
-    href: "https://github.com/webngoc04",
-  },
-  {
-    title: "KeiChan Blog",
-    desc: "Blog cá nhân viết về Linux, code, và cuộc sống.",
-    tags: ["Next.js", "MDX", "Tailwind"],
-    href: "https://github.com/webngoc04",
-  },
-  {
-    title: "shiraori-bot",
-    desc: "Discord bot nhỏ nhắn, code bằng Rust.",
-    tags: ["Rust", "Discord API", "Serenity"],
-    href: "https://github.com/webngoc04",
-  },
-]
+import { useReveal } from "@/hooks/use-reveal"
 
 export default function Projects() {
+  const ref = useReveal<HTMLDivElement>()
+
   return (
-    <section id="projects" className="px-4 py-20">
+    <section id="projects" className="relative px-4 py-24">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -right-32 top-1/2 size-80 rounded-full bg-rose-200/20 blur-3xl" />
+      </div>
       <div className="mx-auto max-w-3xl">
-        <h2 className="mb-2 text-center text-3xl font-bold">
-          Projects <span className="text-primary">✨</span>
-        </h2>
-        <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
-        <div className="grid gap-5 sm:grid-cols-2">
-          {projects.map((project) => (
-            <a
-              key={project.title}
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
-            >
-              <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
-                <CardHeader>
-                  <CardTitle className="text-lg group-hover:text-primary">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription>{project.desc}</CardDescription>
-                </CardHeader>
-                <CardFooter className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="outline"
-                      className="border-pink-200 text-xs text-pink-600 dark:border-pink-800 dark:text-pink-400"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </CardFooter>
-              </Card>
-            </a>
-          ))}
+        <div ref={ref} className="reveal">
+          <h2 className="mb-2 text-center text-3xl font-bold sm:text-4xl">
+            Projects <span className="text-gradient">✨</span>
+          </h2>
+          <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
+        </div>
+
+        <div className="glass glass-hover rounded-2xl p-8 text-center">
+          <div className="mb-3 text-4xl">🚧</div>
+          <h3 className="mb-2 text-lg font-semibold">Đang cập nhật...</h3>
+          <p className="text-sm text-muted-foreground">
+            Sắp có projects ở đây nha, đợi tí~
+          </p>
         </div>
       </div>
     </section>
