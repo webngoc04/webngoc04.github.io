@@ -11,6 +11,7 @@ export default function Globe({ className = "" }: { className?: string }) {
     let width = 0
     let pointerX = 0
     let pointerY = 0
+    let frameId = 0
     const canvas = canvasRef.current
 
     if (!canvas) return
@@ -33,7 +34,7 @@ export default function Globe({ className = "" }: { className?: string }) {
 
     canvas.addEventListener("pointermove", onMove)
 
-    const globe = createGlobe(canvas, {
+    const baseOptions: COBEOptions = {
       devicePixelRatio: 2,
       width: width * 2,
       height: width * 2,
@@ -53,18 +54,27 @@ export default function Globe({ className = "" }: { className?: string }) {
         { location: [37.7749, -122.4194], size: 0.08 },
         { location: [51.5072, -0.1276], size: 0.08 },
       ],
-      onRender: (state) => {
-        phi += 0.0025
-        state.width = width * 2
-        state.height = width * 2
-        state.phi = phi + pointerX * 0.25
-        state.theta = 0.25 + pointerY * 0.12
-      },
-    } satisfies COBEOptions)
+    }
+
+    const globe = createGlobe(canvas, baseOptions)
+
+    const render = () => {
+      phi += 0.0025
+      globe.update({
+        width: width * 2,
+        height: width * 2,
+        phi: phi + pointerX * 0.25,
+        theta: 0.25 + pointerY * 0.12,
+      })
+      frameId = requestAnimationFrame(render)
+    }
+
+    frameId = requestAnimationFrame(render)
 
     return () => {
       window.removeEventListener("resize", onResize)
       canvas.removeEventListener("pointermove", onMove)
+      cancelAnimationFrame(frameId)
       globe.destroy()
     }
   }, [])
