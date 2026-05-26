@@ -39,8 +39,8 @@ export default function Contact() {
             <Mail className="size-5" />
           </a>
         </div>
-        <div className="mt-8 text-left">
-          <div className="glass glass-hover mx-auto inline-block rounded-2xl p-4 sm:p-5">
+        <div className="mt-8 flex justify-center">
+          <div className="glass glass-hover inline-block rounded-2xl p-4 text-left sm:p-5">
             <p className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
               🔐 GPG Fingerprint
             </p>
@@ -50,6 +50,16 @@ export default function Contact() {
             <p className="mt-1 text-xs text-muted-foreground/60">
               dangnguyenngoc04@gmail.com
             </p>
+            <a
+              href="/keichan.asc"
+              download
+              className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-pink-200 bg-pink-50 px-3 py-1.5 text-xs font-medium text-pink-700 transition-all hover:bg-pink-100 dark:border-pink-800 dark:bg-pink-900/20 dark:text-pink-300 dark:hover:bg-pink-900/30"
+            >
+              <svg className="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download GPG Key
+            </a>
           </div>
         </div>
       </div>
