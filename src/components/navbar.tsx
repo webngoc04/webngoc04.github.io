@@ -9,6 +9,8 @@ const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
+  { label: "Dashboard", href: "#dashboard" },
+  { label: "Sandbox", href: "#sandbox" },
   { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ]
@@ -18,11 +20,8 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 z-50 w-full border-b bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
-        <a
-          href="#home"
-          className="text-lg font-bold text-gradient"
-        >
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <a href="#home" className="text-lg font-bold text-gradient">
           KeiChan
         </a>
         <div className="hidden md:flex md:gap-1">
@@ -49,7 +48,7 @@ export default function Navbar() {
       <div
         className={cn(
           "overflow-hidden transition-all duration-300 md:hidden",
-          open ? "max-h-64" : "max-h-0"
+          open ? "max-h-96" : "max-h-0"
         )}
       >
         <div className="flex flex-col gap-1 border-t px-4 pb-3 pt-2">

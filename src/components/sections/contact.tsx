@@ -1,10 +1,29 @@
 "use client"
 
-import { Mail } from "lucide-react"
+import { useEffect } from "react"
+import { Mail, Copy, MessageCircle } from "lucide-react"
+import { toast } from "sonner"
 import { useReveal } from "@/hooks/use-reveal"
 
 export default function Contact() {
   const ref = useReveal<HTMLDivElement>()
+
+  useEffect(() => {
+    const key = "welcome-shown"
+    if (!sessionStorage.getItem(key)) {
+      toast("Welcome to my portfolio! Have a great day! ✨")
+      sessionStorage.setItem(key, "1")
+    }
+  }, [])
+
+  const copyText = async (text: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      toast.success(`${label} copied nhe`)
+    } catch {
+      toast.error("Copy thất bại, thử lại giúp mình")
+    }
+  }
 
   return (
     <section id="contact" className="relative px-4 py-24">
@@ -16,10 +35,9 @@ export default function Contact() {
           Contact <span className="text-gradient">💌</span>
         </h2>
         <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
-        <p className="mb-8 text-muted-foreground">
-          Muốn nói chuyện? Tìm tui ở các nơi dưới đây nha~
-        </p>
-        <div className="flex justify-center gap-4">
+        <p className="mb-8 text-muted-foreground">Muốn nói chuyện? Tìm tui ở các nơi dưới đây nha~</p>
+
+        <div className="mb-5 flex justify-center gap-4">
           <a
             href="https://github.com/webngoc04"
             target="_blank"
@@ -39,17 +57,35 @@ export default function Contact() {
             <Mail className="size-5" />
           </a>
         </div>
+
+        <div className="mx-auto mb-8 grid max-w-md gap-2 text-left">
+          <button
+            type="button"
+            onClick={() => copyText("dangnguyenngoc04@gmail.com", "Email")}
+            className="glass glass-hover flex items-center justify-between rounded-xl px-4 py-3 text-sm"
+          >
+            <span className="inline-flex items-center gap-2"><Mail className="size-4" /> Copy email</span>
+            <Copy className="size-4 text-muted-foreground" />
+          </button>
+          <button
+            type="button"
+            onClick={() => copyText("keichan04", "Discord ID")}
+            className="glass glass-hover flex items-center justify-between rounded-xl px-4 py-3 text-sm"
+          >
+            <span className="inline-flex items-center gap-2"><MessageCircle className="size-4" /> Copy Discord ID</span>
+            <Copy className="size-4 text-muted-foreground" />
+          </button>
+        </div>
+
         <div className="mt-8 flex justify-center">
           <div className="glass glass-hover inline-block rounded-2xl p-4 text-left sm:p-5">
             <p className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
               🔐 GPG Fingerprint
             </p>
             <code className="block break-all text-xs text-muted-foreground sm:text-sm">
-              012F C938 02BA C1FE 39D0 &nbsp;DC2D E016 3CBB 19B5 FFC1
+              012F C938 02BA C1FE 39D0 DC2D E016 3CBB 19B5 FFC1
             </code>
-            <p className="mt-1 text-xs text-muted-foreground/60">
-              dangnguyenngoc04@gmail.com
-            </p>
+            <p className="mt-1 text-xs text-muted-foreground/60">dangnguyenngoc04@gmail.com</p>
             <a
               href="/keichan.asc"
               download
@@ -65,9 +101,7 @@ export default function Contact() {
       </div>
       <footer className="mt-16 text-center text-sm text-muted-foreground">
         <p className="flex items-center justify-center gap-1.5">
-          Made with{" "}
-          <span className="inline-block animate-pulse">🩷</span>
-          {" "}by KeiChan
+          Made with <span className="inline-block animate-pulse">🩷</span> by KeiChan
         </p>
       </footer>
     </section>
