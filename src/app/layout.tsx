@@ -1,11 +1,16 @@
 import type { Metadata } from "next"
-import { Nunito } from "next/font/google"
+import { Nunito, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import Providers from "@/components/providers"
 
 const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin", "vietnamese"],
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
 })
 
 export const metadata: Metadata = {
@@ -22,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="vi" className={`${nunito.variable} antialiased`} suppressHydrationWarning>
+    <html lang="vi" className={`${nunito.variable} ${jetbrainsMono.variable} antialiased`} suppressHydrationWarning>
       <body className="min-h-screen">
         <Providers>{children}</Providers>
       </body>
