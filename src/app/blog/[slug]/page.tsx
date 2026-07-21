@@ -27,14 +27,14 @@ export default async function BlogPostPage({
         className="mb-8 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-pink-600 dark:hover:text-pink-300"
       >
         <ArrowLeft className="size-4" />
-        Quay lại Blog
+        Back to Blog
       </Link>
 
       <article>
         <header className="mb-8">
           <div className="mb-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString("vi-VN", {
+              {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",

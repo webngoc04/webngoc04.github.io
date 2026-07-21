@@ -19,9 +19,9 @@ export default function Contact() {
   const copyText = async (text: string, label: string) => {
     try {
       await navigator.clipboard.writeText(text)
-      toast.success(`${label} copied nhe`)
+      toast.success(`${label} copied successfully!`)
     } catch {
-      toast.error("Copy thất bại, thử lại giúp mình")
+      toast.error("Failed to copy, please try again.")
     }
   }
 
@@ -35,7 +35,7 @@ export default function Contact() {
           Contact <span className="text-gradient">💌</span>
         </h2>
         <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
-        <p className="mb-8 text-muted-foreground">Muốn nói chuyện? Tìm tui ở các nơi dưới đây nha~</p>
+        <p className="mb-8 text-muted-foreground">Want to chat? Find me at the places below~</p>
 
         <div className="mb-5 flex justify-center gap-4">
           <a

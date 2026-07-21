@@ -19,9 +19,9 @@ export default function Projects() {
         </div>
 
         <div className="glass rounded-2xl p-8 text-center">
-          <h3 className="mb-2 text-lg font-semibold">Chưa công khai project nào ở đây</h3>
+          <h3 className="mb-2 text-lg font-semibold">No public projects here yet</h3>
           <p className="text-sm text-muted-foreground">
-            Mình sẽ cập nhật khi có repository phù hợp để chia sẻ.
+            I will update this section once there are suitable repositories to share.
           </p>
         </div>
       </div>

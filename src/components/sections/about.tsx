@@ -15,15 +15,14 @@ export default function About() {
         className="reveal mx-auto max-w-2xl"
       >
         <h2 className="mb-2 text-center text-3xl font-bold sm:text-4xl">
-          Về <span className="text-gradient">tôi</span>
+          About <span className="text-gradient">Me</span>
         </h2>
         <div className="mx-auto mb-8 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
         <div className="glass glass-hover rounded-2xl p-6 sm:p-8">
           <p className="leading-relaxed text-muted-foreground">
-            Một đứa thích mày mò với kernel Linux, viết vài dòng code cho vui,
-            và thinh thoảng làm web để gió thổi qua. Không phải pro, chỉ là
-            một dev nhỏ bé với đam mê to lớn. Code dạo, học hỏi, và chia sẻ
-            những thứ mình biết.
+            A developer who loves tinkering with the Linux kernel, writing system modules for fun,
+            and designing elegant web interfaces. Not a pro, just a small developer with a big passion.
+            Learning new technologies, building things from scratch, and sharing everything along the way.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             {["Linux", "Kernel", "Web Dev", "Open Source", "Rust", "C"].map((tag, i) => (

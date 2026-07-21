@@ -1,24 +1,24 @@
 ---
-title: "Xin chào thế giới!"
+title: "Hello World!"
 date: "2026-05-30"
-description: "Bài viết đầu tiên trên blog của mình, chào mừng bạn đã ghé thăm!"
+description: "My first blog post, welcome to my blog!"
 tags: ["personal", "intro"]
 ---
 
-Đây là bài viết đầu tiên của mình trên blog này.
+This is my first post on this blog.
 
-## Mình là ai?
+## Who am I?
 
-Mình là **KeiChan** — một dev thích vọc kernel Linux và làm web.
+I'm **KeiChan** — a developer who loves tinkering with the Linux kernel and building web systems.
 
-Sở thích của mình bao gồm:
+My interests include:
 
 - Linux kernel & system programming
 - Web development (Next.js, React, TypeScript)
-- DevOps & tự host đồ
+- DevOps & self-hosting
 
-## Tại sao lại có blog này?
+## Why this blog?
 
-Mình muốn có một nơi để ghi lại những gì mình học được, những dự án mình làm, và đôi khi là vài thứ linh tinh trong cuộc sống. Blog được build bằng Next.js, deploy lên GitHub Pages.
+I wanted a place to document what I learn, the projects I build, and occasionally share random thoughts. This blog is built with Next.js and deployed on GitHub Pages.
 
-Cảm ơn bạn đã ghé thăm! Hẹn gặp ở những bài viết sau 🩷
+Thank you for visiting! See you in future posts 🩷

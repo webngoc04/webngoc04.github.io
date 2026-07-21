@@ -1,23 +1,23 @@
 ---
-title: "Mẹo nhỏ khi vọc Linux Kernel"
+title: "Tinkering Tips for the Linux Kernel"
 date: "2026-05-29"
-description: "Tổng hợp vài mẹo và command khi build và debug kernel Linux."
+description: "A summary of various commands and tips for building and debugging the Linux kernel."
 tags: ["linux", "kernel", "tips"]
 ---
 
-Dạo gần đây mình hay vọc kernel Linux, ghi lại vài mẹo nhỏ để sau này còn nhớ.
+Lately, I've been playing around with the Linux kernel. Writing down a few tips for future reference.
 
-## Build kernel nhanh hơn
+## Speed up kernel compilation
 
-Dùng `CC=clang` và `LLVM=1`:
+Use `CC=clang` and `LLVM=1`:
 
 ```bash
 make CC=clang LLVM=1 -j$(nproc)
 ```
 
-Clang build nhanh hơn GCC đáng kể, nhất là trên máy multi-core.
+Clang builds noticeably faster than GCC, especially on multi-core systems.
 
-## Debug với QEMU + GDB
+## Debugging with QEMU + GDB
 
 ```bash
 qemu-system-x86_64 -kernel arch/x86/boot/bzImage \
@@ -26,13 +26,13 @@ qemu-system-x86_64 -kernel arch/x86/boot/bzImage \
   -s -S -nographic
 ```
 
-Kết nối GDB:
+Connect GDB:
 
 ```gdb
 target remote :1234
 ```
 
-## Kernel module đơn giản
+## Simple Kernel Module
 
 ```c
 #include <linux/module.h>
@@ -50,4 +50,4 @@ void cleanup_module(void) {
 MODULE_LICENSE("GPL");
 ```
 
-Build với Makefile kernel có sẵn là chạy được ngay.
+Build it with a simple kernel Makefile and it works right out of the box.

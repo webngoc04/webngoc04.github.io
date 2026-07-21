@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "KeiChan",
-  description: "chỉ là dev thích vọc kernel Linux và làm web thoi",
+  description: "Just a developer who loves tinkering with the Linux kernel and building web systems.",
   icons: {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩷</text></svg>",
   },
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="vi" className={`${nunito.variable} ${jetbrainsMono.variable} antialiased`} suppressHydrationWarning>
+    <html lang="en" className={`${nunito.variable} ${jetbrainsMono.variable} antialiased`} suppressHydrationWarning>
       <body className="min-h-screen">
         <Providers>{children}</Providers>
       </body>

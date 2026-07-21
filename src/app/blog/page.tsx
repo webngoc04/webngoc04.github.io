@@ -9,10 +9,10 @@ export default function BlogPage() {
     <main className="mx-auto max-w-4xl px-4 pt-32 pb-16">
       <h1 className="text-gradient mb-2 text-center text-4xl font-bold">Blog</h1>
       <p className="mb-12 text-center text-muted-foreground">
-        Những thứ linh tinh mình viết lúc rảnh
+        Random things I write when I'm free
       </p>
       {posts.length === 0 ? (
-        <p className="text-center text-muted-foreground">Chưa có bài viết nào.</p>
+        <p className="text-center text-muted-foreground">No posts found.</p>
       ) : (
         <div className="grid gap-6">
           {posts.map((post) => (
@@ -23,7 +23,7 @@ export default function BlogPage() {
             >
               <div className="mb-2 flex items-center gap-3 text-sm text-muted-foreground">
                 <time dateTime={post.date}>
-                  {new Date(post.date).toLocaleDateString("vi-VN", {
+                  {new Date(post.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",

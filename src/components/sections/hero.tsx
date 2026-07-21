@@ -2,43 +2,25 @@
 
 import { useEffect, useState } from "react"
 import { useReveal } from "@/hooks/use-reveal"
+import ScrambleText from "@/components/ui/scramble-text"
 
 const roles = [
-  "Linux Kernel hacker",
-  "Web developer",
-  "Open source enthusiast",
-  "Remote-ready builder",
+  "Linux Kernel Hacker 🐧",
+  "Web Systems Engineer 🌐",
+  "Open Source Contributor 💖",
+  "Rust Driver Developer 🦀",
 ]
 
 export default function Hero() {
   const ref = useReveal<HTMLDivElement>()
   const [roleIndex, setRoleIndex] = useState(0)
-  const [displayText, setDisplayText] = useState("")
-  const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
-    const current = roles[roleIndex]
-    let timeout: ReturnType<typeof setTimeout>
-
-    if (!isDeleting && displayText.length < current.length) {
-      timeout = setTimeout(() => {
-        setDisplayText(current.slice(0, displayText.length + 1))
-      }, 60)
-    } else if (!isDeleting && displayText.length === current.length) {
-      timeout = setTimeout(() => setIsDeleting(true), 1800)
-    } else if (isDeleting && displayText.length > 0) {
-      timeout = setTimeout(() => {
-        setDisplayText(current.slice(0, displayText.length - 1))
-      }, 35)
-    } else if (isDeleting && displayText.length === 0) {
-      timeout = setTimeout(() => {
-        setIsDeleting(false)
-        setRoleIndex((prev) => (prev + 1) % roles.length)
-      }, 120)
-    }
-
-    return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, roleIndex])
+    const timer = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length)
+    }, 4500)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <section
@@ -56,13 +38,13 @@ export default function Hero() {
             Hi, I&apos;m <span className="text-gradient">KeiChan</span>
           </h1>
 
-          <div className="flex items-center gap-1.5 text-lg text-muted-foreground sm:text-xl">
-            <span>{displayText}</span>
+          <div className="flex items-center gap-1.5 text-lg font-mono text-muted-foreground sm:text-xl min-h-[30px]">
+            <ScrambleText text={roles[roleIndex]} />
             <span className="inline-block h-5 w-0.5 animate-pulse bg-primary" />
           </div>
 
           <p className="max-w-lg text-base text-muted-foreground/80">
-            chỉ là dev thích vọc kernel Linux và làm web thoi, nhưng vẫn mơ về remote toàn cầu.
+            Just a developer who loves tinkering with the Linux kernel and building beautiful web systems, dreaming of working remotely worldwide.
           </p>
         </div>
 
@@ -71,17 +53,18 @@ export default function Hero() {
             href="#projects"
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-lg"
           >
-            <span className="relative z-10">Xem projects</span>
+            <span className="relative z-10">View Projects</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
           </a>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 rounded-full border bg-background/50 px-7 py-3 text-sm font-medium backdrop-blur-sm transition-all hover:bg-accent hover:text-accent-foreground"
           >
-            Liên hệ
+            Contact Me
           </a>
         </div>
       </div>
     </section>
   )
 }
+
