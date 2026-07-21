@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useReveal } from "@/hooks/use-reveal"
 import ScrambleText from "@/components/ui/scramble-text"
+import AIChatBox from "@/components/ui/ai-chatbox"
 
 const roles = [
   "Linux Kernel Hacker 🐧",
@@ -81,9 +82,9 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Side: Interactive AI Console */}
+        {/* Right Side: Interactive AI Chat Box */}
         <div className="w-full lg:col-span-5 flex justify-center">
-          <AITerminal />
+          <AIChatBox />
         </div>
       </div>
     </section>
