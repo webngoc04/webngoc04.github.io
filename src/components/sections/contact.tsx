@@ -34,7 +34,7 @@ export default function Contact() {
         <h2 className="mb-2 text-3xl font-bold sm:text-4xl">
           Contact <span className="text-gradient">💌</span>
         </h2>
-        <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
+        <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" />
         <p className="mb-8 text-muted-foreground">Want to chat? Find me at the places below~</p>
 
         <div className="mb-5 flex justify-center gap-4">
@@ -89,7 +89,7 @@ export default function Contact() {
             <a
               href="/keichan.asc"
               download
-              className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-pink-200 bg-pink-50 px-3 py-1.5 text-xs font-medium text-pink-700 transition-all hover:bg-pink-100 dark:border-pink-800 dark:bg-pink-900/20 dark:text-pink-300 dark:hover:bg-pink-900/30"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/20 bg-cyan-950/20 px-3 py-1.5 text-xs font-medium text-cyan-400 transition-all hover:bg-cyan-950/30 hover:border-cyan-400/50"
             >
               <svg className="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

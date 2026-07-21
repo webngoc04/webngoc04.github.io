@@ -28,7 +28,7 @@ export default function About() {
             {["Linux", "Kernel", "Web Dev", "Open Source", "Rust", "C"].map((tag, i) => (
               <span
                 key={tag}
-                className="reveal rounded-full bg-gradient-to-r from-pink-100 to-rose-100 px-3.5 py-1.5 text-xs font-medium text-pink-700 shadow-sm transition-all hover:shadow-md dark:from-pink-900/30 dark:to-rose-900/30 dark:text-pink-300"
+                className="reveal rounded-full bg-gradient-to-r from-cyan-950/20 to-indigo-950/20 border border-cyan-500/20 px-3.5 py-1.5 text-xs font-medium text-cyan-400 shadow-sm transition-all hover:shadow-md hover:border-cyan-400/50 hover:bg-cyan-950/30"
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
                 {tag}

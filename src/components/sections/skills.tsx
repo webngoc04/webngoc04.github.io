@@ -38,7 +38,7 @@ export default function Skills() {
           <h2 className="mb-2 text-center text-3xl font-bold sm:text-4xl">
             Skills <span className="text-gradient">💻</span>
           </h2>
-          <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
+          <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" />
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           {skillCategories.map((cat, i) => (
@@ -73,7 +73,7 @@ function SkillCard({
         {cat.skills.map((skill, i) => (
           <span
             key={skill}
-            className="rounded-full border border-pink-200/50 bg-pink-100/40 px-3 py-1 text-xs font-medium text-pink-700 shadow-sm transition-all hover:scale-105 hover:border-pink-300 hover:bg-pink-200/50 hover:shadow-md dark:border-pink-800/50 dark:bg-pink-900/20 dark:text-pink-300 dark:hover:border-pink-700 dark:hover:bg-pink-900/30"
+            className="rounded-full border border-cyan-500/20 bg-cyan-950/20 px-3 py-1 text-xs font-medium text-cyan-400 shadow-sm transition-all hover:scale-105 hover:border-cyan-400/50 hover:bg-cyan-950/30 hover:shadow-md"
             style={{ transitionDelay: `${index * 100 + i * 50}ms` }}
           >
             {skill}

@@ -15,7 +15,7 @@ export default function Projects() {
           <h2 className="mb-2 text-center text-3xl font-bold sm:text-4xl">
             Projects <span className="text-gradient">✨</span>
           </h2>
-          <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
+          <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" />
         </div>
 
         <div className="glass rounded-2xl p-8 text-center">
