@@ -69,7 +69,7 @@ export default function Contact() {
           </button>
           <button
             type="button"
-            onClick={() => copyText("keichan04", "Discord ID")}
+            onClick={() => copyText("cuntrina1310", "Discord ID")}
             className="glass glass-hover flex items-center justify-between rounded-xl px-4 py-3 text-sm"
           >
             <span className="inline-flex items-center gap-2"><MessageCircle className="size-4" /> Copy Discord ID</span>
