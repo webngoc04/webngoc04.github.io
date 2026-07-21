@@ -50,7 +50,7 @@ export default function Contact() {
             </svg>
           </a>
           <a
-            href="mailto:dangnguyenngoc04@gmail.com"
+            href="mailto:tarisu.international@gmail.com"
             className="glass glass-hover flex size-12 items-center justify-center rounded-full"
             aria-label="Email"
           >
@@ -61,7 +61,7 @@ export default function Contact() {
         <div className="mx-auto mb-8 grid max-w-md gap-2 text-left">
           <button
             type="button"
-            onClick={() => copyText("dangnguyenngoc04@gmail.com", "Email")}
+            onClick={() => copyText("tarisu.international@gmail.com", "Email")}
             className="glass glass-hover flex items-center justify-between rounded-xl px-4 py-3 text-sm"
           >
             <span className="inline-flex items-center gap-2"><Mail className="size-4" /> Copy email</span>
@@ -85,7 +85,7 @@ export default function Contact() {
             <code className="block break-all text-xs text-muted-foreground sm:text-sm">
               012F C938 02BA C1FE 39D0 DC2D E016 3CBB 19B5 FFC1
             </code>
-            <p className="mt-1 text-xs text-muted-foreground/60">dangnguyenngoc04@gmail.com</p>
+            <p className="mt-1 text-xs text-muted-foreground/60">tarisu.international@gmail.com</p>
             <a
               href="/keichan.asc"
               download
