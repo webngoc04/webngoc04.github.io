@@ -18,6 +18,7 @@ export default function Navbar() {
     { label: t("nav.projects"), href: "/#projects" },
     { label: t("nav.contact"), href: "/#contact" },
     { label: t("nav.blog"), href: "/blog/" },
+    { label: t("nav.docs"), href: "/docs/" },
   ]
 
   return (

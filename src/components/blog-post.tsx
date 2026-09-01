@@ -45,7 +45,7 @@ export default function BlogPost({ post }: BlogPostProps) {
               ))}
             </div>
           </div>
-          <h1 className="text-gradient text-3xl font-bold leading-tight">{post.title}</h1>
+          <h1 className="text-gradient text-2xl sm:text-3xl font-bold leading-tight">{post.title}</h1>
           {post.description && (
             <p className="mt-3 text-lg text-muted-foreground">{post.description}</p>
           )}

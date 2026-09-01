@@ -5,7 +5,8 @@
     "skills": "Kỹ năng",
     "projects": "Dự án",
     "contact": "Liên hệ",
-    "blog": "Blog"
+    "blog": "Blog",
+    "docs": "Docs"
   },
   "hero": {
     "badge": "Portfolio được thiết kế bởi AI",
@@ -53,6 +54,8 @@
     "title": "Blog",
     "subtitle": "Những thứ tôi viết khi rảnh rỗi",
     "noPosts": "Không tìm thấy bài viết nào.",
-    "backToBlog": "Quay lại Blog"
+    "backToBlog": "Quay lại Blog",
+    "searchPlaceholder": "Tìm kiếm bài viết...",
+    "allTags": "Tất cả"
   }
 }
