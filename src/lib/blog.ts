@@ -11,6 +11,7 @@ export type BlogPost = {
   description: string
   tags: string[]
   content: string
+  lang: string
 }
 
 export function getPostSlugs(): string[] {
@@ -33,6 +34,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       description: data.description || "",
       tags: data.tags || [],
       content,
+      lang: data.lang || "en",
     }
   } catch {
     return null
@@ -45,4 +47,8 @@ export function getAllPosts(): BlogPost[] {
     .map((slug) => getPostBySlug(slug.replace(/\.md$/, "")))
     .filter((post): post is BlogPost => post !== null)
   return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+}
+
+export function getPostsByLocale(locale: string): BlogPost[] {
+  return getAllPosts().filter((post) => post.lang === locale)
 }

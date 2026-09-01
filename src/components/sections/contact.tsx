@@ -4,24 +4,26 @@ import { useEffect } from "react"
 import { Mail, Copy, MessageCircle } from "lucide-react"
 import { toast } from "sonner"
 import { useReveal } from "@/hooks/use-reveal"
+import { useI18n } from "@/lib/i18n"
 
 export default function Contact() {
   const ref = useReveal<HTMLDivElement>()
+  const { t } = useI18n()
 
   useEffect(() => {
     const key = "welcome-shown"
     if (!sessionStorage.getItem(key)) {
-      toast("Welcome to my portfolio! Have a great day! ✨")
+      toast(t("contact.welcome"))
       sessionStorage.setItem(key, "1")
     }
-  }, [])
+  }, [t])
 
   const copyText = async (text: string, label: string) => {
     try {
       await navigator.clipboard.writeText(text)
-      toast.success(`${label} copied successfully!`)
+      toast.success(`${label} ${t("contact.copySuccess")}`)
     } catch {
-      toast.error("Failed to copy, please try again.")
+      toast.error(t("contact.copyError"))
     }
   }
 
@@ -32,10 +34,10 @@ export default function Contact() {
       </div>
       <div ref={ref} className="reveal mx-auto max-w-2xl text-center">
         <h2 className="mb-2 text-3xl font-bold sm:text-4xl">
-          Contact <span className="text-gradient">💌</span>
+          {t("contact.title")} <span className="text-gradient">💌</span>
         </h2>
         <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" />
-        <p className="mb-8 text-muted-foreground">Want to chat? Find me at the places below~</p>
+        <p className="mb-8 text-muted-foreground">{t("contact.subtitle")}</p>
 
         <div className="mb-5 flex justify-center gap-4">
           <a
@@ -64,7 +66,7 @@ export default function Contact() {
             onClick={() => copyText("tarisu.international@gmail.com", "Email")}
             className="glass glass-hover flex items-center justify-between rounded-xl px-4 py-3 text-sm"
           >
-            <span className="inline-flex items-center gap-2"><Mail className="size-4" /> Copy email</span>
+            <span className="inline-flex items-center gap-2"><Mail className="size-4" /> {t("contact.copyEmail")}</span>
             <Copy className="size-4 text-muted-foreground" />
           </button>
           <button
@@ -72,7 +74,7 @@ export default function Contact() {
             onClick={() => copyText("cuntrina1310", "Discord ID")}
             className="glass glass-hover flex items-center justify-between rounded-xl px-4 py-3 text-sm"
           >
-            <span className="inline-flex items-center gap-2"><MessageCircle className="size-4" /> Copy Discord ID</span>
+            <span className="inline-flex items-center gap-2"><MessageCircle className="size-4" /> {t("contact.copyDiscord")}</span>
             <Copy className="size-4 text-muted-foreground" />
           </button>
         </div>
@@ -80,7 +82,7 @@ export default function Contact() {
         <div className="mt-8 flex justify-center">
           <div className="glass glass-hover inline-block rounded-2xl p-4 text-left sm:p-5">
             <p className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
-              🔐 GPG Fingerprint
+              🔐 {t("contact.gpgTitle")}
             </p>
             <code className="block break-all text-xs text-muted-foreground sm:text-sm">
               012F C938 02BA C1FE 39D0 DC2D E016 3CBB 19B5 FFC1
@@ -94,14 +96,14 @@ export default function Contact() {
               <svg className="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              Download GPG Key
+              {t("contact.downloadGpg")}
             </a>
           </div>
         </div>
       </div>
       <footer className="mt-16 text-center text-sm text-muted-foreground">
         <p className="flex items-center justify-center gap-1.5">
-          Made with <span className="inline-block animate-pulse">🩷</span> by KeiChan
+          {t("contact.madeWith")}
         </p>
       </footer>
     </section>

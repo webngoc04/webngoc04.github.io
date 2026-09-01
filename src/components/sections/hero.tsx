@@ -3,24 +3,21 @@
 import { useEffect, useState } from "react"
 import { useReveal } from "@/hooks/use-reveal"
 import ScrambleText from "@/components/ui/scramble-text"
-
-const roles = [
-  "Linux Kernel Hacker 🐧",
-  "Web Systems Engineer 🌐",
-  "Open Source Contributor 💖",
-  "Rust Driver Developer 🦀",
-]
+import { useI18n } from "@/lib/i18n"
 
 export default function Hero() {
   const ref = useReveal<HTMLDivElement>()
   const [roleIndex, setRoleIndex] = useState(0)
+  const { t } = useI18n()
+
+  const roles = t("hero.roles") as unknown as string[]
 
   useEffect(() => {
     const timer = setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % roles.length)
     }, 4500)
     return () => clearInterval(timer)
-  }, [])
+  }, [roles.length])
 
   return (
     <section
@@ -44,13 +41,13 @@ export default function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
           </span>
-          AI-Engineered Portfolio
+          {t("hero.badge")}
         </div>
 
         {/* Heading */}
         <div className="space-y-4">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl text-white">
-            Hi, I&apos;m <span className="text-gradient">KeiChan</span>
+            {t("hero.greeting")} <span className="text-gradient">KeiChan</span>
           </h1>
 
           {/* Role Carousel with Scramble Effect */}
@@ -62,7 +59,7 @@ export default function Hero() {
 
           {/* Bio Description */}
           <p className="max-w-xl mx-auto text-base sm:text-lg text-slate-400 leading-relaxed">
-            I code highly efficient low-level Linux systems and design beautiful, premium web interfaces. Building on Rust, C, and Next.js.
+            {t("hero.bio")}
           </p>
         </div>
 
@@ -72,14 +69,14 @@ export default function Hero() {
             href="#projects"
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_20px_oklch(0.68_0.16_250_/_0.3)] transition-all hover:scale-[1.03] hover:shadow-[0_0_30px_oklch(0.68_0.16_250_/_0.55)]"
           >
-            <span className="relative z-10">Explore Projects</span>
+            <span className="relative z-10">{t("hero.exploreProjects")}</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
           </a>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20 hover:scale-[1.03]"
           >
-            Contact Me
+            {t("hero.contactMe")}
           </a>
         </div>
       </div>

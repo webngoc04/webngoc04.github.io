@@ -1,9 +1,11 @@
 "use client"
 
 import { useReveal } from "@/hooks/use-reveal"
+import { useI18n } from "@/lib/i18n"
 
 export default function About() {
   const ref = useReveal<HTMLDivElement>()
+  const { t } = useI18n()
 
   return (
     <section id="about" className="relative px-4 py-24">
@@ -15,14 +17,12 @@ export default function About() {
         className="reveal mx-auto max-w-2xl"
       >
         <h2 className="mb-2 text-center text-3xl font-bold sm:text-4xl">
-          About <span className="text-gradient">Me</span>
+          {t("about.title")}
         </h2>
         <div className="mx-auto mb-8 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
         <div className="glass glass-hover rounded-2xl p-6 sm:p-8">
           <p className="leading-relaxed text-muted-foreground">
-            A developer who loves tinkering with the Linux kernel, writing system modules for fun,
-            and designing elegant web interfaces. Not a pro, just a small developer with a big passion.
-            Learning new technologies, building things from scratch, and sharing everything along the way.
+            {t("about.description")}
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             {["Linux", "Kernel", "Web Dev", "Open Source", "Rust", "C"].map((tag, i) => (

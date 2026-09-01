@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "skills": "Kỹ năng",
+    "projects": "Dự án",
+    "contact": "Liên hệ",
+    "blog": "Blog"
+  },
+  "hero": {
+    "badge": "Portfolio được thiết kế bởi AI",
+    "greeting": "Xin chào, tôi là",
+    "roles": [
+      "Chuyên gia Linux Kernel 🐧",
+      "Kỹ sư Hệ thống Web 🌐",
+      "Đóng góp cho Mã nguồn mở 💖",
+      "Lập trình viên Trình điều khiển Rust 🦀"
+    ],
+    "bio": "Tôi viết các hệ thống Linux cấp thấp hiệu quả cao và thiết kế các giao diện web đẹp mắt, cao cấp. Xây dựng trên Rust, C, và Next.js.",
+    "exploreProjects": "Xem Dự án",
+    "contactMe": "Liên hệ"
+  },
+  "about": {
+    "title": "Về Tôi",
+    "description": "Một lập trình viên thích tìm hiểu Linux kernel, viết hệ thống module cho vui, và thiết kế giao diện web thanh lịch. Không phải pro, chỉ là một developer nhỏ với đam mê lớn. Học công nghệ mới, xây dựng mọi thứ từ đầu, và chia sẻ mọi thứ trên đường đi."
+  },
+  "skills": {
+    "title": "Kỹ năng",
+    "categories": {
+      "languages": "Ngôn ngữ",
+      "linuxKernel": "Linux & Kernel",
+      "webDev": "Phát triển Web",
+      "toolsDevOps": "Công cụ & DevOps"
+    }
+  },
+  "projects": {
+    "title": "Dự án",
+    "noDescription": "Không có mô tả cho repository này."
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "subtitle": "Muốn trò chuyện? Tìm tôi ở các nơi dưới đây~",
+    "copyEmail": "Sao chép email",
+    "copyDiscord": "Sao chép Discord ID",
+    "copySuccess": "sao chép thành công!",
+    "copyError": "Sao chép thất bại, vui lòng thử lại.",
+    "gpgTitle": "Fingerprint GPG",
+    "downloadGpg": "Tải khóa GPG",
+    "welcome": "Chào mừng đến với portfolio của tôi! Chúc bạn có một ngày tuyệt vời! ✨",
+    "madeWith": "Được tạo với 🩷 bởi KeiChan"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Những thứ tôi viết khi rảnh rỗi",
+    "noPosts": "Không tìm thấy bài viết nào.",
+    "backToBlog": "Quay lại Blog"
+  }
+}

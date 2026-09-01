@@ -3,6 +3,7 @@ title: "Hello World!"
 date: "2026-05-30"
 description: "My first blog post, welcome to my blog!"
 tags: ["personal", "intro"]
+lang: "en"
 ---
 
 This is my first post on this blog.

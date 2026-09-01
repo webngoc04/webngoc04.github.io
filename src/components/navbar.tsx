@@ -4,18 +4,21 @@ import { Menu, X } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
-  { label: "Skills", href: "/#skills" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Contact", href: "/#contact" },
-  { label: "Blog", href: "/blog/" },
-]
+import { useI18n } from "@/lib/i18n"
+import LanguageSwitcher from "@/components/language-switcher"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const { t } = useI18n()
+
+  const navItems = [
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.about"), href: "/#about" },
+    { label: t("nav.skills"), href: "/#skills" },
+    { label: t("nav.projects"), href: "/#projects" },
+    { label: t("nav.contact"), href: "/#contact" },
+    { label: t("nav.blog"), href: "/blog/" },
+  ]
 
   return (
     <nav className="fixed top-0 z-50 w-full border-b bg-background/70 backdrop-blur-xl">
@@ -33,16 +36,19 @@ export default function Navbar() {
               {item.label}
             </a>
           ))}
+          <LanguageSwitcher />
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </Button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </Button>
+        </div>
       </div>
       <div
         className={cn(

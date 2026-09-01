@@ -1,32 +1,34 @@
 "use client"
 
 import { useReveal } from "@/hooks/use-reveal"
-
-const skillCategories = [
-  {
-    title: "Languages",
-    icon: "💻",
-    skills: ["C", "Rust", "TypeScript", "Python", "Bash"],
-  },
-  {
-    title: "Linux & Kernel",
-    icon: "🐧",
-    skills: ["Kernel Modules", "System Programming", "Arch Linux", "Gentoo", "Networking"],
-  },
-  {
-    title: "Web Dev",
-    icon: "🌐",
-    skills: ["React", "Next.js", "Node.js", "Tailwind CSS", "shadcn/ui"],
-  },
-  {
-    title: "Tools & DevOps",
-    icon: "🔧",
-    skills: ["Git", "Docker", "GitHub Actions", "Nginx", "Neovim"],
-  },
-]
+import { useI18n } from "@/lib/i18n"
 
 export default function Skills() {
   const titleRef = useReveal<HTMLDivElement>()
+  const { t } = useI18n()
+
+  const skillCategories = [
+    {
+      title: t("skills.categories.languages"),
+      icon: "💻",
+      skills: ["C", "Rust", "TypeScript", "Python", "Bash"],
+    },
+    {
+      title: t("skills.categories.linuxKernel"),
+      icon: "🐧",
+      skills: ["Kernel Modules", "System Programming", "Arch Linux", "Gentoo", "Networking"],
+    },
+    {
+      title: t("skills.categories.webDev"),
+      icon: "🌐",
+      skills: ["React", "Next.js", "Node.js", "Tailwind CSS", "shadcn/ui"],
+    },
+    {
+      title: t("skills.categories.toolsDevOps"),
+      icon: "🔧",
+      skills: ["Git", "Docker", "GitHub Actions", "Nginx", "Neovim"],
+    },
+  ]
 
   return (
     <section id="skills" className="relative px-4 py-24">
@@ -36,7 +38,7 @@ export default function Skills() {
       <div className="mx-auto max-w-3xl">
         <div ref={titleRef} className="reveal">
           <h2 className="mb-2 text-center text-3xl font-bold sm:text-4xl">
-            Skills <span className="text-gradient">💻</span>
+            {t("skills.title")} <span className="text-gradient">💻</span>
           </h2>
           <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" />
         </div>

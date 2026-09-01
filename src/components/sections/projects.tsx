@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { useReveal } from "@/hooks/use-reveal"
 import { Folder, Star, GitFork, ExternalLink } from "lucide-react"
+import { useI18n } from "@/lib/i18n"
 
 interface Repo {
   id: number
@@ -69,6 +70,7 @@ const fallbackRepos: Repo[] = [
 
 export default function Projects() {
   const ref = useReveal<HTMLDivElement>()
+  const { t } = useI18n()
 
   const { data: repos, isLoading, isError } = useQuery({
     queryKey: ["repos"],
@@ -90,7 +92,7 @@ export default function Projects() {
       <div className="mx-auto max-w-4xl">
         <div ref={ref} className="reveal text-center">
           <h2 className="mb-2 text-3xl font-bold sm:text-4xl text-white">
-            Projects <span className="text-gradient">✨</span>
+            {t("projects.title")} <span className="text-gradient">✨</span>
           </h2>
           <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" />
         </div>
@@ -134,7 +136,7 @@ export default function Projects() {
                     <ExternalLink className="size-4 text-muted-foreground group-hover:text-white transition-colors" />
                   </div>
                   <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                    {repo.description || "No description provided for this repository."}
+                    {repo.description || t("projects.noDescription")}
                   </p>
                 </div>
 

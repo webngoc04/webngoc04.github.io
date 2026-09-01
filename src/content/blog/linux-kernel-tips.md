@@ -3,6 +3,7 @@ title: "Tinkering Tips for the Linux Kernel"
 date: "2026-05-29"
 description: "A summary of various commands and tips for building and debugging the Linux kernel."
 tags: ["linux", "kernel", "tips"]
+lang: "en"
 ---
 
 Lately, I've been playing around with the Linux kernel. Writing down a few tips for future reference.

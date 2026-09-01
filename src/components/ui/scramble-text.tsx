@@ -21,12 +21,12 @@ export default function ScrambleText({
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
   
   useEffect(() => {
-    let timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       let iteration = 0
       if (intervalRef.current) clearInterval(intervalRef.current)
       
       intervalRef.current = setInterval(() => {
-        setDisplayText((prev) => {
+        setDisplayText(() => {
           return text
             .split("")
             .map((char, index) => {
