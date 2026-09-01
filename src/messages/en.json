@@ -61,6 +61,12 @@
     "showing": "Showing",
     "results": "results",
     "clearFilter": "Clear filter",
-    "showLess": "less"
+    "showLess": "less",
+    "minRead": "min read",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "copied": "Copied!",
+    "shareFacebook": "Facebook",
+    "shareTwitter": "X (Twitter)"
   }
 }

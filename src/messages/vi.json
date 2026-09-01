@@ -61,6 +61,12 @@
     "showing": "Đang hiển thị",
     "results": "kết quả",
     "clearFilter": "Xoá bộ lọc",
-    "showLess": "thu gọn"
+    "showLess": "thu gọn",
+    "minRead": "phút đọc",
+    "share": "Chia sẻ",
+    "copyLink": "Sao chép link",
+    "copied": "Đã sao chép!",
+    "shareFacebook": "Facebook",
+    "shareTwitter": "X (Twitter)"
   }
 }

@@ -12,6 +12,21 @@ export type BlogPost = {
   tags: string[]
   content: string
   lang: string
+  readingTime: number
+}
+
+export function calculateReadingTime(content: string): number {
+  if (!content) return 1
+  const clean = content
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/`.*?`/g, "")
+    .replace(/!\[.*?\]\(.*?\)/g, "")
+    .replace(/\[.*?\]\(.*?\)/g, "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/[#*_\->~`]/g, "")
+    .trim()
+  const words = clean.split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 200))
 }
 
 export function getPostSlugs(): string[] {
@@ -35,6 +50,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       tags: data.tags || [],
       content,
       lang: data.lang || "en",
+      readingTime: calculateReadingTime(content),
     }
   } catch {
     return null

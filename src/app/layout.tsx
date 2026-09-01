@@ -13,7 +13,8 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 })
 
-export const metadata: Metadata = {
+export const metadata = {
+  metadataBase: new URL("https://webngoc04.github.io"),
   title: "KeiChan",
   description: "Just a developer who loves tinkering with the Linux kernel and building web systems.",
   icons: {

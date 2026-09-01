@@ -71,6 +71,11 @@ export default function BlogPost({ post }: BlogPostProps) {
           {post.description && (
             <p className="mt-3 text-lg text-muted-foreground" itemProp="description">{post.description}</p>
           )}
+          {post.readingTime && (
+            <p className="mt-3 text-sm text-muted-foreground">
+              {t("blog.minRead")} {post.readingTime}
+            </p>
+          )}
         </header>
 
         <section itemProp="articleBody" className="blog-content">
