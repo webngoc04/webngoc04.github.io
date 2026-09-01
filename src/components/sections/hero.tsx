@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { useReveal } from "@/hooks/use-reveal"
 import ScrambleText from "@/components/ui/scramble-text"
 import { useI18n } from "@/lib/i18n"
@@ -72,12 +73,12 @@ export default function Hero() {
             <span className="relative z-10">{t("hero.exploreProjects")}</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
           </a>
-          <a
-            href="#contact"
+          <Link
+            href="/blog/"
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20 hover:scale-[1.03]"
           >
-            {t("hero.contactMe")}
-          </a>
+            {t("hero.viewBlog")}
+          </Link>
         </div>
       </div>
     </section>

@@ -17,9 +17,9 @@
       "Đóng góp cho Mã nguồn mở 💖",
       "Lập trình viên Trình điều khiển Rust 🦀"
     ],
-    "bio": "Tôi viết các hệ thống Linux cấp thấp hiệu quả cao và thiết kế các giao diện web đẹp mắt, cao cấp. Xây dựng trên Rust, C, và Next.js.",
+    "bio": "Chỉ là dev nhỏ thích vọc vạch Linux kernel, viết driver bằng Rust & C, và build web bằng Next.js.",
     "exploreProjects": "Xem Dự án",
-    "contactMe": "Liên hệ"
+    "viewBlog": "Xem Blog"
   },
   "about": {
     "title": "Về Tôi",
