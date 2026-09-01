@@ -29,6 +29,7 @@ export default function BlogList({ posts }: BlogListProps) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [page, setPage] = useState(1)
   const [postsPerPage, setPostsPerPage] = useState(getPostsPerPage)
+  const [showAllTags, setShowAllTags] = useState(false)
 
   useEffect(() => {
     const onResize = () => setPostsPerPage(getPostsPerPage())
@@ -37,10 +38,13 @@ export default function BlogList({ posts }: BlogListProps) {
   }, [])
 
   const allTags = useMemo(() => {
-    const tagSet = new Set<string>()
-    localePosts.forEach((post) => post.tags.forEach((tag) => tagSet.add(tag)))
-    return Array.from(tagSet).sort()
+    const tagCount = new Map<string, number>()
+    localePosts.forEach((post) => post.tags.forEach((tag) => tagCount.set(tag, (tagCount.get(tag) || 0) + 1)))
+    return Array.from(tagCount.entries()).sort((a, b) => b[1] - a[1]).map(([tag]) => tag)
   }, [localePosts])
+
+  const visibleTags = showAllTags ? allTags : allTags.slice(0, 5)
+  const hasMoreTags = allTags.length > 5
 
   const filteredPosts = useMemo(() => {
     let result = localePosts
@@ -105,7 +109,7 @@ export default function BlogList({ posts }: BlogListProps) {
         </div>
 
         {allTags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5">
             <button
               type="button"
               onClick={() => handleTagSelect(null)}
@@ -117,7 +121,7 @@ export default function BlogList({ posts }: BlogListProps) {
             >
               {t("blog.allTags")}
             </button>
-            {allTags.map((tag) => (
+            {visibleTags.map((tag) => (
               <button
                 key={tag}
                 type="button"
@@ -131,6 +135,15 @@ export default function BlogList({ posts }: BlogListProps) {
                 {tag}
               </button>
             ))}
+            {hasMoreTags && (
+              <button
+                type="button"
+                onClick={() => setShowAllTags(!showAllTags)}
+                className="rounded-lg px-3 py-1 text-xs font-medium text-muted-foreground underline-offset-2 hover:underline"
+              >
+                {showAllTags ? t("blog.showLess") : `+${allTags.length - 5}`}
+              </button>
+            )}
           </div>
         )}
       </div>

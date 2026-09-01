@@ -56,6 +56,7 @@
     "noPosts": "Không tìm thấy bài viết nào.",
     "backToBlog": "Quay lại Blog",
     "searchPlaceholder": "Tìm kiếm bài viết...",
-    "allTags": "Tất cả"
+    "allTags": "Tất cả",
+    "showLess": "thu gọn"
   }
 }
