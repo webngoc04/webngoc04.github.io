@@ -163,8 +163,24 @@ export default function BlogList({ posts }: BlogListProps) {
               </div>
               <h2 className="mb-1.5 text-base sm:text-xl font-semibold group-hover:text-pink-600 dark:group-hover:text-pink-300">
                 {post.title}
+                <span className="text-xs text-muted-foreground ml-2">
+                  {post.readingTime} phút đọc
+                </span>
               </h2>
               <p className="line-clamp-2 text-muted-foreground">{post.description}</p>
+              <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    navigator.clipboard.writeText(`${window.location.origin}/blog/${post.slug}/`)
+                    alert("Copied!")
+                  }}
+                  className="rounded bg-primary px-2 py-1.5 text-primary-foreground hover:opacity-80 transition-opacity"
+                  title="Copy link"
+                >
+                  Link
+                </button>
+              </div>
             </Link>
           ))}
         </div>
