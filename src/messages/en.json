@@ -56,7 +56,11 @@
     "noPosts": "No posts found.",
     "backToBlog": "Back to Blog",
     "searchPlaceholder": "Search posts...",
-    "allTags": "All",
+    "allTags": "All tags",
+    "search": "Search",
+    "showing": "Showing",
+    "results": "results",
+    "clearFilter": "Clear filter",
     "showLess": "less"
   }
 }

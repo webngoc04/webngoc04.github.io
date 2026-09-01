@@ -298,7 +298,7 @@
 }
 
 @media (min-width: 640px) {
-  .blog-content h2 {
+.blog-content h2 {
     margin-top: 2rem;
     margin-bottom: 0.75rem;
     font-size: 1.25rem;

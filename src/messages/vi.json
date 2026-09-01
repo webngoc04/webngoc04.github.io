@@ -56,7 +56,11 @@
     "noPosts": "Không tìm thấy bài viết nào.",
     "backToBlog": "Quay lại Blog",
     "searchPlaceholder": "Tìm kiếm bài viết...",
-    "allTags": "Tất cả",
+    "allTags": "Tất cả tag",
+    "search": "Tìm kiếm",
+    "showing": "Đang hiển thị",
+    "results": "kết quả",
+    "clearFilter": "Xoá bộ lọc",
     "showLess": "thu gọn"
   }
 }

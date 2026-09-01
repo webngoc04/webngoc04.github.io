@@ -26,10 +26,10 @@ export default function BlogPost({ post }: BlogPostProps) {
         {t("blog.backToBlog")}
       </Link>
 
-      <article>
+      <article itemScope itemType="https://schema.org/BlogPosting">
         <header className="mb-8">
           <div className="mb-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-            <time dateTime={post.date}>
+            <time dateTime={post.date} itemProp="datePublished">
               {new Date(post.date).toLocaleDateString(dateLocale, {
                 year: "numeric",
                 month: "long",
@@ -45,15 +45,15 @@ export default function BlogPost({ post }: BlogPostProps) {
               ))}
             </div>
           </div>
-          <h1 className="text-gradient text-2xl sm:text-3xl font-bold leading-tight">{post.title}</h1>
+          <h1 className="text-gradient text-2xl sm:text-3xl font-bold leading-tight" itemProp="headline">{post.title}</h1>
           {post.description && (
-            <p className="mt-3 text-lg text-muted-foreground">{post.description}</p>
+            <p className="mt-3 text-lg text-muted-foreground" itemProp="description">{post.description}</p>
           )}
         </header>
 
-        <div className="blog-content">
+        <section itemProp="articleBody" className="blog-content">
           <Markdown content={post.content} />
-        </div>
+        </section>
       </article>
     </>
   )

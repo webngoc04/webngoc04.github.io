@@ -29,7 +29,6 @@ export default function BlogList({ posts }: BlogListProps) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [page, setPage] = useState(1)
   const [postsPerPage, setPostsPerPage] = useState(getPostsPerPage)
-  const [showAllTags, setShowAllTags] = useState(false)
 
   useEffect(() => {
     const onResize = () => setPostsPerPage(getPostsPerPage())
@@ -43,9 +42,6 @@ export default function BlogList({ posts }: BlogListProps) {
     return Array.from(tagCount.entries()).sort((a, b) => b[1] - a[1]).map(([tag]) => tag)
   }, [localePosts])
 
-  const visibleTags = showAllTags ? allTags : allTags.slice(0, 5)
-  const hasMoreTags = allTags.length > 5
-
   const filteredPosts = useMemo(() => {
     let result = localePosts
     if (search.trim()) {
@@ -53,8 +49,7 @@ export default function BlogList({ posts }: BlogListProps) {
       result = result.filter(
         (post) =>
           post.title.toLowerCase().includes(q) ||
-          post.description.toLowerCase().includes(q) ||
-          post.tags.some((tag) => tag.toLowerCase().includes(q))
+          post.description.toLowerCase().includes(q)
       )
     }
     if (selectedTag) {
@@ -70,15 +65,21 @@ export default function BlogList({ posts }: BlogListProps) {
     currentPage * postsPerPage
   )
 
-  const handleSearchChange = useCallback((value: string) => {
-    setSearch(value)
+  const handleSearch = useCallback(() => {
     setPage(1)
   }, [])
 
-  const handleTagSelect = useCallback((tag: string | null) => {
-    setSelectedTag(tag)
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSearch()
+  }, [handleSearch])
+
+  const handleClear = useCallback(() => {
+    setSearch("")
+    setSelectedTag(null)
     setPage(1)
   }, [])
+
+  const hasFilter = search.trim() || selectedTag
 
   return (
     <>
@@ -87,63 +88,61 @@ export default function BlogList({ posts }: BlogListProps) {
         {t("blog.subtitle")}
       </p>
 
-      <div className="mb-8 flex flex-col gap-4">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder={t("blog.searchPlaceholder")}
-            value={search}
-            onChange={(e) => handleSearchChange(e.target.value)}
-            className="w-full rounded-xl border bg-card py-2.5 pl-10 pr-10 text-sm text-foreground placeholder:text-muted-foreground outline-none transition-colors focus:border-primary/50"
-          />
-          {search && (
-            <button
-              type="button"
-              onClick={() => handleSearchChange("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-            >
-              <X className="size-4" />
-            </button>
-          )}
-        </div>
-
-        {allTags.length > 0 && (
-          <div className="flex flex-wrap items-center gap-1.5">
-            <button
-              type="button"
-              onClick={() => handleTagSelect(null)}
-              className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
-                selectedTag === null
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
-              }`}
-            >
-              {t("blog.allTags")}
-            </button>
-            {visibleTags.map((tag) => (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => handleTagSelect(selectedTag === tag ? null : tag)}
-                className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
-                  selectedTag === tag
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-            {hasMoreTags && (
+      <div className="mb-8 flex flex-col gap-3">
+        <div className="flex flex-col sm:flex-row gap-2">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder={t("blog.searchPlaceholder")}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="w-full rounded-xl border bg-card py-2.5 pl-10 pr-10 text-sm text-foreground placeholder:text-muted-foreground outline-none transition-colors focus:border-primary/50"
+            />
+            {search && (
               <button
                 type="button"
-                onClick={() => setShowAllTags(!showAllTags)}
-                className="rounded-lg px-3 py-1 text-xs font-medium text-muted-foreground underline-offset-2 hover:underline"
+                onClick={() => setSearch("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
               >
-                {showAllTags ? t("blog.showLess") : `+${allTags.length - 5}`}
+                <X className="size-4" />
               </button>
             )}
+          </div>
+
+          {allTags.length > 0 && (
+            <select
+              value={selectedTag ?? ""}
+              onChange={(e) => setSelectedTag(e.target.value || null)}
+              className="rounded-xl border bg-card px-3 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/50 appearance-none cursor-pointer min-w-[140px]"
+            >
+              <option value="">{t("blog.allTags")}</option>
+              {allTags.map((tag) => (
+                <option key={tag} value={tag}>{tag}</option>
+              ))}
+            </select>
+          )}
+
+          <button
+            type="button"
+            onClick={handleSearch}
+            className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90"
+          >
+            {t("blog.search")}
+          </button>
+        </div>
+
+        {hasFilter && (
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <span>{t("blog.showing")} {filteredPosts.length} {t("blog.results")}</span>
+            <button
+              type="button"
+              onClick={handleClear}
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              {t("blog.clearFilter")}
+            </button>
           </div>
         )}
       </div>
@@ -151,14 +150,14 @@ export default function BlogList({ posts }: BlogListProps) {
       {paginatedPosts.length === 0 ? (
         <p className="text-center text-muted-foreground">{t("blog.noPosts")}</p>
       ) : (
-        <div className="grid gap-6">
+        <div className="grid gap-4 sm:gap-6">
           {paginatedPosts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}/`}
               className="glass glass-hover group block rounded-xl p-4 sm:p-6 transition-all"
             >
-              <div className="mb-2 flex items-center gap-3 text-sm text-muted-foreground">
+              <div className="mb-2 flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
                 <time dateTime={post.date}>
                   {new Date(post.date).toLocaleDateString(dateLocale, {
                     year: "numeric",
