@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useEffect, useMemo, useCallback } from "react"
+import { useState, useMemo, useCallback } from "react"
 import { Search, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useI18n } from "@/lib/i18n"
@@ -11,13 +11,7 @@ interface BlogListProps {
   posts: BlogPost[]
 }
 
-function getPostsPerPage(): number {
-  if (typeof window === "undefined") return 5
-  const w = window.innerWidth
-  if (w < 640) return 3
-  if (w < 1024) return 5
-  return 7
-}
+const POSTS_PER_PAGE = 5
 
 export default function BlogList({ posts }: BlogListProps) {
   const { t, locale } = useI18n()
@@ -28,13 +22,6 @@ export default function BlogList({ posts }: BlogListProps) {
   const [search, setSearch] = useState("")
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [page, setPage] = useState(1)
-  const [postsPerPage, setPostsPerPage] = useState(getPostsPerPage)
-
-  useEffect(() => {
-    const onResize = () => setPostsPerPage(getPostsPerPage())
-    window.addEventListener("resize", onResize)
-    return () => window.removeEventListener("resize", onResize)
-  }, [])
 
   const allTags = useMemo(() => {
     const tagCount = new Map<string, number>()
@@ -58,11 +45,11 @@ export default function BlogList({ posts }: BlogListProps) {
     return result
   }, [localePosts, search, selectedTag])
 
-  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / postsPerPage))
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE))
   const currentPage = Math.min(page, totalPages)
   const paginatedPosts = filteredPosts.slice(
-    (currentPage - 1) * postsPerPage,
-    currentPage * postsPerPage
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
   )
 
   const handleSearch = useCallback(() => {
