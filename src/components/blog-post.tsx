@@ -1,6 +1,8 @@
 "use client"
 
+import { useEffect, useRef } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Markdown } from "@/components/markdown"
@@ -13,6 +15,26 @@ interface BlogPostProps {
 
 export default function BlogPost({ post }: BlogPostProps) {
   const { t, locale } = useI18n()
+  const router = useRouter()
+  const prevLocale = useRef(locale)
+
+  useEffect(() => {
+    if (prevLocale.current === locale) return
+    prevLocale.current = locale
+
+    let targetSlug: string
+    if (locale === "en" && !post.slug.endsWith("-en")) {
+      targetSlug = `${post.slug}-en`
+    } else if (locale === "vi" && post.slug.endsWith("-en")) {
+      targetSlug = post.slug.replace(/-en$/, "")
+    } else {
+      return
+    }
+
+    fetch(`/blog/${targetSlug}/`, { method: "HEAD" }).then((res) => {
+      if (res.ok) router.push(`/blog/${targetSlug}/`)
+    })
+  }, [locale, post.slug, router])
 
   const dateLocale = locale === "vi" ? "vi-VN" : "en-US"
 
