@@ -23,13 +23,19 @@ Hãy nhìn vào sự thật đối chiếu giữa các dự án hạ tầng số
 
 - **`tianocore/edk2`**: Bộ framework mã nguồn mở cung cấp toàn bộ nền tảng UEFI cho hàng tỷ máy tính (PC, Server) khởi động và vận hành mỗi ngày. Không có nó thì máy tính của bạn còn chẳng boot nổi vào OS.
 - **`torvalds/linux`**: Hệ điều hành mã nguồn mở duy nhất có thể đọ ngang, thậm chí vượt trội hơn Windows ở mảng Server, Cloud và Supercomputer. Toàn bộ hạ tầng Internet thế giới đang chạy trên vai Linux.
-- **`obra/superpower` (hoặc các AI skills/plugins mới nổi)**: Các tiện ích tích hợp AI mọc lên theo trào lưu, ăn theo cơn sốt Generative AI.
+- **`Significant-Gravitas/AutoGPT` (hoặc các AI agent / wrapper repos bùng nổ)**: Dự án AI phong trào mọc lên theo trào lưu, vọt lên hàng trăm nghìn Star chỉ sau một thời gian ngắn.
 
-![Đối chiếu số Star GitHub live giữa EDK2, Linux và AI Skills](/images/repo_star_comparison.png)
+![Đối chiếu số Star GitHub live giữa EDK2, Linux và AI Repos](/images/repo_star_comparison.png)
 
-> **Nhìn vào đó để thấy:** Bấm nút Star thực chất chỉ giúp bên phát triển có số liệu làm truyền thông hoặc thu hút vốn đầu tư. Bản thân người bấm star có thu lại được giá trị kỹ thuật nào không? 
->
-> Số Star theo đúng thiết kế của GitHub chỉ đơn thuần là biểu hiện của **sự nổi tiếng truyền thông (Publicity)**. Mỗi giây có hàng trăm repo đẻ ra, được bấm star rồi được tóm tắt. Cần tự hỏi: Người ta tạo ra đống đó là để thu hút vốn phát triển hay thực sự vì cộng đồng?
+### 📊 Bảng đối chiếu số Star trên GitHub (Dữ liệu công khai):
+
+| Repository | Loại dự án | Tầm quan trọng thực tế | Tỷ lệ Star trên GitHub |
+|---|---|---|---|
+| **`torvalds/linux`** | Hệ điều hành Kernel cốt lõi toàn cầu | **Sống còn cho 99% hạ tầng Cloud & Internet** | **~185,000 ⭐** |
+| **`Significant-Gravitas/AutoGPT`** | Repo AI Agent phong trào bùng nổ | **Nổi lên theo truyền thông AI** | **~170,000 ⭐** *(Tăng vọt qua đêm)* |
+| **`tianocore/edk2`** | Framework UEFI Khởi động PC/Server | **Sống còn cho toàn bộ hạ tầng PC / UEFI** | **~4,600 ⭐** *(Thấp bất ngờ)* |
+
+*(Ghi chú: Số Star trên GitHub chỉ thể hiện mức độ nổi tiếng truyền thông ngắn hạn, hoàn toàn không phản ánh đúng giá trị hạ tầng thực tế).*
 
 ---
 
