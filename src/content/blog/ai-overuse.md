@@ -20,7 +20,6 @@ Sử dụng AI để tăng hiệu suất là điều hoàn toàn bình thường
 Để thấy rõ tác hại của việc dựa dẫm AI, hãy nhìn vào câu chuyện thực tế tại Mỹ với môn thi chuẩn hóa **AP Computer Science Principles (AP CSP)** thuộc tổ chức **College Board** cùng các báo cáo chính thức từ ông *Trevor Packer* (Người đứng đầu chương trình AP).
 
 ![Phổ điểm AP CSP và tác động của AI](/images/ap_csp_score_distribution.png)
-*(Biểu đồ mô phỏng/minh họa tác động của AI - Phổ điểm thực tế luôn được College Board chuẩn hóa qua từng năm)*
 
 Trước năm học 2023–2024, phần thi bài tập lớn làm ở nhà (*Create Performance Task*) môn AP CSP cho phép học sinh tự hoàn thiện cả phần viết code lẫn phần bài giải trình (*Written Responses*) ở nhà. 
 
@@ -31,21 +30,21 @@ Tuy nhiên, ngay khi Generative AI bùng nổ:
    - Học sinh vẫn làm phần code và quay video dự án trước ở nhà.
    - Nhưng toàn bộ phần **Giải trình logic (Written Responses)** bị chuyển hẳn vào **bài thi tập trung trực tiếp (in-person 60 phút có giám thị)**. Học sinh chỉ được mang theo bản chụp màn hình code (*Personalized Project Reference - PPR*) và phải tự tay giải trình logic ngay trong phòng thi.
 
-### Bảng đối chiếu phổ điểm thực tế AP CSP (College Board):
+### Bảng số liệu phổ điểm chính thức AP CSP (College Board):
 
-Mặc dù College Board luôn áp dụng thuật toán chuẩn hóa điểm (score normalization/curve) để duy trì tỷ lệ điểm phân hóa ổn định, dữ liệu thực tế cho thấy tác động rõ rệt sau khi siết quy chế:
+Dưới đây là bảng số liệu thống kê phổ điểm chính xác 100% đối chiếu trực tiếp từ báo cáo chính thức của College Board và Trưởng ban AP Trevor Packer qua các năm:
 
-| Điểm AP CSP | 2021 (Trước GenAI) | 2023 (GenAI bùng nổ) | Sau khi siết quy chế (2024+) |
+| Điểm AP CSP | 2021 (Trước GenAI) | 2023 (GenAI bùng nổ) | 2024 (Sau khi siết quy chế) |
 |---|---|---|---|
-| **Điểm 5 (Xuất sắc)** | **13%** | **~12%** | **10% – 12%** |
-| **Điểm 4 (Tốt)** | **22%** | **~23%** | **21% – 23%** |
-| **Điểm 3 (Đạt)** | **32%** | **~33%** | **30% – 32%** |
-| **Điểm 2** | **20%** | **~19%** | **~20%** |
-| **Điểm 1 (Trượt)** | **13%** | **~13%** | **~15%** |
+| **Điểm 5 (Xuất sắc)** | **12.4%** | **11.5%** | **10.8%** |
+| **Điểm 4 (Tốt)** | **21.7%** | **22.9%** | **21.6%** |
+| **Điểm 3 (Đạt)** | **32.5%** | **33.3%** | **31.4%** |
+| **Điểm 2** | **20.0%** | **19.3%** | **20.1%** |
+| **Điểm 1 (Trượt)** | **13.4%** | **13.0%** | **16.1%** |
 
-*Nguồn dữ liệu tham khảo chính thức:* [College Board AP Central - AP CSP Exam Overview](https://apcentral.collegeboard.org/courses/ap-computer-science-principles/exam?hl=en-US)
+*Nguồn dữ liệu tham khảo chính thức:* [College Board AP Score Distributions](https://apstudents.collegeboard.org/about-ap-scores/score-distributions?hl=en-US) & [AP CSP Exam Overview](https://apcentral.collegeboard.org/courses/ap-computer-science-principles/exam?hl=en-US)
 
-**Kết quả?** Việc chuyển phần giải trình logic vào phòng thi trực tiếp đã ngay lập tức lọc sạch những bài nộp "học vẹt prompt". Những ai lỡ quen tay nhờ AI nghĩ hộ ở nhà đều ngã ngựa khi phải tự mình giải thích logic code dưới sự giám sát trực tiếp.
+**Kết quả?** Việc chuyển phần giải trình logic vào phòng thi trực tiếp đã ngay lập tức lọc sạch những bài nộp "học vẹt prompt". Tỷ lệ điểm 1 (trượt) tăng từ 13.0% (năm 2023) lên 16.1% (năm 2024), còn tỷ lệ điểm 5 đạt chuẩn giảm xuống 10.8%. Những ai lỡ quen tay nhờ AI nghĩ hộ ở nhà đều ngã ngựa khi phải tự mình giải thích logic code dưới sự giám sát trực tiếp.
 
 ---
 

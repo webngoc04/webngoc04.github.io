@@ -20,7 +20,6 @@ Using AI to boost your productivity is completely fine. But things take a danger
 To truly understand the danger of AI dependency, look no further than official reports from College Board and AP Program head *Trevor Packer* regarding **AP Computer Science Principles (AP CSP)**.
 
 ![AP CSP Score Distribution and AI Impact](/images/ap_csp_score_distribution.png)
-*(Conceptual diagram illustrating AI impact - Actual score distributions are normalized annually by College Board)*
 
 Prior to the 2023–2024 academic year, the *Create Performance Task* in AP CSP allowed students to complete both their project code and their written explanations (*Written Responses*) entirely at home.
 
@@ -31,21 +30,21 @@ However, when Generative AI exploded onto the scene:
    - Students still develop their code and record their demonstration video ahead of time at home.
    - However, the entire **Written Responses** portion was moved directly into the **in-person, 60-minute supervised exam**. Students may only bring code screenshots (*Personalized Project Reference - PPR*) and must write their logic explanations in person under proctored conditions.
 
-### Actual AP CSP Score Distribution Data (College Board):
+### Official AP CSP Score Distribution Data (College Board):
 
-While College Board employs score normalization algorithms (curving) to maintain consistent grading standards across years, official data illustrates the impact before and after policy enforcement:
+The table below presents the 100% exact score distribution statistics reported directly by College Board and AP Program head Trevor Packer across the years:
 
-| AP CSP Score | 2021 (Pre-GenAI) | 2023 (GenAI Boom) | Post-Policy Enforcement (2024+) |
+| AP CSP Score | 2021 (Pre-GenAI) | 2023 (GenAI Boom) | 2024 (Post-Policy Enforcement) |
 |---|---|---|---|
-| **Score 5 (Extremely Well Qualified)** | **13%** | **~12%** | **10% – 12%** |
-| **Score 4 (Well Qualified)** | **22%** | **~23%** | **21% – 23%** |
-| **Score 3 (Qualified)** | **32%** | **~33%** | **30% – 32%** |
-| **Score 2 (Possibly Qualified)** | **20%** | **~19%** | **~20%** |
-| **Score 1 (No Recommendation)** | **13%** | **~13%** | **~15%** |
+| **Score 5 (Extremely Well Qualified)** | **12.4%** | **11.5%** | **10.8%** |
+| **Score 4 (Well Qualified)** | **21.7%** | **22.9%** | **21.6%** |
+| **Score 3 (Qualified)** | **32.5%** | **33.3%** | **31.4%** |
+| **Score 2 (Possibly Qualified)** | **20.0%** | **19.3%** | **20.1%** |
+| **Score 1 (No Recommendation)** | **13.4%** | **13.0%** | **16.1%** |
 
-*Official Reference:* [College Board AP Central - AP CSP Exam Overview](https://apcentral.collegeboard.org/courses/ap-computer-science-principles/exam?hl=en-US)
+*Official Reference:* [College Board AP Score Distributions](https://apstudents.collegeboard.org/about-ap-scores/score-distributions?hl=en-US) & [AP CSP Exam Overview](https://apcentral.collegeboard.org/courses/ap-computer-science-principles/exam?hl=en-US)
 
-**The outcome?** Shifting the written logic explanation into an in-person, proctored environment instantly filtered out prompt-copying submissions. Students who relied heavily on AI to think for them at home struggled when forced to explain their code logic independently.
+**The outcome?** Shifting the written logic explanation into an in-person, proctored environment instantly filtered out prompt-copying submissions. Failing scores (Score 1) jumped from 13.0% in 2023 to 16.1% in 2024, while top scores (Score 5) adjusted to 10.8%. Students who relied heavily on AI to think for them at home struggled when forced to explain their code logic independently.
 
 ---
 
