@@ -4,7 +4,7 @@ import { useState, type ReactElement } from "react"
 import { Check, Copy } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import { APCspScoreChart, CognitiveAtrophyDiagram } from "@/components/blog-charts"
+import { APCspScoreChart, CognitiveAtrophyDiagram, RepoStarComparisonChart } from "@/components/blog-charts"
 
 function CopyButton({ code }: { code: string }) {
   const [copied, setCopied] = useState(false)
@@ -38,6 +38,9 @@ export function Markdown({ content }: { content: string }) {
           }
           if (srcStr.includes("cognitive_atrophy_loop")) {
             return <CognitiveAtrophyDiagram />
+          }
+          if (srcStr.includes("repo_star_comparison") || srcStr.includes("github_star_comparison")) {
+            return <RepoStarComparisonChart />
           }
           return <img src={srcStr} alt={alt || ""} className="rounded-xl border my-4 max-w-full" />
         },

@@ -267,3 +267,71 @@ export function CognitiveAtrophyDiagram() {
     </div>
   )
 }
+
+export function RepoStarComparisonChart() {
+  const stars = {
+    linux: 185000,
+    edk2: 4600,
+    superpower: 30000,
+  }
+
+  const maxStars = Math.max(stars.linux, stars.edk2, stars.superpower, 1)
+
+  return (
+    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
+      <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b pb-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <BarChart3 className="size-5 text-pink-500" />
+            <h3 className="text-lg font-bold text-foreground">Đối Chiếu GitHub Stars: Hạ Tầng Cốt Lõi vs. AI Skills Phong Trào</h3>
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">
+            Số liệu GitHub Star công khai đối chiếu giữa EDK2, Linux Kernel và Superpower AI Skill
+          </p>
+        </div>
+        <Badge variant="outline" className="bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20 text-xs">
+          Public GitHub Stars
+        </Badge>
+      </div>
+
+      <div className="space-y-4">
+        {/* Linux */}
+        <div className="rounded-xl border bg-accent/30 p-3">
+          <div className="flex justify-between items-center text-xs sm:text-sm font-semibold mb-1">
+            <span className="text-foreground">torvalds/linux (Kernel Hệ điều hành toàn cầu)</span>
+            <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold">~185,000 ⭐</span>
+          </div>
+          <div className="h-3 rounded-full bg-muted overflow-hidden">
+            <div className="h-full bg-emerald-500 transition-all duration-700" style={{ width: `${(stars.linux / maxStars) * 100}%` }} />
+          </div>
+        </div>
+
+        {/* EDK2 */}
+        <div className="rounded-xl border bg-accent/30 p-3">
+          <div className="flex justify-between items-center text-xs sm:text-sm font-semibold mb-1">
+            <span className="text-foreground">tianocore/edk2 (Framework UEFI Khởi động PC/Server)</span>
+            <span className="font-mono text-amber-600 dark:text-amber-400 font-bold">~4,600 ⭐ (Thấp bất ngờ)</span>
+          </div>
+          <div className="h-3 rounded-full bg-muted overflow-hidden">
+            <div className="h-full bg-amber-500 transition-all duration-700" style={{ width: `${(stars.edk2 / maxStars) * 100}%` }} />
+          </div>
+        </div>
+
+        {/* Superpower */}
+        <div className="rounded-xl border bg-accent/30 p-3">
+          <div className="flex justify-between items-center text-xs sm:text-sm font-semibold mb-1">
+            <span className="text-foreground">obra/superpower (AI Skills / Plugin phong trào)</span>
+            <span className="font-mono text-purple-600 dark:text-purple-400 font-bold">~30,000 ⭐ (Tăng vọt theo truyền thông)</span>
+          </div>
+          <div className="h-3 rounded-full bg-muted overflow-hidden">
+            <div className="h-full bg-purple-500 transition-all duration-700" style={{ width: `${(stars.superpower / maxStars) * 100}%` }} />
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 text-xs text-muted-foreground">
+        *Số Star chỉ phản ánh độ nổi tiếng truyền thông ngắn hạn, hoàn toàn không phải thước đo tầm quan trọng kỹ thuật thực tế của dự án.
+      </div>
+    </div>
+  )
+}
