@@ -17,15 +17,33 @@ export async function generateMetadata({
   const post = getPostBySlug(slug)
   if (!post) return {}
 
+  const ogImageUrl = `https://webngoc04.github.io/blog/${slug}/opengraph-image`
+
   return {
     title: `${post.title} | KeiChan`,
     description: post.description,
     openGraph: {
       title: post.title,
       description: post.description,
+      url: `https://webngoc04.github.io/blog/${slug}/`,
+      siteName: "KeiChan",
       type: "article",
       publishedTime: post.date,
       tags: post.tags,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [ogImageUrl],
     },
     other: {
       "article:published_time": post.date,
