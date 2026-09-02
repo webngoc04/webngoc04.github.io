@@ -5,7 +5,6 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { ShareButton } from "@/components/share-button"
 import { Markdown } from "@/components/markdown"
 import { useI18n } from "@/lib/i18n"
 import type { BlogPost } from "@/lib/blog"
@@ -50,7 +49,7 @@ export default function BlogPost({ post }: BlogPostProps) {
       </Link>
 
       <article itemScope itemType="https://schema.org/BlogPosting">
-        <header className="mb-8">
+<header className="mb-8">
 <div className="mb-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
               <time dateTime={post.date} itemProp="datePublished">
                 {new Date(post.date).toLocaleDateString(dateLocale, {
@@ -67,27 +66,23 @@ export default function BlogPost({ post }: BlogPostProps) {
                   </Badge>
                 ))}
               </div>
-              <span className="text-xs text-muted-foreground ml-4">
-                {post.readingTime} phút đọc
-              </span>
             </div>
-            <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
-              <ShareButton title={post.title} />
+            <div className="mt-3 text-sm text-muted-foreground">
+              <h1 className="text-gradient text-2xl sm:text-3xl font-bold leading-tight" itemProp="headline">{post.title}</h1>
+              {post.description && (
+                <p className="mt-3 text-lg text-muted-foreground" itemProp="description">{post.description}</p>
+              )}
+              {post.readingTime && (
+                <p className="mt-3 text-sm text-muted-foreground">
+                  {t("blog.minRead")} {post.readingTime}
+                </p>
+              )}
             </div>
-          <h1 className="text-gradient text-2xl sm:text-3xl font-bold leading-tight" itemProp="headline">{post.title}</h1>
-          {post.description && (
-            <p className="mt-3 text-lg text-muted-foreground" itemProp="description">{post.description}</p>
-          )}
-          {post.readingTime && (
-            <p className="mt-3 text-sm text-muted-foreground">
-              {t("blog.minRead")} {post.readingTime}
-            </p>
-          )}
-        </header>
+          </header>
 
-        <section itemProp="articleBody" className="blog-content">
-          <Markdown content={post.content} />
-        </section>
+          <section itemProp="articleBody" className="blog-content">
+            <Markdown content={post.content} />
+          </section>
       </article>
     </>
   )
