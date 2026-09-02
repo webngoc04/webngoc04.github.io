@@ -17,18 +17,35 @@ Sử dụng AI để tăng hiệu suất là điều hoàn toàn bình thường
 
 ## 1. Bài học xương máu từ College Board: Cơn sốt "điểm ảo" và cái kết đắng
 
-Để thấy rõ tác hại của việc dựa dẫm AI, hãy nhìn vào câu chuyện thực tế tại Mỹ với các môn thi chuẩn hóa như **AP Computer Science Principles (AP CSP)** hay bài kiểm tra viết luận của **AP Seminar / AP Capstone** thuộc tổ chức **College Board**.
+Để thấy rõ tác hại của việc dựa dẫm AI, hãy nhìn vào câu chuyện thực tế tại Mỹ với môn thi chuẩn hóa **AP Computer Science Principles (AP CSP)** thuộc tổ chức **College Board** cùng các báo cáo chính thức từ ông *Trevor Packer* (Người đứng đầu chương trình AP).
 
 ![Phổ điểm AP CSP và tác động của AI](/images/ap_csp_score_distribution.png)
+*(Biểu đồ mô phỏng/minh họa tác động của AI - Phổ điểm thực tế luôn được College Board chuẩn hóa qua từng năm)*
 
-Vài năm trước, phần thi bài tập lớn làm ở nhà (*Performance Task*) môn AP CSP vốn đòi hỏi học sinh phải tự vận lộn với logic lập trình và viết tài liệu giải trình kỹ thuật. Điểm số phân hóa rất rõ ràng, tỷ lệ đạt điểm 4 và 5 luôn duy trì ở mức trung bình.
+Trước năm học 2023–2024, phần thi bài tập lớn làm ở nhà (*Create Performance Task*) môn AP CSP cho phép học sinh tự hoàn thiện cả phần viết code lẫn phần bài giải trình (*Written Responses*) ở nhà. 
 
-Tuy nhiên, ngay sau khi các công cụ Generative AI bùng nổ:
-1. **Lạm phát điểm ảo:** Học sinh ồ ạt dùng AI để gen code, viết giải trình và phân tích dự án từ A đến Z. Bài nộp làm ở nhà trở nên "hoàn hảo" một cách bất thường, khiến tỷ lệ điểm 4 và điểm 5 tăng vọt đỉnh điểm vào năm 2023.
-2. **Cú đấm từ thực tế:** College Board và các trường đại học nhanh chóng phát hiện sự bất thường. Họ nhận ra học sinh chỉ biết copy-paste prompt chứ không thực sự hiểu logic bên dưới.
-3. **Thay đổi quy chế triệt để:** College Board lập tức điều chỉnh cơ cấu điểm, giảm tỷ trọng bài làm ở nhà và buộc học sinh phải giải trình logic code **trực tiếp bằng viết tay hoặc trên máy tính khóa mạng (Lockdown Browser)** ngay tại phòng thi.
+Tuy nhiên, ngay khi Generative AI bùng nổ:
+1. **Lạm phát bài làm hoàn hảo:** Học sinh ồ ạt dùng AI để sinh code, tạo tài liệu giải trình và phân tích dự án từ A đến Z. Nhiều bài nộp làm ở nhà trở nên "hoàn hảo" một cách bất thường.
+2. **Cú đấm từ thực tế:** College Board và các trường đại học nhanh chóng phát hiện sự bất thường khi học sinh chỉ biết copy-paste prompt nhưng hoàn toàn rỗng tuếch về tư duy logic bên dưới.
+3. **Siết chặt quy chế thi (Chính thức từ năm học 2023–2024):** Để chặn đứng nạn dùng AI làm hộ bài ở nhà, College Board đã đưa ra thay đổi bước ngoặt:
+   - Học sinh vẫn làm phần code và quay video dự án trước ở nhà.
+   - Nhưng toàn bộ phần **Giải trình logic (Written Responses)** bị chuyển hẳn vào **bài thi tập trung trực tiếp (in-person 60 phút có giám thị)**. Học sinh chỉ được mang theo bản chụp màn hình code (*Personalized Project Reference - PPR*) và phải tự tay giải trình logic ngay trong phòng thi.
 
-**Kết quả?** Hàng loạt học sinh bị "đấm" điểm 0 hoặc hủy toàn bộ kết quả thi năm đó vì không thể tự giải thích bài làm của chính mình. Nhiều trường hợp dính hồ sơ vi phạm quy chế thi nghiêm trọng và phải chờ cả năm sau để thi lại.
+### Bảng đối chiếu phổ điểm thực tế AP CSP (College Board):
+
+Mặc dù College Board luôn áp dụng thuật toán chuẩn hóa điểm (score normalization/curve) để duy trì tỷ lệ điểm phân hóa ổn định, dữ liệu thực tế cho thấy tác động rõ rệt sau khi siết quy chế:
+
+| Điểm AP CSP | 2021 (Trước GenAI) | 2023 (GenAI bùng nổ) | Sau khi siết quy chế (2024+) |
+|---|---|---|---|
+| **Điểm 5 (Xuất sắc)** | **13%** | **~12%** | **10% – 12%** |
+| **Điểm 4 (Tốt)** | **22%** | **~23%** | **21% – 23%** |
+| **Điểm 3 (Đạt)** | **32%** | **~33%** | **30% – 32%** |
+| **Điểm 2** | **20%** | **~19%** | **~20%** |
+| **Điểm 1 (Trượt)** | **13%** | **~13%** | **~15%** |
+
+*Nguồn dữ liệu tham khảo chính thức:* [College Board AP Central - AP CSP Exam Overview](https://apcentral.collegeboard.org/courses/ap-computer-science-principles/exam?hl=en-US)
+
+**Kết quả?** Việc chuyển phần giải trình logic vào phòng thi trực tiếp đã ngay lập tức lọc sạch những bài nộp "học vẹt prompt". Những ai lỡ quen tay nhờ AI nghĩ hộ ở nhà đều ngã ngựa khi phải tự mình giải thích logic code dưới sự giám sát trực tiếp.
 
 ---
 

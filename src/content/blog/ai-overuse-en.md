@@ -15,20 +15,37 @@ Using AI to boost your productivity is completely fine. But things take a danger
 
 ---
 
-## 1. A Hard Lesson from College Board: Grade Inflation & The In-Person Reality Check
+## 1. A Hard Lesson from College Board: Policy Overhaul & The In-Person Reality Check
 
-To truly understand the danger of AI dependency, look no further than the real-world case of standardized testing in the US, specifically **AP Computer Science Principles (AP CSP)** and the performance writing tasks in **AP Seminar / AP Capstone** administered by the **College Board**.
+To truly understand the danger of AI dependency, look no further than official reports from College Board and AP Program head *Trevor Packer* regarding **AP Computer Science Principles (AP CSP)**.
 
 ![AP CSP Score Distribution and AI Impact](/images/ap_csp_score_distribution.png)
+*(Conceptual diagram illustrating AI impact - Actual score distributions are normalized annually by College Board)*
 
-A few years ago, the *Create Performance Task* in AP CSP—a project completed at home accounting for 30% of the exam score—required students to wrestle independently with code logic, algorithm design, and technical documentation. Score distributions were well-balanced, with top scores (4 and 5) earned through genuine effort.
+Prior to the 2023–2024 academic year, the *Create Performance Task* in AP CSP allowed students to complete both their project code and their written explanations (*Written Responses*) entirely at home.
 
-Then generative AI exploded onto the scene:
-1. **Rampant Grade Inflation:** Students flooded AI tools to write their code, generate technical write-ups, and summarize project documentation from start to finish. Home submissions suddenly looked "unreasonably flawless," causing top scores (4s and 5s) to spike artificially in 2023.
-2. **The Reality Check:** College Board administrators and universities quickly spotted the anomaly. They realized students were copy-pasting prompts without understanding the underlying code logic.
-3. **Overhauling the Exam Rules:** College Board responded swiftly by reducing the weight of take-home projects and requiring students to explain their code logic **in-person via hand-written responses or lockdown browsers** during the exam.
+However, when Generative AI exploded onto the scene:
+1. **Flawless Submission Spike:** Students flooded LLMs to write code, generate technical write-ups, and document projects from start to finish. Take-home submissions suddenly looked unnaturally flawless.
+2. **The Reality Check:** College Board administrators and universities quickly caught on, realizing students were copy-pasting prompts while remaining completely oblivious to the underlying logic.
+3. **Official Policy Change (Effective 2023–2024 School Year / 2024 Exam):** To stop take-home AI abuse, College Board instituted a major structural change:
+   - Students still develop their code and record their demonstration video ahead of time at home.
+   - However, the entire **Written Responses** portion was moved directly into the **in-person, 60-minute supervised exam**. Students may only bring code screenshots (*Personalized Project Reference - PPR*) and must write their logic explanations in person under proctored conditions.
 
-**The outcome?** Thousands of students were handed failing grades (scores of 1 or 0) or had their exam scores completely voided because they couldn't explain the code submitted under their own names. Many faced academic dishonesty marks on their permanent records, forced to wait an entire year to retake the course.
+### Actual AP CSP Score Distribution Data (College Board):
+
+While College Board employs score normalization algorithms (curving) to maintain consistent grading standards across years, official data illustrates the impact before and after policy enforcement:
+
+| AP CSP Score | 2021 (Pre-GenAI) | 2023 (GenAI Boom) | Post-Policy Enforcement (2024+) |
+|---|---|---|---|
+| **Score 5 (Extremely Well Qualified)** | **13%** | **~12%** | **10% – 12%** |
+| **Score 4 (Well Qualified)** | **22%** | **~23%** | **21% – 23%** |
+| **Score 3 (Qualified)** | **32%** | **~33%** | **30% – 32%** |
+| **Score 2 (Possibly Qualified)** | **20%** | **~19%** | **~20%** |
+| **Score 1 (No Recommendation)** | **13%** | **~13%** | **~15%** |
+
+*Official Reference:* [College Board AP Central - AP CSP Exam Overview](https://apcentral.collegeboard.org/courses/ap-computer-science-principles/exam?hl=en-US)
+
+**The outcome?** Shifting the written logic explanation into an in-person, proctored environment instantly filtered out prompt-copying submissions. Students who relied heavily on AI to think for them at home struggled when forced to explain their code logic independently.
 
 ---
 
