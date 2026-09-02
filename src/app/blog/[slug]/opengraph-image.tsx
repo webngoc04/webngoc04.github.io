@@ -25,12 +25,12 @@ export default async function Image({
         style={{
           width: "100%",
           height: "100%",
-          display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#060810",
-          color: "#ffffff",
+          background: "linear-gradient(to right, #06b6e5, #5b21b6)",
           fontSize: 48,
+          color: "#ffffff",
+          textAlign: "center",
         }}
       >
         {title}

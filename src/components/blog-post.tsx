@@ -67,13 +67,16 @@ export default function BlogPost({ post }: BlogPostProps) {
                 ))}
               </div>
             </div>
-            <div className="mt-3 text-sm text-muted-foreground">
+            <div className="mt-3 flex flex-col gap-2">
               <h1 className="text-gradient text-2xl sm:text-3xl font-bold leading-tight" itemProp="headline">{post.title}</h1>
+              <p className="text-sm text-muted-foreground">
+                {post.author ? `by ${post.author}` : ""}
+              </p>
               {post.description && (
-                <p className="mt-3 text-lg text-muted-foreground" itemProp="description">{post.description}</p>
+                <p className="text-lg text-muted-foreground" itemProp="description">{post.description}</p>
               )}
               {post.readingTime && (
-                <p className="mt-3 text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   {t("blog.minRead")} {post.readingTime}
                 </p>
               )}

@@ -13,6 +13,7 @@ export type BlogPost = {
   content: string
   lang: string
   readingTime: number
+  author: string
 }
 
 export function calculateReadingTime(content: string): number {
@@ -50,6 +51,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       tags: data.tags || [],
       content,
       lang: data.lang || "en",
+      author: data.author || "KeiChan",
       readingTime: calculateReadingTime(content),
     }
   } catch {

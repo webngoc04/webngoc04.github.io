@@ -167,6 +167,9 @@ export default function BlogList({ posts }: BlogListProps) {
                   {post.readingTime} phút đọc
                 </span>
               </h2>
+              <p className="text-sm text-muted-foreground">
+                {post.author ? `by ${post.author}` : ""}
+              </p>
               <p className="line-clamp-2 text-muted-foreground">{post.description}</p>
             </Link>
           ))}

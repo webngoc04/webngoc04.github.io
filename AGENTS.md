@@ -15,3 +15,6 @@ npm run lint      # Lint
 
 ## Deploy
 Push to main branch → GitHub Actions auto-deploys to GitHub Pages.
+
+## Author field
+When adding a new blog post via AI, make sure to add `author: "Your Name"` to the markdown frontmatter. This will be displayed under the post title and used in OpenGraph metadata.
