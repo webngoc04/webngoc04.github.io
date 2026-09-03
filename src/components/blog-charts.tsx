@@ -60,7 +60,7 @@ export function APCspScoreChart() {
             onClick={() => setSelectedYear(y.id)}
             className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
               selectedYear === y.id
-                ? "bg-pink-600 text-white shadow-sm dark:bg-pink-500"
+                ? "bg-pink-600 !text-white shadow-sm dark:bg-pink-500"
                 : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
             }`}
           >
@@ -233,7 +233,7 @@ export function CognitiveAtrophyDiagram() {
               }`}
             >
               <div className="mb-2 flex items-center justify-between w-full">
-                <span className={`rounded-lg p-1.5 ${isActive ? "bg-pink-600 text-white" : "bg-muted text-muted-foreground"}`}>
+                <span className={`rounded-lg p-1.5 ${isActive ? "bg-pink-600 !text-white" : "bg-muted text-muted-foreground"}`}>
                   <Icon className="size-4" />
                 </span>
                 <span className="text-[10px] font-bold text-muted-foreground">0{step.id + 1}</span>
@@ -252,7 +252,7 @@ export function CognitiveAtrophyDiagram() {
       {/* Active Step Details */}
       <div className="mt-4 rounded-xl border bg-accent/40 p-4 transition-all">
         <div className="flex items-center gap-2 mb-2">
-          <Badge className="bg-pink-600 text-white text-xs">
+          <Badge className="bg-pink-600 !text-white text-xs">
             Bước {activeStep + 1}: {steps[activeStep].title.split(". ")[1]}
           </Badge>
         </div>
@@ -417,7 +417,7 @@ export function AIBenchmarksChart() {
           type="button"
           onClick={() => setFilter("all")}
           className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
-            filter === "all" ? "bg-pink-600 text-white" : "bg-muted text-muted-foreground hover:text-foreground"
+            filter === "all" ? "bg-pink-600 !text-white" : "bg-muted text-muted-foreground hover:text-foreground"
           }`}
         >
           Tất cả
@@ -426,7 +426,7 @@ export function AIBenchmarksChart() {
           type="button"
           onClick={() => setFilter("old")}
           className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
-            filter === "old" ? "bg-pink-600 text-white" : "bg-muted text-muted-foreground hover:text-foreground"
+            filter === "old" ? "bg-pink-600 !text-white" : "bg-muted text-muted-foreground hover:text-foreground"
           }`}
         >
           Bộ test cũ (Lỗi thời)
@@ -435,7 +435,7 @@ export function AIBenchmarksChart() {
           type="button"
           onClick={() => setFilter("modern")}
           className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
-            filter === "modern" ? "bg-pink-600 text-white" : "bg-muted text-muted-foreground hover:text-foreground"
+            filter === "modern" ? "bg-pink-600 !text-white" : "bg-muted text-muted-foreground hover:text-foreground"
           }`}
         >
           Bộ test thực chiến
@@ -541,7 +541,7 @@ export function GoldenRatioAppDiagram() {
             key={sec.title}
             type="button"
             onClick={() => setSelectedSection(idx)}
-            className={`h-full ${sec.color} transition-all cursor-pointer rounded-lg flex items-center justify-center text-white font-bold text-xs shadow-sm hover:brightness-110 ${
+            className={`h-full ${sec.color} transition-all cursor-pointer rounded-lg flex items-center justify-center !text-white font-bold text-xs shadow-sm hover:brightness-110 ${
               selectedSection === idx ? "ring-2 ring-foreground" : "opacity-80"
             }`}
             style={{ width: sec.ratio }}
@@ -569,7 +569,7 @@ export function GoldenRatioAppDiagram() {
 
       <div className={`p-4 rounded-xl border ${sections[selectedSection].bgColor} ${sections[selectedSection].borderColor}`}>
         <div className="flex items-center gap-2 mb-2">
-          <Badge className={`${sections[selectedSection].color} text-white text-xs`}>
+          <Badge className={`${sections[selectedSection].color} !text-white text-xs`}>
             {sections[selectedSection].ratio} - {sections[selectedSection].title}
           </Badge>
         </div>
@@ -616,7 +616,7 @@ export function EightStepWorkflowDiagram() {
             onClick={() => setCurrentStep(idx)}
             className={`py-2 px-1 rounded-lg border text-center transition-all ${
               currentStep === idx
-                ? "bg-pink-600 text-white border-pink-600 font-bold shadow-md scale-105"
+                ? "bg-pink-600 !text-white border-pink-600 font-bold shadow-md scale-105"
                 : "bg-muted/40 text-muted-foreground border-border/60 hover:bg-muted hover:text-foreground"
             }`}
           >
@@ -628,7 +628,7 @@ export function EightStepWorkflowDiagram() {
 
       <div className="rounded-xl border bg-accent/30 p-4 border-pink-500/30">
         <div className="flex items-center justify-between mb-2">
-          <Badge className="bg-pink-600 text-white text-xs">
+          <Badge className="bg-pink-600 !text-white text-xs">
             Bước {steps[currentStep].num}: {steps[currentStep].title}
           </Badge>
           <div className="flex gap-1.5">
@@ -636,7 +636,7 @@ export function EightStepWorkflowDiagram() {
               type="button"
               disabled={currentStep === 0}
               onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}
-              className="px-2.5 py-1 text-xs rounded bg-muted hover:bg-muted/80 disabled:opacity-40"
+              className="px-2.5 py-1 text-xs rounded bg-muted text-foreground hover:bg-muted/80 disabled:opacity-40"
             >
               ← Trước
             </button>
@@ -644,7 +644,7 @@ export function EightStepWorkflowDiagram() {
               type="button"
               disabled={currentStep === steps.length - 1}
               onClick={() => setCurrentStep((prev) => Math.min(steps.length - 1, prev + 1))}
-              className="px-2.5 py-1 text-xs rounded bg-pink-600 text-white hover:bg-pink-700 disabled:opacity-40"
+              className="px-2.5 py-1 text-xs rounded bg-pink-600 !text-white hover:bg-pink-700 disabled:opacity-40"
             >
               Sau →
             </button>
