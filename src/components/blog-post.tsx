@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Markdown } from "@/components/markdown"
 import { useI18n } from "@/lib/i18n"
 import type { BlogPost } from "@/lib/blog"
-import { extractTOC, TableOfContents, MobileTableOfContents } from "@/components/toc"
+import { extractTOC, MinimapNavigation } from "@/components/toc"
 
 interface BlogPostProps {
   post: BlogPost
@@ -50,62 +50,48 @@ export default function BlogPost({ post }: BlogPostProps) {
         {t("blog.backToBlog")}
       </Link>
 
-      <div className="lg:flex lg:items-start lg:gap-12 xl:gap-16">
-        {/* Left Sidebar Table of Contents (Anthropic Style) */}
-        {tocItems.length > 0 && (
-          <aside className="hidden lg:block lg:w-60 xl:w-64 lg:shrink-0 sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2">
-            <TableOfContents items={tocItems} />
-          </aside>
-        )}
+      {/* Floating Minimap Navigation (Left edge rail + Tree View hover drawer) */}
+      <MinimapNavigation items={tocItems} />
 
-        {/* Main Article Content */}
-        <article className="min-w-0 max-w-3xl flex-1" itemScope itemType="https://schema.org/BlogPosting">
-          <header className="mb-8">
-            <div className="mb-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-              <time dateTime={post.date} itemProp="datePublished">
-                {new Date(post.date).toLocaleDateString(dateLocale, {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
-              <span>·</span>
-              <div className="flex flex-wrap gap-1.5">
-                {post.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="text-xs">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
+      <article className="mx-auto max-w-3xl" itemScope itemType="https://schema.org/BlogPosting">
+        <header className="mb-8">
+          <div className="mb-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+            <time dateTime={post.date} itemProp="datePublished">
+              {new Date(post.date).toLocaleDateString(dateLocale, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+            <span>·</span>
+            <div className="flex flex-wrap gap-1.5">
+              {post.tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="text-xs">
+                  {tag}
+                </Badge>
+              ))}
             </div>
-            <div className="mt-3 flex flex-col gap-2">
-              <h1 className="text-gradient text-2xl sm:text-3xl font-bold leading-tight" itemProp="headline">{post.title}</h1>
+          </div>
+          <div className="mt-3 flex flex-col gap-2">
+            <h1 className="text-gradient text-2xl sm:text-3xl font-bold leading-tight" itemProp="headline">{post.title}</h1>
+            <p className="text-sm text-muted-foreground">
+              {post.author ? `by ${post.author}` : ""}
+            </p>
+            {post.description && (
+              <p className="text-lg text-muted-foreground" itemProp="description">{post.description}</p>
+            )}
+            {post.readingTime && (
               <p className="text-sm text-muted-foreground">
-                {post.author ? `by ${post.author}` : ""}
+                {t("blog.minRead")} {post.readingTime}
               </p>
-              {post.description && (
-                <p className="text-lg text-muted-foreground" itemProp="description">{post.description}</p>
-              )}
-              {post.readingTime && (
-                <p className="text-sm text-muted-foreground">
-                  {t("blog.minRead")} {post.readingTime}
-                </p>
-              )}
-            </div>
-          </header>
+            )}
+          </div>
+        </header>
 
-          {/* Mobile TOC */}
-          {tocItems.length > 0 && (
-            <div className="lg:hidden mb-8">
-              <MobileTableOfContents items={tocItems} />
-            </div>
-          )}
-
-          <section itemProp="articleBody" className="blog-content">
-            <Markdown content={post.content} />
-          </section>
-        </article>
-      </div>
+        <section itemProp="articleBody" className="blog-content">
+          <Markdown content={post.content} />
+        </section>
+      </article>
     </>
   )
 }
