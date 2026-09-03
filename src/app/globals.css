@@ -441,3 +441,48 @@
   background: var(--muted);
   font-weight: 600;
 }
+
+/* Read Mode (Editorial Warm Paper Theme) */
+.read-mode-active {
+  background-color: #FAF9F5 !important;
+  color: #2D2D2A !important;
+  border-color: #E2E0D8 !important;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.read-mode-active .blog-content h1,
+.read-mode-active .blog-content h2,
+.read-mode-active .blog-content h3,
+.read-mode-active .blog-content strong {
+  color: #2D2D2A !important;
+}
+
+.read-mode-active .blog-content p,
+.read-mode-active .blog-content li {
+  color: #2D2D2A !important;
+}
+
+.read-mode-active .blog-content a {
+  color: #0969DA !important;
+}
+
+.read-mode-active .blog-content blockquote {
+  border-left-color: #BC4749 !important;
+  background-color: #F0EFEA !important;
+  color: #656D76 !important;
+}
+
+.read-mode-active .blog-content pre {
+  background-color: #F0EFEA !important;
+  border-color: #E2E0D8 !important;
+  color: #24292F !important;
+}
+
+.read-mode-active .blog-content :not(pre) > code {
+  background-color: #F0EFEA !important;
+  color: #BC4749 !important;
+}
+
+.read-mode-active .text-muted-foreground {
+  color: #656D76 !important;
+}

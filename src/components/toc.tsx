@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { AlignLeft, CornerDownRight } from "lucide-react"
+import { AlignLeft, CornerDownRight, BookOpen } from "lucide-react"
 
 export interface TOCItem {
   id: string
@@ -47,9 +47,11 @@ export function extractTOC(content: string): TOCItem[] {
 
 interface TOCProps {
   items: TOCItem[]
+  isReadMode?: boolean
+  onToggleReadMode?: () => void
 }
 
-export function MinimapNavigation({ items }: TOCProps) {
+export function MinimapNavigation({ items, isReadMode = false, onToggleReadMode }: TOCProps) {
   const [activeId, setActiveId] = useState<string>("")
   const [scrollProgress, setScrollProgress] = useState<number>(0)
   const [isHovered, setIsHovered] = useState<boolean>(false)
@@ -115,17 +117,47 @@ export function MinimapNavigation({ items }: TOCProps) {
       >
         <div className="relative flex items-start gap-3">
           {/* Minimap Track & Markers */}
-          <div className="relative flex flex-col items-center py-2 px-1.5 cursor-pointer rounded-full bg-neutral-900/10 dark:bg-neutral-100/5 backdrop-blur-md border border-neutral-200/20 dark:border-neutral-800/40 p-2 shadow-lg hover:border-pink-500/40 transition-all">
+          <div
+            className={`relative flex flex-col items-center py-2.5 px-1.5 cursor-pointer rounded-2xl backdrop-blur-md border shadow-lg transition-all ${
+              isReadMode
+                ? "bg-[#FAF9F5]/90 border-[#E2E0D8] text-[#2D2D2A] hover:border-[#BC4749]"
+                : "bg-neutral-900/10 dark:bg-neutral-100/5 border-neutral-200/20 dark:border-neutral-800/40 hover:border-pink-500/40"
+            }`}
+          >
+            {/* Toggle Read Mode Button inside Rail */}
+            {onToggleReadMode && (
+              <button
+                type="button"
+                onClick={onToggleReadMode}
+                className={`mb-2 p-1.5 rounded-full transition-all ${
+                  isReadMode
+                    ? "bg-[#BC4749] text-white"
+                    : "bg-neutral-800/20 text-muted-foreground hover:bg-pink-600 hover:text-white"
+                }`}
+                title="Tắt/Mở Chế độ đọc (Read Mode)"
+              >
+                <BookOpen className="size-3.5" />
+              </button>
+            )}
+
             {/* Track Line */}
-            <div className="w-1 bg-neutral-200 dark:bg-neutral-800 rounded-full h-64 relative overflow-hidden">
+            <div
+              className={`w-1 rounded-full h-60 relative overflow-hidden ${
+                isReadMode ? "bg-[#F0EFEA]" : "bg-neutral-200 dark:bg-neutral-800"
+              }`}
+            >
               <div
-                className="w-full bg-gradient-to-b from-cyan-400 via-indigo-500 to-pink-500 rounded-full transition-all duration-150"
+                className={`w-full rounded-full transition-all duration-150 ${
+                  isReadMode
+                    ? "bg-[#BC4749]"
+                    : "bg-gradient-to-b from-cyan-400 via-indigo-500 to-pink-500"
+                }`}
                 style={{ height: `${scrollProgress}%` }}
               />
             </div>
 
-            {/* Nodes along the track */}
-            <div className="absolute inset-y-3 flex flex-col justify-between items-center w-full">
+            {/* Stacked Ticks along the track (| ||||||||||) */}
+            <div className="absolute inset-y-10 flex flex-col justify-between items-center w-full">
               {items.map((item) => {
                 const isActive = activeId === item.id
                 return (
@@ -134,19 +166,32 @@ export function MinimapNavigation({ items }: TOCProps) {
                     onClick={() => scrollToHeading(item.id)}
                     className="relative group/node flex items-center justify-center cursor-pointer my-0.5"
                   >
+                    {/* Visual Dash / Line Marker */}
                     <div
-                      className={`transition-all duration-300 rounded-full ${
-                        isActive
-                          ? "w-4 h-1.5 bg-pink-500 shadow-[0_0_10px_rgba(236,72,153,0.9)] scale-110"
+                      className={`transition-all duration-300 ${
+                        isReadMode
+                          ? isActive
+                            ? "w-4 h-1.5 bg-[#BC4749] shadow-[0_0_8px_rgba(188,71,73,0.8)] rounded-full scale-110"
+                            : item.level === 2
+                            ? "w-3 h-[2px] bg-[#656D76] hover:bg-[#BC4749]"
+                            : "w-2 h-[2px] bg-[#E2E0D8] hover:bg-[#BC4749]"
+                          : isActive
+                          ? "w-4 h-1.5 bg-pink-500 shadow-[0_0_10px_rgba(236,72,153,0.9)] rounded-full scale-110"
                           : item.level === 2
-                          ? "w-2.5 h-1 bg-neutral-400 dark:bg-neutral-600 hover:bg-pink-400 hover:w-3"
-                          : "w-1.5 h-1 bg-neutral-300 dark:bg-neutral-700 hover:bg-pink-400"
+                          ? "w-2.5 h-1 bg-neutral-400 dark:bg-neutral-600 hover:bg-pink-400 rounded-full"
+                          : "w-1.5 h-1 bg-neutral-300 dark:bg-neutral-700 hover:bg-pink-400 rounded-full"
                       }`}
                     />
 
                     {/* Tooltip on single node hover */}
                     {!isHovered && (
-                      <div className="absolute left-7 opacity-0 group-hover/node:opacity-100 transition-opacity pointer-events-none whitespace-nowrap bg-neutral-900/90 text-neutral-100 dark:bg-neutral-100 dark:text-neutral-900 text-[11px] px-2 py-1 rounded shadow-lg z-50">
+                      <div
+                        className={`absolute left-7 opacity-0 group-hover/node:opacity-100 transition-opacity pointer-events-none whitespace-nowrap text-[11px] px-2 py-1 rounded shadow-lg z-50 ${
+                          isReadMode
+                            ? "bg-[#2D2D2A] text-[#FAF9F5]"
+                            : "bg-neutral-900/90 text-neutral-100 dark:bg-neutral-100 dark:text-neutral-900"
+                        }`}
+                      >
                         {item.text}
                       </div>
                     )}
@@ -162,14 +207,30 @@ export function MinimapNavigation({ items }: TOCProps) {
               isHovered
                 ? "opacity-100 scale-100 translate-x-0 pointer-events-auto"
                 : "opacity-0 scale-95 -translate-x-2 pointer-events-none"
-            } w-72 max-h-[70vh] overflow-y-auto rounded-2xl border border-neutral-200/80 bg-white/95 p-4 shadow-2xl backdrop-blur-xl dark:border-neutral-800/80 dark:bg-neutral-900/95`}
+            } w-72 max-h-[70vh] overflow-y-auto rounded-2xl border p-4 shadow-2xl backdrop-blur-xl ${
+              isReadMode
+                ? "bg-[#FAF9F5]/98 border-[#E2E0D8] text-[#2D2D2A]"
+                : "border-neutral-200/80 bg-white/95 dark:border-neutral-800/80 dark:bg-neutral-900/95"
+            }`}
           >
-            <div className="mb-3 border-b border-neutral-200/60 pb-2.5 dark:border-neutral-800/60 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-pink-600 dark:text-pink-400">
+            <div
+              className={`mb-3 border-b pb-2.5 flex items-center justify-between ${
+                isReadMode ? "border-[#E2E0D8]" : "border-neutral-200/60 dark:border-neutral-800/60"
+              }`}
+            >
+              <div
+                className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-wider ${
+                  isReadMode ? "text-[#BC4749]" : "text-pink-600 dark:text-pink-400"
+                }`}
+              >
                 <AlignLeft className="size-4" />
                 <span>Tree View Minimap</span>
               </div>
-              <span className="text-[10px] font-mono text-muted-foreground bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded">
+              <span
+                className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${
+                  isReadMode ? "bg-[#F0EFEA] text-[#656D76]" : "bg-neutral-100 dark:bg-neutral-800 text-muted-foreground"
+                }`}
+              >
                 {Math.round(scrollProgress)}%
               </span>
             </div>
@@ -184,15 +245,31 @@ export function MinimapNavigation({ items }: TOCProps) {
                     className={`flex items-start gap-1.5 py-1 px-2 rounded-lg cursor-pointer transition-all ${
                       item.level === 3 ? "pl-5 text-[11px]" : "font-medium text-xs"
                     } ${
-                      isActive
+                      isReadMode
+                        ? isActive
+                          ? "bg-[#BC4749]/10 text-[#BC4749] font-semibold"
+                          : "text-[#656D76] hover:bg-[#F0EFEA] hover:text-[#2D2D2A]"
+                        : isActive
                         ? "bg-pink-500/10 text-pink-600 dark:text-pink-400 font-semibold"
                         : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800/60 hover:text-foreground"
                     }`}
                   >
                     {item.level === 2 ? (
-                      <span className={`inline-block size-1.5 rounded-full mt-1.5 shrink-0 ${isActive ? "bg-pink-500" : "bg-neutral-400 dark:bg-neutral-600"}`} />
+                      <span
+                        className={`inline-block size-1.5 rounded-full mt-1.5 shrink-0 ${
+                          isActive
+                            ? isReadMode ? "bg-[#BC4749]" : "bg-pink-500"
+                            : isReadMode ? "bg-[#656D76]" : "bg-neutral-400 dark:bg-neutral-600"
+                        }`}
+                      />
                     ) : (
-                      <CornerDownRight className={`size-3 mt-0.5 shrink-0 ${isActive ? "text-pink-500" : "text-neutral-400"}`} />
+                      <CornerDownRight
+                        className={`size-3 mt-0.5 shrink-0 ${
+                          isActive
+                            ? isReadMode ? "text-[#BC4749]" : "text-pink-500"
+                            : isReadMode ? "text-[#656D76]" : "text-neutral-400"
+                        }`}
+                      />
                     )}
                     <span className="line-clamp-2 leading-tight">{item.text}</span>
                   </div>
@@ -204,18 +281,42 @@ export function MinimapNavigation({ items }: TOCProps) {
       </div>
 
       {/* Mobile Floating Minimap Trigger */}
-      <div className="lg:hidden fixed bottom-6 left-4 z-40">
+      <div className="lg:hidden fixed bottom-6 left-4 z-40 flex items-center gap-2">
         <button
           onClick={() => setIsMobileOpen(!isMobileOpen)}
-          className="flex items-center gap-2 rounded-full bg-pink-600 text-white px-3.5 py-2 text-xs font-semibold shadow-lg hover:bg-pink-700 transition-all"
+          className={`flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold shadow-lg transition-all ${
+            isReadMode ? "bg-[#BC4749] text-white" : "bg-pink-600 text-white hover:bg-pink-700"
+          }`}
         >
           <AlignLeft className="size-4" />
           <span>Mục lục ({Math.round(scrollProgress)}%)</span>
         </button>
 
+        {onToggleReadMode && (
+          <button
+            onClick={onToggleReadMode}
+            className={`p-2 rounded-full shadow-lg transition-all ${
+              isReadMode ? "bg-[#2D2D2A] text-[#FAF9F5]" : "bg-neutral-900 text-white"
+            }`}
+            title="Chế độ đọc"
+          >
+            <BookOpen className="size-4" />
+          </button>
+        )}
+
         {isMobileOpen && (
-          <div className="fixed inset-x-4 bottom-20 z-50 max-h-[60vh] overflow-y-auto rounded-2xl border border-neutral-200 bg-white p-4 shadow-2xl dark:border-neutral-800 dark:bg-neutral-900">
-            <div className="mb-2 flex items-center justify-between border-b pb-2 text-xs font-bold text-pink-600 dark:text-pink-400">
+          <div
+            className={`fixed inset-x-4 bottom-20 z-50 max-h-[60vh] overflow-y-auto rounded-2xl border p-4 shadow-2xl ${
+              isReadMode
+                ? "bg-[#FAF9F5] border-[#E2E0D8] text-[#2D2D2A]"
+                : "border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900"
+            }`}
+          >
+            <div
+              className={`mb-2 flex items-center justify-between border-b pb-2 text-xs font-bold ${
+                isReadMode ? "text-[#BC4749]" : "text-pink-600 dark:text-pink-400"
+              }`}
+            >
               <span>Tree View Minimap</span>
               <button onClick={() => setIsMobileOpen(false)} className="text-muted-foreground hover:text-foreground">✕</button>
             </div>
@@ -231,7 +332,11 @@ export function MinimapNavigation({ items }: TOCProps) {
                     item.level === 3 ? "pl-5 text-[11px]" : "font-medium"
                   } ${
                     activeId === item.id
-                      ? "bg-pink-500/10 text-pink-500 font-bold"
+                      ? isReadMode
+                        ? "bg-[#BC4749]/10 text-[#BC4749] font-bold"
+                        : "bg-pink-500/10 text-pink-500 font-bold"
+                      : isReadMode
+                      ? "text-[#656D76]"
                       : "text-muted-foreground"
                   }`}
                 >
