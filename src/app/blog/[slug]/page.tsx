@@ -63,7 +63,7 @@ export default async function BlogPostPage({
   if (!post) notFound()
 
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-24 sm:pt-32 pb-12 sm:pb-16">
+    <main className="mx-auto max-w-6xl px-4 pt-24 sm:pt-32 pb-12 sm:pb-16">
       <BlogPost post={post} />
     </main>
   )

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Markdown } from "@/components/markdown"
 import { useI18n } from "@/lib/i18n"
 import type { BlogPost } from "@/lib/blog"
+import { extractTOC, TableOfContents, MobileTableOfContents } from "@/components/toc"
 
 interface BlogPostProps {
   post: BlogPost
@@ -17,6 +18,7 @@ export default function BlogPost({ post }: BlogPostProps) {
   const { t, locale } = useI18n()
   const router = useRouter()
   const prevLocale = useRef(locale)
+  const tocItems = extractTOC(post.content)
 
   useEffect(() => {
     if (prevLocale.current === locale) return
@@ -48,9 +50,18 @@ export default function BlogPost({ post }: BlogPostProps) {
         {t("blog.backToBlog")}
       </Link>
 
-      <article itemScope itemType="https://schema.org/BlogPosting">
-<header className="mb-8">
-<div className="mb-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+      <div className="lg:flex lg:items-start lg:gap-12 xl:gap-16">
+        {/* Left Sidebar Table of Contents (Anthropic Style) */}
+        {tocItems.length > 0 && (
+          <aside className="hidden lg:block lg:w-60 xl:w-64 lg:shrink-0 sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2">
+            <TableOfContents items={tocItems} />
+          </aside>
+        )}
+
+        {/* Main Article Content */}
+        <article className="min-w-0 max-w-3xl flex-1" itemScope itemType="https://schema.org/BlogPosting">
+          <header className="mb-8">
+            <div className="mb-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
               <time dateTime={post.date} itemProp="datePublished">
                 {new Date(post.date).toLocaleDateString(dateLocale, {
                   year: "numeric",
@@ -83,10 +94,18 @@ export default function BlogPost({ post }: BlogPostProps) {
             </div>
           </header>
 
+          {/* Mobile TOC */}
+          {tocItems.length > 0 && (
+            <div className="lg:hidden mb-8">
+              <MobileTableOfContents items={tocItems} />
+            </div>
+          )}
+
           <section itemProp="articleBody" className="blog-content">
             <Markdown content={post.content} />
           </section>
-      </article>
+        </article>
+      </div>
     </>
   )
 }

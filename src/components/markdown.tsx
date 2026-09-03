@@ -5,6 +5,18 @@ import { Check, Copy } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { APCspScoreChart, CognitiveAtrophyDiagram, RepoStarComparisonChart } from "@/components/blog-charts"
+import { slugify } from "@/components/toc"
+
+function getNodeText(node: React.ReactNode): string {
+  if (typeof node === "string") return node
+  if (typeof node === "number") return String(node)
+  if (Array.isArray(node)) return node.map(getNodeText).join("")
+  if (node && typeof node === "object" && "props" in node) {
+    const element = node as { props: { children?: React.ReactNode } }
+    return getNodeText(element.props.children)
+  }
+  return ""
+}
 
 function CopyButton({ code }: { code: string }) {
   const [copied, setCopied] = useState(false)
@@ -31,6 +43,24 @@ export function Markdown({ content }: { content: string }) {
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
+        h2: ({ children, ...props }) => {
+          const text = getNodeText(children)
+          const id = slugify(text)
+          return (
+            <h2 id={id} className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0 mt-8 mb-4" {...props}>
+              {children}
+            </h2>
+          )
+        },
+        h3: ({ children, ...props }) => {
+          const text = getNodeText(children)
+          const id = slugify(text)
+          return (
+            <h3 id={id} className="scroll-m-20 text-xl font-semibold tracking-tight mt-6 mb-3" {...props}>
+              {children}
+            </h3>
+          )
+        },
         img: ({ src, alt }) => {
           const srcStr = typeof src === "string" ? src : ""
           if (srcStr.includes("ap_csp_score_distribution")) {
