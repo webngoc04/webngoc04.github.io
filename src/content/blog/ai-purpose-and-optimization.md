@@ -25,6 +25,8 @@ Nếu bạn thực sự muốn xem một AI model có tốt hay không, **hãy q
 - **BFCL (Berkeley Function Calling Leaderboard):** Đánh giá khả năng gọi hàm, sử dụng công cụ (Tool Use/Function Calling) và tương tác với hệ thống bên ngoài.
 - **IFEval (Instruction Following Evaluation):** Kiểm tra mức độ tuân thủ chính xác từng ràng buộc phức tạp trong câu lệnh prompt.
 
+![Đối chiếu các bộ Benchmark AI cũ vs hiện đại](/images/ai_benchmarks_comparison.png)
+
 > 💡 **Bài học cốt lõi:** Không có bộ test nào phản ánh 100% chất lượng AI cho mọi tác vụ. Trước khi đánh giá, bạn phải xem **AI BAN ĐẦU ĐƯỢC TẠO RA VỚI MỤC ĐÍCH GÌ** và kiến trúc của nó được tối ưu cho việc gì.
 
 Đừng ép một model chuyên làm **Agents (tự động hóa tác vụ)** đi làm công việc của một **System Architect (kiến trúc sư hệ thống)** rồi gào lên bảo nó dở! Đánh giá model phải dựa trên đúng sở trường và thiết kế ban đầu của nó.
@@ -81,11 +83,7 @@ Nó giống như việc bạn muốn **con gà đẻ trứng nhưng lại nhốt
 
 Đối với các bạn không chuyên lập trình nhưng muốn dùng AI để tạo sản phẩm, lời khuyên chân thành là **hãy áp dụng và tuân thủ nghiêm ngặt Quy trình kiểm thử 8 bước** sau đây:
 
-```
-[1. VIẾT CODE] ──> [2. KIỂM THỬ MODULE] ──> [3. TEST THỬ VÀO APP] ──> [4. PHẢN BIỆN]
-                                                                            │
-[8. KẾT LUẬN CUỐI] ◄── [7. KẾT LUẬN] ◄── [6. KIỂM TRA GIẢ THUYẾT] ◄── [5. SUY LUẬN]
-```
+![Sơ đồ Quy trình 8 bước kiểm thử](/images/ai_workflow_8_steps.png)
 
 1. **VIẾT CODE:** Cho AI viết từng phần nhỏ.
 2. **KIỂM THỬ MODULE:** Test độc lập từng hàm/module nhỏ.
@@ -105,6 +103,8 @@ Chấp nhận đốt nhiều token một chút ở khâu kiểm thử để hạ
 ## 5. Tỷ lệ vàng 60 - 20 - 10 - 10 khi làm Ứng dụng với AI
 
 Khi xây dựng một ứng dụng cùng AI, mình khuyên các bạn nên chia tỷ lệ ưu tiên kiểm soát như sau:
+
+![Sơ đồ Tỷ lệ vàng 60-20-10-10 khi làm App](/images/golden_ratio_app.png)
 
 | Tỷ lệ | Hạng mục | Vai trò cốt lõi |
 |---|---|---|

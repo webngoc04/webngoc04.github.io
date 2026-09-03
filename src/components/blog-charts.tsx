@@ -335,3 +335,325 @@ export function RepoStarComparisonChart() {
     </div>
   )
 }
+
+export function AIBenchmarksChart() {
+  const [filter, setFilter] = useState<"all" | "old" | "modern">("all")
+  const [activeItem, setActiveItem] = useState<string | null>(null)
+
+  const benchmarks = [
+    {
+      id: "mmlu",
+      name: "MMLU / GSM8K / HumanEval",
+      category: "old",
+      type: "Bộ test truyền thống (Cũ)",
+      status: "Dễ Overfit / Học thuộc",
+      badgeColor: "bg-rose-500/10 text-rose-600 border-rose-500/20",
+      barColor: "bg-rose-500",
+      relevanceScore: 35,
+      desc: "Chủ yếu là câu hỏi trắc nghiệm phổ biến hoặc bài tập toán/code mẫu cơ bản. Các model dễ dàng 'học thuộc lòng' bộ đề.",
+      verdict: "Không phản ánh đúng khả năng suy luận phức tạp trong thực tế.",
+    },
+    {
+      id: "swebench",
+      name: "SWE-bench (Software Engineering)",
+      category: "modern",
+      type: "Bộ test thực chiến",
+      status: "Giải bug Repo GitHub thực tế",
+      badgeColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+      barColor: "bg-emerald-500",
+      relevanceScore: 95,
+      desc: "Yêu cầu AI tự đọc codebase lớn, tìm nguyên nhân lỗi, tự viết patch và pass toàn bộ unit test của repository thật.",
+      verdict: "Thước đo sống còn cho các AI Agent chuyên về lập trình.",
+    },
+    {
+      id: "bfcl",
+      name: "BFCL (Berkeley Function Calling)",
+      category: "modern",
+      type: "Bộ test thực chiến",
+      status: "Gọi hàm & Dùng công cụ (Tool Use)",
+      badgeColor: "bg-cyan-500/10 text-cyan-600 border-cyan-500/20",
+      barColor: "bg-cyan-500",
+      relevanceScore: 90,
+      desc: "Kiểm tra chính xác khả năng chọn đúng API, truyền tham số JSON chuẩn và tương tác với dịch vụ bên ngoài.",
+      verdict: "Quyết định trực tiếp độ ổn định khi tích hợp AI vào hệ thống.",
+    },
+    {
+      id: "ifeval",
+      name: "IFEval (Instruction Following)",
+      category: "modern",
+      type: "Bộ test thực chiến",
+      status: "Tuân thủ ràng buộc dài",
+      badgeColor: "bg-purple-500/10 text-purple-600 border-purple-500/20",
+      barColor: "bg-purple-500",
+      relevanceScore: 88,
+      desc: "Đo khả năng tuân thủ các quy tắc khắt khe trong System Prompt (định dạng, từ khóa, độ dài, quy trình).",
+      verdict: "Giúp đánh giá AI có bị 'ngó lơ' câu lệnh khi prompt quá dài hay không.",
+    },
+  ]
+
+  const filtered = filter === "all" ? benchmarks : benchmarks.filter((b) => b.category === filter)
+
+  return (
+    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
+      <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b pb-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <BarChart3 className="size-5 text-pink-500" />
+            <h3 className="text-lg font-bold text-foreground">So Sánh Bộ Benchmark AI: Cũ vs. Thực Chiến Modern</h3>
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">
+            Đừng chỉ nhìn vào MMLU score. Mức độ phản ánh năng lực thực tế giữa các bộ test rất khác nhau.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          <Badge variant="outline" className="bg-rose-500/10 text-rose-600 text-xs">Cũ: Dễ Overfit</Badge>
+          <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 text-xs">Modern: Đánh giá Agent</Badge>
+        </div>
+      </div>
+
+      <div className="mb-5 flex items-center gap-2">
+        <span className="text-xs font-semibold text-muted-foreground">Lọc theo loại:</span>
+        <button
+          type="button"
+          onClick={() => setFilter("all")}
+          className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
+            filter === "all" ? "bg-pink-600 text-white" : "bg-muted text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Tất cả
+        </button>
+        <button
+          type="button"
+          onClick={() => setFilter("old")}
+          className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
+            filter === "old" ? "bg-pink-600 text-white" : "bg-muted text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Bộ test cũ (Lỗi thời)
+        </button>
+        <button
+          type="button"
+          onClick={() => setFilter("modern")}
+          className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
+            filter === "modern" ? "bg-pink-600 text-white" : "bg-muted text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Bộ test thực chiến
+        </button>
+      </div>
+
+      <div className="space-y-3">
+        {filtered.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => setActiveItem(activeItem === item.id ? null : item.id)}
+            className={`rounded-xl border p-4 cursor-pointer transition-all ${
+              activeItem === item.id ? "bg-pink-500/10 border-pink-500/40 shadow-md" : "bg-accent/20 hover:bg-accent/40"
+            }`}
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-sm text-foreground">{item.name}</span>
+                <Badge variant="outline" className={`text-[10px] ${item.badgeColor}`}>{item.status}</Badge>
+              </div>
+              <span className="text-xs font-mono font-medium text-muted-foreground">
+                Độ phản ánh thực tế: <strong className="text-foreground">{item.relevanceScore}%</strong>
+              </span>
+            </div>
+
+            <div className="h-2.5 rounded-full bg-muted overflow-hidden mb-2">
+              <div className={`h-full ${item.barColor} transition-all duration-700`} style={{ width: `${item.relevanceScore}%` }} />
+            </div>
+
+            <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+
+            {activeItem === item.id && (
+              <div className="mt-3 pt-2 border-t border-border/60 text-xs font-semibold text-pink-600 dark:text-pink-400">
+                💡 Nhận xét chuyên sâu: {item.verdict}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export function GoldenRatioAppDiagram() {
+  const [selectedSection, setSelectedSection] = useState<number>(0)
+
+  const sections = [
+    {
+      ratio: "60%",
+      title: "Giao diện (UI/UX)",
+      color: "bg-pink-500",
+      borderColor: "border-pink-500",
+      textColor: "text-pink-600 dark:text-pink-400",
+      bgColor: "bg-pink-500/10",
+      focus: "Trải nghiệm người dùng, tương tác trực quan & luồng sử dụng.",
+      aiBehavior: "AI rất mạnh trong việc sinh layout và HTML/CSS nhanh, nhưng cần con người căn chỉnh tính thẩm mỹ và luồng UX chính xác.",
+    },
+    {
+      ratio: "20%",
+      title: "Logic Nghiệp Vụ",
+      color: "bg-cyan-500",
+      borderColor: "border-cyan-500",
+      textColor: "text-cyan-600 dark:text-cyan-400",
+      bgColor: "bg-cyan-500/10",
+      focus: "Cấu trúc dữ liệu, luồng tính toán cốt lõi.",
+      aiBehavior: "AI có thể viết function nhanh, nhưng rất dễ sót các trường hợp biên (edge cases) nếu không được phản biện kỹ.",
+    },
+    {
+      ratio: "10%",
+      title: "Bảo Mật (Security)",
+      color: "bg-amber-500",
+      borderColor: "border-amber-500",
+      textColor: "text-amber-600 dark:text-amber-400",
+      bgColor: "bg-amber-500/10",
+      focus: "Phân quyền, sanitize input, bảo vệ API keys.",
+      aiBehavior: "Mặc định AI làm việc theo tư duy 'chạy được ngay', rất lơ là khâu bảo mật. Con người phải tự cài rào chắn.",
+    },
+    {
+      ratio: "10%",
+      title: "Nâng Cấp & Bảo Trì",
+      color: "bg-purple-500",
+      borderColor: "border-purple-500",
+      textColor: "text-purple-600 dark:text-purple-400",
+      bgColor: "bg-purple-500/10",
+      focus: "Quy hoạch codebase, refactor để dễ mở rộng tương lai.",
+      aiBehavior: "AI hiếm khi tự suy nghĩ cho tương lai xa trừ khi bạn đưa ra Prompt quy định rõ cấu trúc modular.",
+    },
+  ]
+
+  return (
+    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
+      <div className="mb-4 flex items-center justify-between border-b pb-3">
+        <div>
+          <h3 className="text-lg font-bold text-foreground">Sơ Đồ Tỷ Lệ Vàng 60 - 20 - 10 - 10 Khi Làm App Với AI</h3>
+          <p className="text-xs text-muted-foreground mt-0.5">Click vào từng phần để xem cách phân bổ công sức & hành vi AI tương ứng</p>
+        </div>
+        <Badge variant="outline" className="bg-pink-500/10 text-pink-600 text-xs">Golden Ratio</Badge>
+      </div>
+
+      <div className="mb-6 flex h-8 w-full rounded-xl overflow-hidden p-1 bg-muted/50 gap-1">
+        {sections.map((sec, idx) => (
+          <button
+            key={sec.title}
+            type="button"
+            onClick={() => setSelectedSection(idx)}
+            className={`h-full ${sec.color} transition-all cursor-pointer rounded-lg flex items-center justify-center text-white font-bold text-xs shadow-sm hover:brightness-110 ${
+              selectedSection === idx ? "ring-2 ring-foreground" : "opacity-80"
+            }`}
+            style={{ width: sec.ratio }}
+          >
+            {sec.ratio}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-4 mb-4">
+        {sections.map((sec, idx) => (
+          <button
+            key={sec.title}
+            type="button"
+            onClick={() => setSelectedSection(idx)}
+            className={`p-3 rounded-xl border text-left transition-all ${
+              selectedSection === idx ? `${sec.bgColor} ${sec.borderColor} shadow-md` : "bg-accent/20 border-border/60 hover:bg-accent/40"
+            }`}
+          >
+            <span className={`text-lg font-bold block ${sec.textColor}`}>{sec.ratio}</span>
+            <span className="text-xs font-semibold text-foreground">{sec.title}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className={`p-4 rounded-xl border ${sections[selectedSection].bgColor} ${sections[selectedSection].borderColor}`}>
+        <div className="flex items-center gap-2 mb-2">
+          <Badge className={`${sections[selectedSection].color} text-white text-xs`}>
+            {sections[selectedSection].ratio} - {sections[selectedSection].title}
+          </Badge>
+        </div>
+        <p className="text-xs text-foreground font-semibold mb-1">
+          🎯 Trọng tâm: {sections[selectedSection].focus}
+        </p>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          ⚡ Hành vi AI: {sections[selectedSection].aiBehavior}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+export function EightStepWorkflowDiagram() {
+  const [currentStep, setCurrentStep] = useState<number>(0)
+
+  const steps = [
+    { num: 1, title: "VIẾT CODE", desc: "Giao AI viết từng phần module nhỏ độc lập, không bắt viết từ A-Z một lèo." },
+    { num: 2, title: "KIỂM THỬ MODULE", desc: "Chạy thử unit test hoặc test trực tiếp module nhỏ đó trước khi ghép." },
+    { num: 3, title: "TEST THỬ VÀO APP", desc: "Gắn module vào ứng dụng chung để kiểm tra khả năng tương tác." },
+    { num: 4, title: "PHẢN BIỆN", desc: "Hỏi ngược lại AI về các trường hợp lỗi biên (edge cases) có thể xảy ra." },
+    { num: 5, title: "SUY LUẬN", desc: "Yêu cầu AI giải thích lý do tại sao chọn cấu trúc hoặc thuật toán đó." },
+    { num: 6, title: "KIỂM TRA GIẢ THUYẾT", desc: "Thử cố tình nhập sai dữ liệu hoặc tạo kịch bản lỗi để kiểm tra sức chịu đựng." },
+    { num: 7, title: "KẾT LUẬN", desc: "Đánh giá module có đạt yêu cầu về độ ổn định và logic hay chưa." },
+    { num: 8, title: "KẾT LUẬN CUỐI", desc: "Chính thức merge module vào codebase chính và lưu vết lịch sử git." },
+  ]
+
+  return (
+    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
+      <div className="mb-4 flex items-center justify-between border-b pb-3">
+        <div>
+          <h3 className="text-lg font-bold text-foreground">Sơ Đồ Quy Trình Kiểm Thử 8 Bước (Modular Workflow)</h3>
+          <p className="text-xs text-muted-foreground mt-0.5">Click vào từng bước hoặc dùng nút điều hướng để xem chi tiết quy trình</p>
+        </div>
+        <Badge variant="outline" className="bg-cyan-500/10 text-cyan-600 text-xs">8-Step Pipeline</Badge>
+      </div>
+
+      <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5 mb-6">
+        {steps.map((s, idx) => (
+          <button
+            key={s.num}
+            type="button"
+            onClick={() => setCurrentStep(idx)}
+            className={`py-2 px-1 rounded-lg border text-center transition-all ${
+              currentStep === idx
+                ? "bg-pink-600 text-white border-pink-600 font-bold shadow-md scale-105"
+                : "bg-muted/40 text-muted-foreground border-border/60 hover:bg-muted hover:text-foreground"
+            }`}
+          >
+            <span className="block text-[10px]">Bước</span>
+            <span className="text-sm font-bold">{s.num}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="rounded-xl border bg-accent/30 p-4 border-pink-500/30">
+        <div className="flex items-center justify-between mb-2">
+          <Badge className="bg-pink-600 text-white text-xs">
+            Bước {steps[currentStep].num}: {steps[currentStep].title}
+          </Badge>
+          <div className="flex gap-1.5">
+            <button
+              type="button"
+              disabled={currentStep === 0}
+              onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}
+              className="px-2.5 py-1 text-xs rounded bg-muted hover:bg-muted/80 disabled:opacity-40"
+            >
+              ← Trước
+            </button>
+            <button
+              type="button"
+              disabled={currentStep === steps.length - 1}
+              onClick={() => setCurrentStep((prev) => Math.min(steps.length - 1, prev + 1))}
+              className="px-2.5 py-1 text-xs rounded bg-pink-600 text-white hover:bg-pink-700 disabled:opacity-40"
+            >
+              Sau →
+            </button>
+          </div>
+        </div>
+        <p className="text-xs sm:text-sm text-foreground leading-relaxed font-medium">
+          {steps[currentStep].desc}
+        </p>
+      </div>
+    </div>
+  )
+}

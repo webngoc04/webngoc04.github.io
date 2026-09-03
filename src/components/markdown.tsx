@@ -4,7 +4,7 @@ import { useState, type ReactElement } from "react"
 import { Check, Copy } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import { APCspScoreChart, CognitiveAtrophyDiagram, RepoStarComparisonChart } from "@/components/blog-charts"
+import { APCspScoreChart, CognitiveAtrophyDiagram, RepoStarComparisonChart, AIBenchmarksChart, GoldenRatioAppDiagram, EightStepWorkflowDiagram } from "@/components/blog-charts"
 import { slugify } from "@/components/toc"
 
 function getNodeText(node: React.ReactNode): string {
@@ -71,6 +71,15 @@ export function Markdown({ content }: { content: string }) {
           }
           if (srcStr.includes("repo_star_comparison") || srcStr.includes("github_star_comparison")) {
             return <RepoStarComparisonChart />
+          }
+          if (srcStr.includes("ai_benchmarks_comparison")) {
+            return <AIBenchmarksChart />
+          }
+          if (srcStr.includes("golden_ratio_app") || srcStr.includes("golden_ratio")) {
+            return <GoldenRatioAppDiagram />
+          }
+          if (srcStr.includes("ai_workflow_8_steps") || srcStr.includes("8_steps")) {
+            return <EightStepWorkflowDiagram />
           }
           return <img src={srcStr} alt={alt || ""} className="rounded-xl border my-4 max-w-full" />
         },

@@ -107,11 +107,11 @@ export function MinimapNavigation({ items }: TOCProps) {
 
   return (
     <>
-      {/* Desktop Fixed Left Minimap Rail */}
+      {/* Desktop Fixed Left Minimap Rail (Centered Vertically) */}
       <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="hidden lg:block fixed left-3 xl:left-6 top-36 z-40 group"
+        className="hidden lg:block fixed left-3 xl:left-6 top-1/2 -translate-y-1/2 z-40 group"
       >
         <div className="relative flex items-start gap-3">
           {/* Minimap Track & Markers */}
