@@ -29,7 +29,7 @@ const publicSans = Public_Sans({
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext", "vietnamese"],
   display: "swap",
 })
 
