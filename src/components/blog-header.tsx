@@ -11,7 +11,7 @@ export default function BlogHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 py-3">
         <Link
           href="/"
-          className="group flex items-center gap-2 font-serif text-lg font-bold italic text-foreground transition-colors hover:text-navy"
+          className="group flex items-center gap-2 font-serif text-lg font-bold text-foreground transition-colors hover:text-navy"
         >
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
           <span>KeiChan</span>

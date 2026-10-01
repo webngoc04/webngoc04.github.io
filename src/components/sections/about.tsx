@@ -12,18 +12,17 @@ export default function About() {
       <div ref={ref} className="reveal mx-auto max-w-3xl">
         {/* Section Header */}
         <div className="mb-8 text-center">
-          <span className="specimen-badge mb-2">SECTION // 01</span>
           <h2 className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
             {t("about.title") || "About The Engineer"}
           </h2>
           <div className="mx-auto mt-3 h-px w-12 bg-foreground" />
         </div>
 
-        {/* Specimen Card */}
+        {/* Card */}
         <div className="specimen-card p-6 sm:p-8">
           <div className="mb-4 flex items-center justify-between border-b border-border pb-3 font-meta text-xs text-muted-foreground">
-            <span className="font-semibold uppercase tracking-wider text-foreground">ARCHIVAL PROFILE</span>
-            <span>SPECIMEN ID: DEV-04</span>
+            <span className="font-semibold uppercase tracking-wider text-foreground">PROFILE & PHILOSOPHY</span>
+            <span>KEICHAN</span>
           </div>
 
           <p className="font-body text-[17px] leading-[1.68] text-foreground/90 mb-6">
@@ -39,9 +38,6 @@ export default function About() {
                 </span>
               ))}
             </div>
-            <span className="font-meta text-[11px] uppercase tracking-wider text-muted-foreground">
-              FOUNDRY // VERIFIED
-            </span>
           </div>
         </div>
       </div>

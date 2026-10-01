@@ -21,7 +21,6 @@ export default function Contact() {
   return (
     <section id="contact" className="relative px-4 sm:px-6 py-20">
       <div ref={ref} className="reveal mx-auto max-w-2xl text-center">
-        <span className="specimen-badge mb-2">SECTION // 04</span>
         <h2 className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-2">
           {t("contact.title") || "Communication & Registry"}
         </h2>
@@ -89,10 +88,7 @@ export default function Contact() {
         {/* Colophon & Footer */}
         <footer className="mt-16 pt-8 border-t border-border font-meta text-xs text-muted-foreground">
           <p className="tracking-wider uppercase">
-            {t("contact.madeWith") || "KeiChan • Systems Engineering & Editorial Design System"}
-          </p>
-          <p className="text-[11px] mt-1 text-muted-foreground/70">
-            Typography System: Instrument Serif • Instrument Sans • Lora • Public Sans
+            {t("contact.madeWith") || "KeiChan • Systems Engineering & Dispatches"}
           </p>
         </footer>
       </div>

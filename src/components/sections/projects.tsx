@@ -86,7 +86,6 @@ export default function Projects() {
     <section id="projects" className="relative px-4 sm:px-6 py-20 border-b border-border">
       <div className="mx-auto max-w-4xl">
         <div ref={ref} className="reveal text-center mb-10">
-          <span className="specimen-badge mb-2">SECTION // 03</span>
           <h2 className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
             {t("projects.title") || "Selected Repositories"}
           </h2>

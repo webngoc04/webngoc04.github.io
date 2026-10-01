@@ -77,42 +77,22 @@ export default function BlogList({ posts }: BlogListProps) {
       <header className="mb-10 border-b border-border pb-8">
         <div className="flex items-center gap-2 mb-3">
           <span className="specimen-badge">
-            JOURNAL // SPECIMEN ARCHIVE
+            {locale === "vi" ? "BÁO CÁO & CHUYÊN LUẬN" : "DISPATCHES & REPORTS"}
           </span>
           <span className="font-meta text-[11px] uppercase tracking-widest text-muted-foreground">
-            VOL. 2026
+            {localePosts.length} {locale === "vi" ? "BÀI VIẾT" : "ARTICLES"}
           </span>
         </div>
 
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold italic tracking-tight text-foreground leading-[1.15] mb-3">
-          {locale === "vi" ? "Kho Lưu Trữ Bài Viết & Chuyên Luận" : "The Dispatches & Essays"}
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-[1.2] mb-3">
+          {locale === "vi" ? "Kho Lưu Trữ Báo Cáo & Chuyên Luận" : "The Reports & Dispatches"}
         </h1>
 
-        <p className="font-body text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-6">
+        <p className="font-body text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
           {locale === "vi"
-            ? "Tuyển tập các bài phân tích sâu về kiến trúc hệ thống, nhân Linux kernel, văn hóa mã nguồn mở và tư duy lập trình."
-            : "Analytical essays and technical dispatches exploring systems architecture, Linux kernel internals, and software engineering philosophy."}
+            ? "Tuyển tập các bài phân tích sâu về kiến trúc hệ thống, nhân Linux kernel, văn hóa mã nguồn mở và tư duy kỹ thuật."
+            : "Analytical essays and technical reports exploring systems architecture, Linux kernel internals, and software engineering philosophy."}
         </p>
-
-        {/* Specimen Metrics Strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-border/80">
-          <div className="border border-border bg-box/50 p-2.5 rounded-[3px]">
-            <div className="font-meta text-[10px] uppercase tracking-widest text-muted-foreground">DISPATCHES</div>
-            <div className="font-sans font-bold text-lg text-foreground mt-0.5">{localePosts.length}</div>
-          </div>
-          <div className="border border-border bg-box/50 p-2.5 rounded-[3px]">
-            <div className="font-meta text-[10px] uppercase tracking-widest text-muted-foreground">TOPICS</div>
-            <div className="font-sans font-bold text-lg text-foreground mt-0.5">{allTags.length}</div>
-          </div>
-          <div className="border border-border bg-box/50 p-2.5 rounded-[3px]">
-            <div className="font-meta text-[10px] uppercase tracking-widest text-muted-foreground">TYPOGRAPHY</div>
-            <div className="font-sans font-bold text-sm text-foreground mt-1 truncate">USTR + FED + WSJ</div>
-          </div>
-          <div className="border border-border bg-box/50 p-2.5 rounded-[3px]">
-            <div className="font-meta text-[10px] uppercase tracking-widest text-muted-foreground">FOUNDRY</div>
-            <div className="font-sans font-bold text-sm text-foreground mt-1">FONTSHARE GRID</div>
-          </div>
-        </div>
       </header>
 
       {/* ========================================================
@@ -278,8 +258,8 @@ export default function BlogList({ posts }: BlogListProps) {
                     </div>
                   </div>
 
-                  {/* Headline (Instrument Serif Bold Italic) */}
-                  <h2 className="font-serif text-2xl font-bold italic leading-tight text-foreground group-hover:text-navy transition-colors mb-3">
+                  {/* Headline (Newsreader Serif Bold) */}
+                  <h2 className="font-serif text-[21px] sm:text-[23px] font-bold leading-[1.3] text-foreground group-hover:text-navy transition-colors mb-2.5">
                     {post.title}
                   </h2>
 
@@ -332,7 +312,7 @@ export default function BlogList({ posts }: BlogListProps) {
                       })}
                     </time>
                   </div>
-                  <h2 className="font-serif text-xl sm:text-2xl font-bold italic text-foreground group-hover:text-navy transition-colors mb-1.5">
+                  <h2 className="font-serif text-lg sm:text-xl font-bold text-foreground group-hover:text-navy transition-colors mb-1.5">
                     {post.title}
                   </h2>
                   <p className="font-body text-sm text-muted-foreground line-clamp-2">

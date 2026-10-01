@@ -121,9 +121,9 @@ export default function BlogPost({ post }: BlogPostProps) {
               ======================================================== */}
           {post.description && (
             <div className="executive-summary-box" role="region" aria-label="Executive Summary">
-              <div className="flex items-center gap-2 mb-2 font-meta text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+              <div className="flex items-center gap-2 mb-2 font-meta text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                 <span className="size-1.5 rounded-full bg-foreground" />
-                <span>EXECUTIVE SUMMARY // TÓM TẮT ĐIỀU HÀNH</span>
+                <span>{locale === "vi" ? "TÓM TẮT ĐIỀU HÀNH" : "EXECUTIVE SUMMARY"}</span>
               </div>
               <p itemProp="description">{post.description}</p>
             </div>
@@ -156,16 +156,16 @@ export default function BlogPost({ post }: BlogPostProps) {
         </section>
 
         {/* ========================================================
-            Dispatch Footer & Colophon (USTR Archival Style)
+            Dispatch Footer & Colophon
             ======================================================== */}
         <footer className="mt-16 border-t border-border pt-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-meta text-xs text-muted-foreground">
             <div>
               <p className="font-semibold uppercase tracking-widest text-foreground">
-                [ END OF OFFICIAL DISPATCH ]
+                [ {locale === "vi" ? "HẾT BÀI VIẾT" : "END OF DISPATCH"} ]
               </p>
               <p className="text-[11px] mt-0.5">
-                Archival Record: KeiChan Journal • Reference: {post.slug}
+                KeiChan Journal • {formattedDate}
               </p>
             </div>
 

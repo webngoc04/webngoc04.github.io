@@ -24,17 +24,13 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md transition-colors">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 py-3">
-        {/* Brand / Foundry Logo */}
         <div className="flex items-center gap-3">
           <Link
             href="/"
-            className="font-serif text-xl sm:text-2xl font-bold italic tracking-tight text-foreground transition-colors hover:text-navy"
+            className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors hover:text-navy"
           >
             KeiChan
           </Link>
-          <span className="hidden md:inline-flex items-center rounded-[3px] border border-border bg-box px-2 py-0.5 font-meta text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
-            EDITION 2026 // USTR
-          </span>
         </div>
 
         {/* Desktop Navigation */}

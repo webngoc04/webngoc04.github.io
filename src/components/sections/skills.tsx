@@ -39,7 +39,6 @@ export default function Skills() {
     <section id="skills" className="relative px-4 sm:px-6 py-20 border-b border-border">
       <div className="mx-auto max-w-4xl">
         <div ref={titleRef} className="reveal text-center mb-10">
-          <span className="specimen-badge mb-2">SECTION // 02</span>
           <h2 className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
             {t("skills.title") || "Technical Capabilities"}
           </h2>
@@ -60,9 +59,6 @@ export default function Skills() {
                     <Icon className="size-4 text-muted-foreground" />
                     <span>{cat.title}</span>
                   </div>
-                  <span className="font-mono text-muted-foreground text-[10px]">
-                    CAT.{cat.code}
-                  </span>
                 </div>
 
                 <div className="flex flex-wrap gap-2">

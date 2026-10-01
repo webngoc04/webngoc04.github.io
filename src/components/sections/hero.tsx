@@ -38,15 +38,15 @@ export default function Hero() {
         ref={ref}
         className="reveal relative z-10 mx-auto max-w-3xl w-full text-center flex flex-col items-center gap-6"
       >
-        {/* Specimen Tag */}
+        {/* Badge */}
         <div className="specimen-badge">
           <span className="size-1.5 rounded-full bg-foreground" />
-          <span>SPECIMEN // KEICHAN ARCHIVE</span>
+          <span>KEICHAN DISPATCHES</span>
         </div>
 
-        {/* Heading in Instrument Serif */}
+        {/* Heading in Newsreader Serif (Upright, dignified, report style) */}
         <div className="space-y-4">
-          <h1 className="font-serif text-5xl sm:text-7xl font-bold italic tracking-tight text-foreground leading-[1.08]">
+          <h1 className="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-foreground leading-[1.15]">
             {t("hero.greeting") || "Hi, I'm"}{" "}
             <span className="underline decoration-border decoration-2 underline-offset-8">
               KeiChan
