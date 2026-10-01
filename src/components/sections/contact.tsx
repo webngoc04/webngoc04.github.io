@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
-import { Mail, Copy, MessageCircle } from "lucide-react"
+import { Mail, Copy, MessageCircle, Key, Download } from "lucide-react"
 import { toast } from "sonner"
 import { useReveal } from "@/hooks/use-reveal"
 import { useI18n } from "@/lib/i18n"
@@ -10,102 +9,93 @@ export default function Contact() {
   const ref = useReveal<HTMLDivElement>()
   const { t } = useI18n()
 
-  useEffect(() => {
-    const key = "welcome-shown"
-    if (!sessionStorage.getItem(key)) {
-      toast(t("contact.welcome"))
-      sessionStorage.setItem(key, "1")
-    }
-  }, [t])
-
   const copyText = async (text: string, label: string) => {
     try {
       await navigator.clipboard.writeText(text)
-      toast.success(`${label} ${t("contact.copySuccess")}`)
+      toast.success(`${label} ${t("contact.copySuccess") || "copied!"}`)
     } catch {
-      toast.error(t("contact.copyError"))
+      toast.error(t("contact.copyError") || "Failed to copy.")
     }
   }
 
   return (
-    <section id="contact" className="relative px-4 py-24">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 size-72 -translate-x-1/2 rounded-full bg-pink-200/15 blur-3xl" />
-      </div>
+    <section id="contact" className="relative px-4 sm:px-6 py-20">
       <div ref={ref} className="reveal mx-auto max-w-2xl text-center">
-        <h2 className="mb-2 text-3xl font-bold sm:text-4xl">
-          {t("contact.title")} <span className="text-gradient">💌</span>
+        <span className="specimen-badge mb-2">SECTION // 04</span>
+        <h2 className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-2">
+          {t("contact.title") || "Communication & Registry"}
         </h2>
-        <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" />
-        <p className="mb-8 text-muted-foreground">{t("contact.subtitle")}</p>
+        <div className="mx-auto mt-3 mb-6 h-px w-12 bg-foreground" />
+        <p className="font-body text-base text-muted-foreground mb-8">
+          {t("contact.subtitle") || "Direct dispatch and encrypted communication channels."}
+        </p>
 
-        <div className="mb-5 flex justify-center gap-4">
-          <a
-            href="https://github.com/webngoc04"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glass glass-hover flex size-12 items-center justify-center rounded-full"
-            aria-label="GitHub"
-          >
-            <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-          </a>
-          <a
-            href="mailto:tarisu.international@gmail.com"
-            className="glass glass-hover flex size-12 items-center justify-center rounded-full"
-            aria-label="Email"
-          >
-            <Mail className="size-5" />
-          </a>
-        </div>
-
-        <div className="mx-auto mb-8 grid max-w-md gap-2 text-left">
+        {/* Contact Action Cards */}
+        <div className="mx-auto mb-8 grid max-w-md gap-3 text-left">
           <button
             type="button"
             onClick={() => copyText("tarisu.international@gmail.com", "Email")}
-            className="glass glass-hover flex items-center justify-between rounded-xl px-4 py-3 text-sm"
+            className="specimen-card flex items-center justify-between p-3.5 font-meta text-xs transition-colors hover:border-foreground cursor-pointer"
           >
-            <span className="inline-flex items-center gap-2"><Mail className="size-4" /> {t("contact.copyEmail")}</span>
-            <Copy className="size-4 text-muted-foreground" />
+            <span className="inline-flex items-center gap-2.5 font-medium text-foreground">
+              <Mail className="size-4 text-muted-foreground" />
+              <span>tarisu.international@gmail.com</span>
+            </span>
+            <Copy className="size-3.5 text-muted-foreground" />
           </button>
+
           <button
             type="button"
             onClick={() => copyText("cuntrina1310", "Discord ID")}
-            className="glass glass-hover flex items-center justify-between rounded-xl px-4 py-3 text-sm"
+            className="specimen-card flex items-center justify-between p-3.5 font-meta text-xs transition-colors hover:border-foreground cursor-pointer"
           >
-            <span className="inline-flex items-center gap-2"><MessageCircle className="size-4" /> {t("contact.copyDiscord")}</span>
-            <Copy className="size-4 text-muted-foreground" />
+            <span className="inline-flex items-center gap-2.5 font-medium text-foreground">
+              <MessageCircle className="size-4 text-muted-foreground" />
+              <span>Discord: cuntrina1310</span>
+            </span>
+            <Copy className="size-3.5 text-muted-foreground" />
           </button>
         </div>
 
-        <div className="mt-8 flex justify-center">
-          <div className="glass glass-hover inline-block rounded-2xl p-4 text-left sm:p-5">
-            <p className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
-              🔐 {t("contact.gpgTitle")}
-            </p>
-            <code className="block break-all text-xs text-muted-foreground sm:text-sm">
-              012F C938 02BA C1FE 39D0 DC2D E016 3CBB 19B5 FFC1
-            </code>
-            <p className="mt-1 text-xs text-muted-foreground/60">tarisu.international@gmail.com</p>
+        {/* GPG Key Specimen Block */}
+        <div className="mx-auto max-w-md specimen-card p-5 text-left">
+          <div className="mb-2 flex items-center justify-between border-b border-border pb-2 font-meta text-xs">
+            <span className="inline-flex items-center gap-1.5 font-semibold uppercase tracking-wider text-foreground">
+              <Key className="size-3.5" />
+              <span>{t("contact.gpgTitle") || "GPG FINGERPRINT"}</span>
+            </span>
+            <span className="font-mono text-[10px] text-muted-foreground">ED25519</span>
+          </div>
+
+          <code className="block break-all font-mono text-xs text-foreground bg-box p-2.5 rounded-[3px] border border-border/80 my-2.5 select-all">
+            012F C938 02BA C1FE 39D0 DC2D E016 3CBB 19B5 FFC1
+          </code>
+
+          <div className="flex items-center justify-between pt-1">
+            <span className="font-meta text-[11px] text-muted-foreground">
+              tarisu.international@gmail.com
+            </span>
             <a
               href="/keichan.asc"
               download
-              className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/20 bg-cyan-950/20 px-3 py-1.5 text-xs font-medium text-cyan-400 transition-all hover:bg-cyan-950/30 hover:border-cyan-400/50"
+              className="inline-flex items-center gap-1.5 rounded-[3px] border border-border bg-box px-2.5 py-1 font-meta text-[11px] font-medium uppercase tracking-wider text-foreground transition-colors hover:border-foreground"
             >
-              <svg className="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              {t("contact.downloadGpg")}
+              <Download className="size-3" />
+              <span>{t("contact.downloadGpg") || "PUBLIC KEY"}</span>
             </a>
           </div>
         </div>
+
+        {/* Colophon & Footer */}
+        <footer className="mt-16 pt-8 border-t border-border font-meta text-xs text-muted-foreground">
+          <p className="tracking-wider uppercase">
+            {t("contact.madeWith") || "KeiChan • Systems Engineering & Editorial Design System"}
+          </p>
+          <p className="text-[11px] mt-1 text-muted-foreground/70">
+            Typography System: Instrument Serif • Instrument Sans • Lora • Public Sans
+          </p>
+        </footer>
       </div>
-      <footer className="mt-16 text-center text-sm text-muted-foreground">
-        <p className="flex items-center justify-center gap-1.5">
-          {t("contact.madeWith")}
-        </p>
-      </footer>
     </section>
   )
 }

@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query"
 import { useReveal } from "@/hooks/use-reveal"
-import { Folder, Star, GitFork, ExternalLink } from "lucide-react"
+import { Star, GitFork, ArrowUpRight, FolderGit2 } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 
 interface Repo {
@@ -24,12 +24,11 @@ const fetchRepos = async (): Promise<Repo[]> => {
   return res.json()
 }
 
-// Fallback static list in case of API rate limits or network issues
 const fallbackRepos: Repo[] = [
   {
     id: 1,
     name: "Xmirg-Mod-JIT",
-    description: "Modified XMRig version with Custom Rust JIT Integration.",
+    description: "Modified XMRig version with Custom Rust JIT Integration and low-level optimizations.",
     html_url: "https://github.com/webngoc04/Xmirg-Mod-JIT",
     stargazers_count: 0,
     forks_count: 0,
@@ -39,7 +38,7 @@ const fallbackRepos: Repo[] = [
   {
     id: 2,
     name: "webngoc04.github.io",
-    description: "My personal developer portfolio built with Next.js, React 19, and Tailwind CSS.",
+    description: "Personal developer portfolio and journal designed with USTR + FED + WSJ editorial system.",
     html_url: "https://github.com/webngoc04/webngoc04.github.io",
     stargazers_count: 0,
     forks_count: 0,
@@ -49,7 +48,7 @@ const fallbackRepos: Repo[] = [
   {
     id: 3,
     name: "souretmath",
-    description: "A mathematical source code project built with simple HTML/JS.",
+    description: "A mathematical source code exploration project built with lightweight core logic.",
     html_url: "https://github.com/webngoc04/souretmath",
     stargazers_count: 0,
     forks_count: 0,
@@ -59,7 +58,7 @@ const fallbackRepos: Repo[] = [
   {
     id: 4,
     name: "phambaolamnhotuigui",
-    description: "A low-level C++ practice and optimization repository.",
+    description: "Low-level C++ algorithms, data structures, and algorithmic optimization exercises.",
     html_url: "https://github.com/webngoc04/phambaolamnhotuigui",
     stargazers_count: 0,
     forks_count: 0,
@@ -78,44 +77,38 @@ export default function Projects() {
     select: (data) =>
       data
         .filter((repo) => !repo.fork && repo.name.toLowerCase() !== "webngoc04")
-        .slice(0, 6), // Show top 6 original projects
+        .slice(0, 6),
   })
 
-  // Determine what list to render
   const displayRepos = isError || !repos ? fallbackRepos : repos
 
   return (
-    <section id="projects" className="relative px-4 py-24">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -right-32 top-1/2 size-80 rounded-full bg-rose-200/5 blur-3xl" />
-      </div>
+    <section id="projects" className="relative px-4 sm:px-6 py-20 border-b border-border">
       <div className="mx-auto max-w-4xl">
-        <div ref={ref} className="reveal text-center">
-          <h2 className="mb-2 text-3xl font-bold sm:text-4xl text-white">
-            {t("projects.title")} <span className="text-gradient">✨</span>
+        <div ref={ref} className="reveal text-center mb-10">
+          <span className="specimen-badge mb-2">SECTION // 03</span>
+          <h2 className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+            {t("projects.title") || "Selected Repositories"}
           </h2>
-          <div className="mx-auto mb-10 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" />
+          <div className="mx-auto mt-3 h-px w-12 bg-foreground" />
         </div>
 
         {isLoading ? (
-          // Skeleton Loading
           <div className="grid gap-6 sm:grid-cols-2">
             {[...Array(4)].map((_, idx) => (
               <div
                 key={idx}
-                className="glass rounded-2xl p-6 h-[170px] flex flex-col justify-between animate-pulse"
+                className="specimen-card p-6 h-[180px] flex flex-col justify-between animate-pulse"
               >
                 <div className="space-y-3">
-                  <div className="h-5 w-2/5 rounded bg-white/10" />
-                  <div className="h-4 w-4/5 rounded bg-white/10" />
-                  <div className="h-4 w-3/5 rounded bg-white/10" />
+                  <div className="h-4 w-1/3 rounded-[2px] bg-box" />
+                  <div className="h-4 w-4/5 rounded-[2px] bg-box" />
                 </div>
-                <div className="h-4 w-1/5 rounded bg-white/10" />
+                <div className="h-3 w-1/4 rounded-[2px] bg-box" />
               </div>
             ))}
           </div>
         ) : (
-          // Projects Grid
           <div className="grid gap-6 sm:grid-cols-2">
             {displayRepos.map((repo) => (
               <a
@@ -123,37 +116,38 @@ export default function Projects() {
                 href={repo.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative glass glass-hover gradient-border rounded-2xl p-6 flex flex-col justify-between h-[180px] text-left hover:scale-[1.01] transition-transform duration-300"
+                className="specimen-card group p-6 flex flex-col justify-between min-h-[190px] transition-all hover:-translate-y-0.5"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center justify-between border-b border-border pb-3 mb-3 font-meta text-xs text-muted-foreground">
                     <div className="flex items-center gap-2">
-                      <Folder className="size-4.5 text-cyan-400" />
-                      <h3 className="font-bold text-base text-white group-hover:text-cyan-400 transition-colors">
+                      <FolderGit2 className="size-4 text-foreground" />
+                      <span className="font-semibold text-foreground tracking-tight">
                         {repo.name}
-                      </h3>
+                      </span>
                     </div>
-                    <ExternalLink className="size-4 text-muted-foreground group-hover:text-white transition-colors" />
+                    <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </div>
-                  <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                    {repo.description || t("projects.noDescription")}
+
+                  <p className="font-body text-[14px] leading-relaxed text-muted-foreground line-clamp-2">
+                    {repo.description || t("projects.noDescription") || "No description provided."}
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 mt-auto border-t border-white/5 text-xs text-slate-400">
-                  {repo.language && (
-                    <span className="inline-flex items-center gap-1.5 font-semibold text-cyan-400">
-                      <span className="size-2 rounded-full bg-cyan-400" />
+                <div className="flex items-center justify-between pt-4 border-t border-border/80 font-meta text-xs text-muted-foreground mt-4">
+                  {repo.language ? (
+                    <span className="specimen-badge text-[10px]">
                       {repo.language}
                     </span>
-                  )}
-                  <div className="flex items-center gap-4">
+                  ) : <span />}
+
+                  <div className="flex items-center gap-3 font-mono text-[11px]">
                     <span className="flex items-center gap-1">
-                      <Star className="size-3.5" />
+                      <Star className="size-3" />
                       {repo.stargazers_count}
                     </span>
                     <span className="flex items-center gap-1">
-                      <GitFork className="size-3.5" />
+                      <GitFork className="size-3" />
                       {repo.forks_count}
                     </span>
                   </div>

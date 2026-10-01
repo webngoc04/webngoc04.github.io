@@ -4,7 +4,7 @@ import { Globe } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ className }: { className?: string }) {
   const { locale, setLocale } = useI18n()
 
   const toggleLocale = () => {
@@ -16,13 +16,12 @@ export default function LanguageSwitcher() {
       type="button"
       onClick={toggleLocale}
       className={cn(
-        "flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-all",
-        "text-muted-foreground hover:bg-pink-100/50 hover:text-pink-600",
-        "dark:hover:bg-pink-900/20 dark:hover:text-pink-300"
+        "flex h-8 items-center gap-1.5 rounded-[4px] border border-border bg-box px-2.5 text-xs font-meta font-medium tracking-wider text-muted-foreground transition-all hover:border-foreground hover:text-foreground",
+        className
       )}
       aria-label={`Switch to ${locale === "en" ? "Vietnamese" : "English"}`}
     >
-      <Globe className="size-4" />
+      <Globe className="size-3.5" />
       <span>{locale === "en" ? "EN" : "VI"}</span>
     </button>
   )

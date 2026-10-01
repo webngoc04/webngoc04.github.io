@@ -26,11 +26,11 @@ export function APCspScoreChart() {
   const maxVal = 35
 
   return (
-    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm transition-all hover:shadow-md">
+    <div className="my-8 rounded-[4px] border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm transition-all hover:shadow-md">
       <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <BarChart3 className="size-5 text-pink-500" />
+            <BarChart3 className="size-5 text-navy" />
             <h3 className="text-lg font-bold text-foreground">Phổ Điểm AP Computer Science Principles (College Board)</h3>
           </div>
           <p className="text-xs text-muted-foreground mt-1">
@@ -60,7 +60,7 @@ export function APCspScoreChart() {
             onClick={() => setSelectedYear(y.id)}
             className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
               selectedYear === y.id
-                ? "bg-pink-600 !text-white shadow-sm dark:bg-pink-500"
+                ? "bg-foreground !text-background font-semibold shadow-sm dark:bg-foreground"
                 : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
             }`}
           >
@@ -76,7 +76,7 @@ export function APCspScoreChart() {
             key={item.key}
             onMouseEnter={() => setActiveScore(item.key)}
             onMouseLeave={() => setActiveScore(null)}
-            className={`rounded-xl p-2.5 transition-all ${
+            className={`rounded-[4px] p-2.5 transition-all ${
               activeScore === item.key ? "bg-accent/50 scale-[1.01]" : ""
             }`}
           >
@@ -140,7 +140,7 @@ export function APCspScoreChart() {
       </div>
 
       {/* Insights Box */}
-      <div className="mt-5 rounded-xl bg-rose-500/10 border border-rose-500/20 p-3.5 text-xs text-foreground flex items-start gap-2.5">
+      <div className="mt-5 rounded-[4px] bg-rose-500/10 border border-rose-500/20 p-3.5 text-xs text-foreground flex items-start gap-2.5">
         <AlertTriangle className="size-4 text-rose-500 shrink-0 mt-0.5" />
         <div>
           <span className="font-bold text-rose-600 dark:text-rose-400">Tác động thực tế năm 2024: </span>
@@ -204,13 +204,13 @@ export function CognitiveAtrophyDiagram() {
   ]
 
   return (
-    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
+    <div className="my-8 rounded-[4px] border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
       <div className="mb-4 flex items-center justify-between border-b pb-3">
         <div className="flex items-center gap-2">
-          <Brain className="size-5 text-pink-500" />
+          <Brain className="size-5 text-navy" />
           <h3 className="text-lg font-bold text-foreground">Sơ Đồ Vòng Lặp Teo Cơ Nhận Thức (Cognitive Atrophy Loop)</h3>
         </div>
-        <Badge variant="outline" className="bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-500/20 text-xs">
+        <Badge variant="outline" className="bg-box text-navy dark:text-navy border-border text-xs">
           Interactive Flow
         </Badge>
       </div>
@@ -226,14 +226,14 @@ export function CognitiveAtrophyDiagram() {
               key={step.id}
               type="button"
               onClick={() => setActiveStep(step.id)}
-              className={`flex flex-col items-start rounded-xl border p-3 text-left transition-all ${
+              className={`flex flex-col items-start rounded-[4px] border p-3 text-left transition-all ${
                 isActive
-                  ? "border-pink-500 bg-pink-500/10 shadow-sm ring-1 ring-pink-500/30"
-                  : "border-border/60 bg-muted/30 hover:border-pink-500/40 hover:bg-muted/70"
+                  ? "border-foreground bg-box shadow-sm ring-1 ring-foreground/20"
+                  : "border-border/60 bg-muted/30 hover:border-foreground/40 hover:bg-muted/70"
               }`}
             >
               <div className="mb-2 flex items-center justify-between w-full">
-                <span className={`rounded-lg p-1.5 ${isActive ? "bg-pink-600 !text-white" : "bg-muted text-muted-foreground"}`}>
+                <span className={`rounded-lg p-1.5 ${isActive ? "bg-foreground !text-background font-semibold" : "bg-muted text-muted-foreground"}`}>
                   <Icon className="size-4" />
                 </span>
                 <span className="text-[10px] font-bold text-muted-foreground">0{step.id + 1}</span>
@@ -250,9 +250,9 @@ export function CognitiveAtrophyDiagram() {
       </div>
 
       {/* Active Step Details */}
-      <div className="mt-4 rounded-xl border bg-accent/40 p-4 transition-all">
+      <div className="mt-4 rounded-[4px] border bg-accent/40 p-4 transition-all">
         <div className="flex items-center gap-2 mb-2">
-          <Badge className="bg-pink-600 !text-white text-xs">
+          <Badge className="bg-foreground !text-background font-semibold text-xs">
             Bước {activeStep + 1}: {steps[activeStep].title.split(". ")[1]}
           </Badge>
         </div>
@@ -278,11 +278,11 @@ export function RepoStarComparisonChart() {
   const maxStars = Math.max(stars.linux, stars.edk2, stars.autoGpt, 1)
 
   return (
-    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
+    <div className="my-8 rounded-[4px] border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
       <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <BarChart3 className="size-5 text-pink-500" />
+            <BarChart3 className="size-5 text-navy" />
             <h3 className="text-lg font-bold text-foreground">Đối Chiếu GitHub Stars: Hạ Tầng Cốt Lõi vs. AI Repo Phong Trào</h3>
           </div>
           <p className="text-xs text-muted-foreground mt-1">
@@ -296,7 +296,7 @@ export function RepoStarComparisonChart() {
 
       <div className="space-y-4">
         {/* Linux */}
-        <div className="rounded-xl border bg-accent/30 p-3">
+        <div className="rounded-[4px] border bg-accent/30 p-3">
           <div className="flex justify-between items-center text-xs sm:text-sm font-semibold mb-1">
             <span className="text-foreground">torvalds/linux (Kernel Hệ điều hành toàn cầu)</span>
             <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold">~185,000 ⭐</span>
@@ -307,7 +307,7 @@ export function RepoStarComparisonChart() {
         </div>
 
         {/* AutoGPT */}
-        <div className="rounded-xl border bg-accent/30 p-3">
+        <div className="rounded-[4px] border bg-accent/30 p-3">
           <div className="flex justify-between items-center text-xs sm:text-sm font-semibold mb-1">
             <span className="text-foreground">Significant-Gravitas/AutoGPT (Repo AI Agent phong trào bùng nổ)</span>
             <span className="font-mono text-purple-600 dark:text-purple-400 font-bold">~170,000 ⭐ (Tăng vọt qua đêm)</span>
@@ -318,7 +318,7 @@ export function RepoStarComparisonChart() {
         </div>
 
         {/* EDK2 */}
-        <div className="rounded-xl border bg-accent/30 p-3">
+        <div className="rounded-[4px] border bg-accent/30 p-3">
           <div className="flex justify-between items-center text-xs sm:text-sm font-semibold mb-1">
             <span className="text-foreground">tianocore/edk2 (Framework UEFI Khởi động PC/Server)</span>
             <span className="font-mono text-amber-600 dark:text-amber-400 font-bold">~4,600 ⭐ (Thấp bất ngờ)</span>
@@ -394,11 +394,11 @@ export function AIBenchmarksChart() {
   const filtered = filter === "all" ? benchmarks : benchmarks.filter((b) => b.category === filter)
 
   return (
-    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
+    <div className="my-8 rounded-[4px] border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
       <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <BarChart3 className="size-5 text-pink-500" />
+            <BarChart3 className="size-5 text-navy" />
             <h3 className="text-lg font-bold text-foreground">So Sánh Bộ Benchmark AI: Cũ vs. Thực Chiến Modern</h3>
           </div>
           <p className="text-xs text-muted-foreground mt-1">
@@ -417,7 +417,7 @@ export function AIBenchmarksChart() {
           type="button"
           onClick={() => setFilter("all")}
           className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
-            filter === "all" ? "bg-pink-600 !text-white" : "bg-muted text-muted-foreground hover:text-foreground"
+            filter === "all" ? "bg-foreground !text-background font-semibold" : "bg-muted text-muted-foreground hover:text-foreground"
           }`}
         >
           Tất cả
@@ -426,7 +426,7 @@ export function AIBenchmarksChart() {
           type="button"
           onClick={() => setFilter("old")}
           className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
-            filter === "old" ? "bg-pink-600 !text-white" : "bg-muted text-muted-foreground hover:text-foreground"
+            filter === "old" ? "bg-foreground !text-background font-semibold" : "bg-muted text-muted-foreground hover:text-foreground"
           }`}
         >
           Bộ test cũ (Lỗi thời)
@@ -435,7 +435,7 @@ export function AIBenchmarksChart() {
           type="button"
           onClick={() => setFilter("modern")}
           className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
-            filter === "modern" ? "bg-pink-600 !text-white" : "bg-muted text-muted-foreground hover:text-foreground"
+            filter === "modern" ? "bg-foreground !text-background font-semibold" : "bg-muted text-muted-foreground hover:text-foreground"
           }`}
         >
           Bộ test thực chiến
@@ -447,8 +447,8 @@ export function AIBenchmarksChart() {
           <div
             key={item.id}
             onClick={() => setActiveItem(activeItem === item.id ? null : item.id)}
-            className={`rounded-xl border p-4 cursor-pointer transition-all ${
-              activeItem === item.id ? "bg-pink-500/10 border-pink-500/40 shadow-md" : "bg-accent/20 hover:bg-accent/40"
+            className={`rounded-[4px] border p-4 cursor-pointer transition-all ${
+              activeItem === item.id ? "bg-box border-foreground/40 shadow-md" : "bg-accent/20 hover:bg-accent/40"
             }`}
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
@@ -468,7 +468,7 @@ export function AIBenchmarksChart() {
             <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
 
             {activeItem === item.id && (
-              <div className="mt-3 pt-2 border-t border-border/60 text-xs font-semibold text-pink-600 dark:text-pink-400">
+              <div className="mt-3 pt-2 border-t border-border/60 text-xs font-semibold text-navy dark:text-navy">
                 💡 Nhận xét chuyên sâu: {item.verdict}
               </div>
             )}
@@ -486,10 +486,10 @@ export function GoldenRatioAppDiagram() {
     {
       ratio: "60%",
       title: "Giao diện (UI/UX)",
-      color: "bg-pink-500",
-      borderColor: "border-pink-500",
-      textColor: "text-pink-600 dark:text-pink-400",
-      bgColor: "bg-pink-500/10",
+      color: "bg-foreground",
+      borderColor: "border-foreground",
+      textColor: "text-navy dark:text-navy",
+      bgColor: "bg-box",
       focus: "Trải nghiệm người dùng, tương tác trực quan & luồng sử dụng.",
       aiBehavior: "AI rất mạnh trong việc sinh layout và HTML/CSS nhanh, nhưng cần con người căn chỉnh tính thẩm mỹ và luồng UX chính xác.",
     },
@@ -526,16 +526,16 @@ export function GoldenRatioAppDiagram() {
   ]
 
   return (
-    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
+    <div className="my-8 rounded-[4px] border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
       <div className="mb-4 flex items-center justify-between border-b pb-3">
         <div>
           <h3 className="text-lg font-bold text-foreground">Sơ Đồ Tỷ Lệ Vàng 60 - 20 - 10 - 10 Khi Làm App Với AI</h3>
           <p className="text-xs text-muted-foreground mt-0.5">Click vào từng phần để xem cách phân bổ công sức & hành vi AI tương ứng</p>
         </div>
-        <Badge variant="outline" className="bg-pink-500/10 text-pink-600 text-xs">Golden Ratio</Badge>
+        <Badge variant="outline" className="bg-box text-navy text-xs">Golden Ratio</Badge>
       </div>
 
-      <div className="mb-6 flex h-8 w-full rounded-xl overflow-hidden p-1 bg-muted/50 gap-1">
+      <div className="mb-6 flex h-8 w-full rounded-[4px] overflow-hidden p-1 bg-muted/50 gap-1">
         {sections.map((sec, idx) => (
           <button
             key={sec.title}
@@ -557,7 +557,7 @@ export function GoldenRatioAppDiagram() {
             key={sec.title}
             type="button"
             onClick={() => setSelectedSection(idx)}
-            className={`p-3 rounded-xl border text-left transition-all ${
+            className={`p-3 rounded-[4px] border text-left transition-all ${
               selectedSection === idx ? `${sec.bgColor} ${sec.borderColor} shadow-md` : "bg-accent/20 border-border/60 hover:bg-accent/40"
             }`}
           >
@@ -567,7 +567,7 @@ export function GoldenRatioAppDiagram() {
         ))}
       </div>
 
-      <div className={`p-4 rounded-xl border ${sections[selectedSection].bgColor} ${sections[selectedSection].borderColor}`}>
+      <div className={`p-4 rounded-[4px] border ${sections[selectedSection].bgColor} ${sections[selectedSection].borderColor}`}>
         <div className="flex items-center gap-2 mb-2">
           <Badge className={`${sections[selectedSection].color} !text-white text-xs`}>
             {sections[selectedSection].ratio} - {sections[selectedSection].title}
@@ -599,7 +599,7 @@ export function EightStepWorkflowDiagram() {
   ]
 
   return (
-    <div className="my-8 rounded-2xl border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
+    <div className="my-8 rounded-[4px] border bg-card/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm">
       <div className="mb-4 flex items-center justify-between border-b pb-3">
         <div>
           <h3 className="text-lg font-bold text-foreground">Sơ Đồ Quy Trình Kiểm Thử 8 Bước (Modular Workflow)</h3>
@@ -616,7 +616,7 @@ export function EightStepWorkflowDiagram() {
             onClick={() => setCurrentStep(idx)}
             className={`py-2 px-1 rounded-lg border text-center transition-all ${
               currentStep === idx
-                ? "bg-pink-600 !text-white border-pink-600 font-bold shadow-md scale-105"
+                ? "bg-foreground !text-background font-semibold border-foreground font-bold shadow-md scale-105"
                 : "bg-muted/40 text-muted-foreground border-border/60 hover:bg-muted hover:text-foreground"
             }`}
           >
@@ -626,9 +626,9 @@ export function EightStepWorkflowDiagram() {
         ))}
       </div>
 
-      <div className="rounded-xl border bg-accent/30 p-4 border-pink-500/30">
+      <div className="rounded-[4px] border bg-accent/30 p-4 border-border">
         <div className="flex items-center justify-between mb-2">
-          <Badge className="bg-pink-600 !text-white text-xs">
+          <Badge className="bg-foreground !text-background font-semibold text-xs">
             Bước {steps[currentStep].num}: {steps[currentStep].title}
           </Badge>
           <div className="flex gap-1.5">
@@ -644,7 +644,7 @@ export function EightStepWorkflowDiagram() {
               type="button"
               disabled={currentStep === steps.length - 1}
               onClick={() => setCurrentStep((prev) => Math.min(steps.length - 1, prev + 1))}
-              className="px-2.5 py-1 text-xs rounded bg-pink-600 !text-white hover:bg-pink-700 disabled:opacity-40"
+              className="px-2.5 py-1 text-xs rounded bg-foreground !text-background font-semibold hover:bg-foreground/80 disabled:opacity-40"
             >
               Sau →
             </button>

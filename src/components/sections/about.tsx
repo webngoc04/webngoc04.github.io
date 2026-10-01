@@ -8,32 +8,40 @@ export default function About() {
   const { t } = useI18n()
 
   return (
-    <section id="about" className="relative px-4 py-24">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute right-0 top-0 size-72 translate-x-1/2 -translate-y-1/2 rounded-full bg-pink-200/20 blur-3xl" />
-      </div>
-      <div
-        ref={ref}
-        className="reveal mx-auto max-w-2xl"
-      >
-        <h2 className="mb-2 text-center text-3xl font-bold sm:text-4xl">
-          {t("about.title")}
-        </h2>
-        <div className="mx-auto mb-8 h-1 w-16 rounded-full bg-gradient-to-r from-pink-300 to-rose-400" />
-        <div className="glass glass-hover rounded-2xl p-6 sm:p-8">
-          <p className="leading-relaxed text-muted-foreground">
-            {t("about.description")}
+    <section id="about" className="relative px-4 sm:px-6 py-20 border-b border-border">
+      <div ref={ref} className="reveal mx-auto max-w-3xl">
+        {/* Section Header */}
+        <div className="mb-8 text-center">
+          <span className="specimen-badge mb-2">SECTION // 01</span>
+          <h2 className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+            {t("about.title") || "About The Engineer"}
+          </h2>
+          <div className="mx-auto mt-3 h-px w-12 bg-foreground" />
+        </div>
+
+        {/* Specimen Card */}
+        <div className="specimen-card p-6 sm:p-8">
+          <div className="mb-4 flex items-center justify-between border-b border-border pb-3 font-meta text-xs text-muted-foreground">
+            <span className="font-semibold uppercase tracking-wider text-foreground">ARCHIVAL PROFILE</span>
+            <span>SPECIMEN ID: DEV-04</span>
+          </div>
+
+          <p className="font-body text-[17px] leading-[1.68] text-foreground/90 mb-6">
+            {t("about.description") ||
+              "A developer passionate about low-level systems programming, writing Linux kernel modules, and designing resilient, highly responsive web systems. Believing deeply in the original open-source hacker ethics, writing transparent code, and sharing knowledge."}
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {["Linux", "Kernel", "Web Dev", "Open Source", "Rust", "C"].map((tag, i) => (
-              <span
-                key={tag}
-                className="reveal rounded-full bg-gradient-to-r from-cyan-950/20 to-indigo-950/20 border border-cyan-500/20 px-3.5 py-1.5 text-xs font-medium text-cyan-400 shadow-sm transition-all hover:shadow-md hover:border-cyan-400/50 hover:bg-cyan-950/30"
-                style={{ transitionDelay: `${i * 60}ms` }}
-              >
-                {tag}
-              </span>
-            ))}
+
+          <div className="pt-4 border-t border-border flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap gap-2">
+              {["Linux Kernel", "Systems Programming", "Rust", "C", "Next.js", "Open Source"].map((tag) => (
+                <span key={tag} className="specimen-badge">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <span className="font-meta text-[11px] uppercase tracking-wider text-muted-foreground">
+              FOUNDRY // VERIFIED
+            </span>
           </div>
         </div>
       </div>
