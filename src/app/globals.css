@@ -198,15 +198,15 @@
   color: #9E9C94;
 }
 
-/* 2. Headline H1 (Newsreader - Authentic Report Proportions, No Distortion) */
+/* 2. Headline H1 (Newsreader - Authentic WSJ / USTR Editorial Front-Page Bold Italic) */
 .editorial-h1 {
   font-family: var(--font-newsreader), Georgia, "Times New Roman", serif;
-  font-size: clamp(32px, 4vw, 42px);
-  line-height: 1.2;
+  font-size: clamp(34px, 4.2vw, 44px);
+  line-height: 1.12;
   font-weight: 700;
-  font-style: normal;
+  font-style: italic;
   color: #111111;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 .dark .editorial-h1 {
   color: #F5F4EE;
