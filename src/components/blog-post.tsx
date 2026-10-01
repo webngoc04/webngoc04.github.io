@@ -97,17 +97,6 @@ export default function BlogPost({ post }: BlogPostProps) {
             Định dạng: CHỦ ĐỀ LỚN | NGÀY THÁNG NĂM | TÊN TÁC GIẢ
             ======================================================== */}
         <header className="mb-6">
-          {/* USTR / Federal Memorandum Classification Bar */}
-          <div className="flex items-center justify-between border-b border-border/80 pb-2 mb-4">
-            <div className="flex items-center gap-2 font-meta text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-[#002855] dark:text-[#82AAFF]">
-              <span className="size-1.5 rounded-full bg-[#002855] dark:bg-[#82AAFF] inline-block" />
-              <span>OFFICIAL DISPATCH // USTR • FED • WSJ FORMAT</span>
-            </div>
-            <span className="font-meta text-[10px] font-medium tracking-wider text-muted-foreground uppercase">
-              SERIES 2026 // {post.slug.toUpperCase().slice(0, 20)}
-            </span>
-          </div>
-
           <div className="editorial-meta-header mb-3">
             <span>{primaryCategory}</span>
             <span className="mx-2 text-border font-light">|</span>
