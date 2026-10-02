@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, type ReactElement } from "react"
-import { Check, Copy } from "lucide-react"
+import { type ReactElement } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import CodeBlock from "@/components/code-block"
 import {
   APCspScoreChart,
   CognitiveAtrophyDiagram,
@@ -23,36 +23,6 @@ function getNodeText(node: React.ReactNode): string {
     return getNodeText(element.props.children)
   }
   return ""
-}
-
-function CopyButton({ code }: { code: string }) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1500)
-  }
-
-  return (
-    <button
-      onClick={handleCopy}
-      className="absolute top-2.5 right-2.5 rounded-[3px] border border-border bg-box/80 px-2 py-1 font-meta text-[11px] uppercase tracking-wider text-muted-foreground opacity-70 transition-all hover:opacity-100 hover:border-foreground hover:text-foreground"
-      aria-label={copied ? "Copied" : "Copy code"}
-    >
-      {copied ? (
-        <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
-          <Check className="size-3" />
-          <span>COPIED</span>
-        </span>
-      ) : (
-        <span className="inline-flex items-center gap-1">
-          <Copy className="size-3" />
-          <span>COPY</span>
-        </span>
-      )}
-    </button>
-  )
 }
 
 export function Markdown({ content }: { content: string }) {
@@ -214,26 +184,21 @@ export function Markdown({ content }: { content: string }) {
             {children}
           </a>
         ),
-        pre: ({ children, ...props }) => {
-          const code = (() => {
-            try {
-              const child = children as ReactElement<{ children?: string }>
-              return String(child.props.children ?? "")
-            } catch {
-              return ""
-            }
-          })()
+        pre: ({ children }) => {
+          let code = ""
+          let className = ""
+          try {
+            const child = children as ReactElement<{ children?: string; className?: string }>
+            code = String(child.props.children ?? "")
+            className = String(child.props.className ?? "")
+          } catch {
+            code = ""
+          }
 
           return (
-            <div className="group/code relative my-6">
-              <pre
-                className="overflow-x-auto rounded-[4px] border border-border bg-box p-4 font-mono text-[13.5px] leading-relaxed text-foreground"
-                {...props}
-              >
-                {children}
-              </pre>
-              <CopyButton code={code} />
-            </div>
+            <CodeBlock rawCode={code} className={className}>
+              {children}
+            </CodeBlock>
           )
         },
       }}

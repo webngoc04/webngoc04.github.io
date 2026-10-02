@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useMemo, useCallback, useEffect } from "react"
+import { useState, useMemo, useCallback } from "react"
 import { Search, ChevronLeft, ChevronRight, X, LayoutGrid, List, ArrowUpRight } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 import type { BlogPost } from "@/lib/blog"
@@ -27,10 +27,12 @@ export default function BlogList({ posts }: BlogListProps) {
   }, [posts, locale])
 
   // Reset pagination and active tag filter when locale changes
-  useEffect(() => {
+  const [prevLocale, setPrevLocale] = useState(locale)
+  if (prevLocale !== locale) {
+    setPrevLocale(locale)
     setPage(1)
     setSelectedTag(null)
-  }, [locale])
+  }
 
   const allTags = useMemo(() => {
     const tagCount = new Map<string, number>()
