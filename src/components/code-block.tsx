@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo, type ReactNode } from "react"
-import { Copy, Check, Download, ChevronDown, ChevronUp, FileCode, ShieldCheck, X, AlertTriangle, ShieldAlert } from "lucide-react"
+import { Copy, Check, Download, ChevronDown, ChevronUp, FileCode, ShieldCheck, X } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 import { toast } from "sonner"
 import checksumManifest from "@/lib/checksums.json"
@@ -117,7 +117,7 @@ interface DownloadModalProps {
   fileSizeBytes: number
   isVerifiedAtBuild: boolean
   sourceOrigin: string
-  buildTimestamp: string
+  buildTimestamp?: string
 }
 
 function DownloadModal({
@@ -131,7 +131,6 @@ function DownloadModal({
   fileSizeBytes,
   isVerifiedAtBuild,
   sourceOrigin,
-  buildTimestamp,
 }: DownloadModalProps) {
   const { locale } = useI18n()
   const isVi = locale === "vi"
@@ -161,31 +160,31 @@ function DownloadModal({
     setTimeout(() => setCopiedHash(false), 2000)
   }
 
-  const previewLines = code.split("\n").slice(0, 4).join("\n")
+  const previewLines = code.split("\n").slice(0, 3).join("\n")
 
   return (
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-xs p-4 animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-xs p-3 sm:p-4 animate-in fade-in duration-150"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg rounded-[6px] border border-border bg-background shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative flex flex-col w-full max-w-lg max-h-[90vh] rounded-[6px] border border-border bg-background shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="flex items-center justify-between border-b border-border bg-box/40 px-5 py-4">
-          <div className="flex items-center gap-2.5">
-            <div className="rounded-[4px] border border-border bg-box p-1.5 text-foreground">
+        <div className="flex shrink-0 items-center justify-between border-b border-border bg-box/40 px-4 py-3 sm:px-5 sm:py-3.5">
+          <div className="flex items-center gap-2">
+            <div className="rounded-[4px] border border-border bg-box p-1 text-foreground">
               <Download className="size-4 text-foreground" />
             </div>
             <div>
-              <h3 className="font-serif text-lg font-bold text-foreground">
+              <h3 className="font-serif text-base sm:text-lg font-bold text-foreground leading-tight">
                 {isVi ? "Xác nhận tải về tệp tin" : "Confirm File Download"}
               </h3>
-              <p className="font-meta text-[11px] text-muted-foreground uppercase tracking-wider">
-                {isVi ? "Đối soát chữ ký SHA-256 biên dịch & Nguồn tệp" : "Build-Time SHA-256 Seal & Source Metadata"}
+              <p className="font-meta text-[10px] sm:text-[11px] text-muted-foreground uppercase tracking-wider">
+                {isVi ? "Mã băm SHA-256 biên dịch & Nguồn tệp" : "SHA-256 Seal & Source Metadata"}
               </p>
             </div>
           </div>
@@ -200,80 +199,55 @@ function DownloadModal({
         </div>
 
         {/* Modal Body */}
-        <div className="p-5 space-y-4">
-          <p className="font-body text-sm text-foreground/90 leading-relaxed">
+        <div className="p-4 sm:p-5 space-y-3 overflow-y-auto">
+          <p className="font-body text-xs sm:text-sm text-foreground/90 leading-relaxed">
             {isVi
-              ? "Bạn có muốn tải về tệp mã nguồn này về máy tính không? Tệp được bảo vệ bằng mã băm SHA-256 được tính toán khi biên dịch (Build-Time Cryptographic Seal) nhằm ngăn chặn mã độc:"
-              : "Are you sure you want to download this source file? It is sealed with an immutable build-time SHA-256 checksum to prevent tampering and malicious injection:"}
+              ? "Bạn có muốn tải tệp mã nguồn này về máy tính không? Đối soát mã băm SHA-256 bên dưới để đảm bảo toàn vẹn:"
+              : "Are you sure you want to download this source file? Verify the SHA-256 checksum below:"}
           </p>
 
-          {/* Build-Time Seal Badge */}
-          {isVerifiedAtBuild ? (
-            <div className="flex items-center gap-2 rounded-[4px] border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 text-xs font-meta text-emerald-700 dark:text-emerald-300">
-              <ShieldCheck className="size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-              <div>
-                <span className="font-bold tracking-wider uppercase">
-                  {isVi ? "CHỮ KÝ BẢO MẬT HỢP LỆ (BUILD-TIME SEALED)" : "IMMUTABLE BUILD-TIME SEAL VERIFIED"}
-                </span>
-                <p className="text-[10px] text-emerald-600/90 dark:text-emerald-400/90 mt-0.5">
-                  {isVi
-                    ? `Đã được ký khi biên dịch bởi KeiChan Pipeline (${new Date(buildTimestamp).toLocaleString("vi-VN")})`
-                    : `Sealed during build by KeiChan Pipeline (${new Date(buildTimestamp).toLocaleString("en-US")})`}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-start gap-2 rounded-[4px] border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-xs font-meta text-amber-700 dark:text-amber-300">
-              <ShieldAlert className="size-4 shrink-0 mt-0.5 text-amber-600" />
-              <div>
-                <span className="font-bold tracking-wider uppercase">
-                  {isVi ? "CHƯA KÝ CHỨNG THỰC BIÊN DỊCH" : "UNSEALED SNIPPET DETECTED"}
-                </span>
-                <p className="text-[10.5px] mt-0.5">
-                  {isVi
-                    ? "Đoạn mã này chưa có chữ ký tĩnh từ khâu biên dịch. Vui lòng kiểm tra kỹ mã nguồn trước khi thực thi."
-                    : "This code block was not matched against the static build seal. Inspect source carefully before execution."}
-                </p>
-              </div>
-            </div>
-          )}
-
           {/* File Metadata Details */}
-          <div className="rounded-[4px] border border-border bg-box/50 p-3.5 space-y-2.5 font-meta text-xs">
-            <div className="flex items-center justify-between border-b border-border/60 pb-2">
-              <span className="text-muted-foreground uppercase tracking-wider">
+          <div className="rounded-[4px] border border-border bg-box/50 p-3 space-y-2 font-meta text-xs">
+            <div className="flex items-center justify-between border-b border-border/60 pb-1.5">
+              <span className="text-muted-foreground uppercase tracking-wider text-[11px]">
                 {isVi ? "Tên tệp:" : "Filename:"}
               </span>
-              <span className="font-mono font-bold text-foreground flex items-center gap-1.5">
+              <span className="font-mono font-bold text-foreground flex items-center gap-1.5 text-[11px] sm:text-xs">
                 <FileCode className="size-3.5 text-foreground" />
                 {filename}
+                {isVerifiedAtBuild && (
+                  <span className="inline-flex items-center gap-0.5 rounded-[2px] border border-emerald-500/40 bg-emerald-500/10 px-1 py-0.2 text-[9px] font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider">
+                    <ShieldCheck className="size-2.5" />
+                    SEALED
+                  </span>
+                )}
               </span>
             </div>
 
-            <div className="flex items-center justify-between border-b border-border/60 pb-2">
-              <span className="text-muted-foreground uppercase tracking-wider">
+            <div className="flex items-center justify-between border-b border-border/60 pb-1.5">
+              <span className="text-muted-foreground uppercase tracking-wider text-[11px]">
                 {isVi ? "Dung lượng & Dòng:" : "Size & Lines:"}
               </span>
-              <span className="font-mono text-foreground">
+              <span className="font-mono text-foreground text-[11px]">
                 {formattedSize} • {lineCount} {isVi ? "dòng" : "lines"}
               </span>
             </div>
 
-            <div className="flex items-center justify-between border-b border-border/60 pb-2">
-              <span className="text-muted-foreground uppercase tracking-wider">
+            <div className="flex items-center justify-between border-b border-border/60 pb-1.5">
+              <span className="text-muted-foreground uppercase tracking-wider text-[11px]">
                 {isVi ? "Tệp nguồn:" : "Source file:"}
               </span>
-              <span className="font-mono text-foreground text-[11px] truncate max-w-[260px]">
+              <span className="font-mono text-foreground text-[11px] truncate max-w-[200px] sm:max-w-[280px]">
                 {sourceOrigin}
               </span>
             </div>
 
             {/* SHA-256 Hash Display */}
-            <div className="pt-1">
-              <div className="flex items-center justify-between mb-1.5">
+            <div className="pt-0.5">
+              <div className="flex items-center justify-between mb-1">
                 <span className="text-muted-foreground uppercase tracking-wider flex items-center gap-1 font-semibold text-[10px]">
                   <ShieldCheck className="size-3 text-foreground" />
-                  MÃ BĂM TOÀN VẸN (SHA-256 HASH):
+                  MÃ BĂM (SHA-256 HASH):
                 </span>
                 <button
                   type="button"
@@ -283,7 +257,7 @@ function DownloadModal({
                   {copiedHash ? (
                     <>
                       <Check className="size-2.5 text-emerald-500" />
-                      <span>{isVi ? "Đã sao chép" : "Copied"}</span>
+                      <span>{isVi ? "Đã chép" : "Copied"}</span>
                     </>
                   ) : (
                     <>
@@ -293,40 +267,30 @@ function DownloadModal({
                   )}
                 </button>
               </div>
-              <div className="rounded-[3px] border border-border bg-background p-2 font-mono text-[10.5px] leading-tight text-foreground break-all select-all font-semibold">
+              <div className="rounded-[3px] border border-border bg-background p-2 font-mono text-[10px] sm:text-[10.5px] leading-tight text-foreground break-all select-all font-semibold">
                 {hash || (isVi ? "Đang đọc mã băm biên dịch..." : "Reading build seal...")}
               </div>
             </div>
           </div>
 
-          {/* Code Preview */}
-          <div className="space-y-1">
+          {/* Code Preview - Visible on tablet/desktop, compact */}
+          <div className="hidden sm:block space-y-1">
             <span className="font-meta text-[10.5px] uppercase tracking-wider text-muted-foreground">
-              {isVi ? "Xem trước phần đầu mã nguồn:" : "Source preview:"}
+              {isVi ? "Xem trước mã nguồn:" : "Source preview:"}
             </span>
-            <pre className="rounded-[4px] border border-border bg-box/80 p-2.5 font-mono text-[11px] leading-tight text-muted-foreground overflow-x-auto max-h-24">
+            <pre className="rounded-[4px] border border-border bg-box/80 p-2 font-mono text-[11px] leading-tight text-muted-foreground overflow-x-auto max-h-18">
               {previewLines}
               {"\n..."}
             </pre>
           </div>
-
-          {/* Security Advisory Warning */}
-          <div className="flex items-start gap-2 rounded-[4px] border border-border bg-box/40 p-2.5 text-[11px] text-muted-foreground font-meta leading-relaxed">
-            <AlertTriangle className="size-4 shrink-0 mt-0.5 text-foreground" />
-            <span>
-              {isVi
-                ? "Khuyến nghị an toàn: Hãy đối chiếu mã băm sau khi tải về bằng lệnh `sha256sum <tệp>` để đảm bảo tệp tin nguyên bản và chưa từng bị can thiệp."
-                : "Security advisory: Verify the checksum after downloading (`sha256sum <file>`) to guarantee the file was not altered in transit."}
-            </span>
-          </div>
         </div>
 
         {/* Modal Footer Actions */}
-        <div className="flex items-center justify-end gap-2.5 border-t border-border bg-box/30 px-5 py-3.5">
+        <div className="flex shrink-0 items-center justify-end gap-2 border-t border-border bg-box/30 px-4 py-3 sm:px-5 sm:py-3.5">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-[4px] border border-border bg-box px-3.5 py-1.5 font-meta text-xs font-medium uppercase tracking-wider text-muted-foreground hover:border-foreground hover:text-foreground transition-colors cursor-pointer"
+            className="rounded-[4px] border border-border bg-box px-3 py-1.5 font-meta text-xs font-medium uppercase tracking-wider text-muted-foreground hover:border-foreground hover:text-foreground transition-colors cursor-pointer"
           >
             {isVi ? "Hủy bỏ" : "Cancel"}
           </button>
