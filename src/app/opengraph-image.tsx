@@ -1,18 +1,13 @@
 import { ImageResponse } from "next/og"
 import fs from "fs"
 import path from "path"
-import { getAllPosts, getPostBySlug } from "@/lib/blog"
 
-export const alt = "KeiChan Dispatch"
+export const alt = "KeiChan — Dispatches & Systems Engineering"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
+export const dynamic = "force-static"
 
-export async function generateStaticParams() {
-  const posts = getAllPosts()
-  return posts.map((post) => ({ slug: post.slug }))
-}
-
-// Load fonts from local assets for 100% deterministic build with full Vietnamese glyph support
+// Load fonts from local assets for 100% deterministic build
 const newsreaderBoldItalic = fs.readFileSync(
   path.join(process.cwd(), "src/assets/fonts/Newsreader-BoldItalic.ttf")
 )
@@ -23,23 +18,7 @@ const publicSansMedium = fs.readFileSync(
   path.join(process.cwd(), "src/assets/fonts/PublicSans-Medium.ttf")
 )
 
-export default async function Image({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
-  const { slug } = await params
-  const post = getPostBySlug(slug)
-
-  const title = post?.title || slug
-  const description = post?.description || "KeiChan Editorial Dispatch on Systems Engineering"
-  const author = (post?.author || "KeiChan").toUpperCase()
-  const date = post?.date || "OCTOBER 2026"
-  const primaryTag = (post?.tags?.[0] || "SYSTEMS").toUpperCase()
-
-  // Dynamic font size depending on title length
-  const titleFontSize = title.length > 70 ? 44 : title.length > 45 ? 50 : 58
-
+export default function Image() {
   return new ImageResponse(
     (
       <div
@@ -65,7 +44,7 @@ export default async function Image({
           }}
         >
           <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <pattern id="root-grid" width="40" height="40" patternUnits="userSpaceOnUse">
               <path
                 d="M 40 0 L 0 0 0 40"
                 fill="none"
@@ -74,7 +53,7 @@ export default async function Image({
               />
             </pattern>
           </defs>
-          <rect width="1200" height="630" fill="url(#grid)" />
+          <rect width="1200" height="630" fill="url(#root-grid)" />
         </svg>
 
         {/* Inner Editorial Frame with Hairline Border */}
@@ -171,15 +150,15 @@ export default async function Image({
                 }}
               />
               <span style={{ color: "#002855", fontWeight: 700 }}>
-                KEICHAN // DISPATCHES
+                KEICHAN // ARCHIVAL RECORD
               </span>
               <span style={{ color: "#E2E0D8" }}>|</span>
-              <span style={{ color: "#8A1515" }}>{primaryTag}</span>
+              <span style={{ color: "#8A1515" }}>SYSTEMS ENGINEERING</span>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
               <span style={{ color: "#555555", fontWeight: 500 }}>
-                {date}
+                EST. 2026
               </span>
               <span style={{ color: "#E2E0D8" }}>|</span>
               <span style={{ color: "#111111", letterSpacing: "2px" }}>
@@ -188,48 +167,47 @@ export default async function Image({
             </div>
           </div>
 
-          {/* Center: Headline (Newsreader Bold Italic) & Executive Summary */}
+          {/* Center: Main Headline (Newsreader Bold Italic) & Subtitle */}
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "18px",
+              gap: "20px",
               margin: "auto 0",
             }}
           >
             <div
               style={{
                 fontFamily: "Newsreader",
-                fontSize: `${titleFontSize}px`,
+                fontSize: "56px",
                 fontWeight: 700,
                 fontStyle: "italic",
-                lineHeight: 1.14,
+                lineHeight: 1.12,
                 color: "#111111",
                 letterSpacing: "-0.5px",
                 display: "flex",
                 flexWrap: "wrap",
               }}
             >
-              {title}
+              KeiChan — Dispatches & Systems Engineering
             </div>
 
             <div
               style={{
                 fontFamily: "Public Sans",
-                fontSize: "19px",
+                fontSize: "20px",
                 fontWeight: 500,
                 lineHeight: 1.5,
                 color: "#555555",
                 display: "flex",
-                maxHeight: "64px",
-                overflow: "hidden",
+                maxWidth: "960px",
               }}
             >
-              {description}
+              Independent chronicles exploring low-level systems programming, Linux kernel internals, software security architecture, and modern craft.
             </div>
           </div>
 
-          {/* Bottom Colophon Bar: Specimen tags & Author stamp */}
+          {/* Bottom Colophon Bar: Specimen tags & Site Domain */}
           <div
             style={{
               display: "flex",
@@ -250,23 +228,13 @@ export default async function Image({
                   textTransform: "uppercase",
                 }}
               >
-                DISPATCH BY
+                PUBLICATION DOMAIN:
               </span>
               <span
                 style={{
                   fontSize: "13px",
                   color: "#111111",
                   fontWeight: 700,
-                  letterSpacing: "1px",
-                }}
-              >
-                {author}
-              </span>
-              <span style={{ color: "#E2E0D8", margin: "0 4px" }}>•</span>
-              <span
-                style={{
-                  fontSize: "12px",
-                  color: "#555555",
                   letterSpacing: "0.5px",
                 }}
               >
@@ -275,7 +243,7 @@ export default async function Image({
             </div>
 
             <div style={{ display: "flex", gap: "8px" }}>
-              {post?.tags?.slice(0, 3).map((tag) => (
+              {["LINUX KERNEL", "SYSTEMS ARCHITECTURE", "ZERO TRUST", "C / RUST"].map((tag) => (
                 <div
                   key={tag}
                   style={{
@@ -288,7 +256,6 @@ export default async function Image({
                     fontWeight: 700,
                     color: "#111111",
                     letterSpacing: "0.8px",
-                    textTransform: "uppercase",
                   }}
                 >
                   {tag}
