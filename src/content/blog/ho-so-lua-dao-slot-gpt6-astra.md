@@ -46,6 +46,8 @@ Toàn bộ quy trình này khớp chính xác với các kỹ thuật tấn côn
 * **T1556:** Modify Authentication Process: Cưỡng bức chuyển hướng URL máy chủ [15].
 * **OWASP LLM07:** System Information Leakage: Phơi nhiễm dữ liệu mã nguồn qua proxy trung gian [16].
 
+![Vật chứng Hình 9: Sơ đồ phân tích hạ tầng lưu lượng mạng, ghi nhận cơ chế proxy trung gian xử lý đánh tráo slug và buffering mô hình](/images/astra-scam/h9-server.jpg)
+
 ---
 
 ## 2. Pipeline 1: Đảo ngược Tập lệnh Installer (`install.ps1`)
@@ -124,6 +126,42 @@ Write-Host "Kích hoạt Slot GPT-6 Astra thành công! Vui lòng khởi động
 1. **Lỗ hổng quyền truy cập tệp:** Codex lưu trữ phiên làm việc của người dùng tại tệp văn bản thô `~/.codex/auth.json` không mã hóa (Plaintext JWT) [24]. Bất kỳ tiến trình nào chạy dưới quyền người dùng hiện tại đều có thể đọc trọn vẹn chuỗi Bearer token này.
 2. **Cơ chế liên kết khóa `?k=`:** Tham số khóa phân phối trên URL giúp máy chủ của kẻ tấn công ánh xạ chính xác token thu được với tài khoản Telegram hoặc đơn hàng của nạn nhân [25].
 3. **Mối đe dọa dai dẳng:** Bản sao lưu `config.toml.bak-remote-*` được cố ý tạo ra để kẻ tấn công có thể hướng dẫn nạn nhân "gỡ cài đặt" bằng một script khác, thực chất là tiếp tục chạy thêm mã độc trên máy nạn nhân lần thứ hai [26].
+
+![Vật chứng Hình 12: Bằng chứng can thiệp tệp ~/.codex/config.toml, cưỡng bức thay đổi openai_base_url trỏ về máy chủ proxy lừa đảo](/images/astra-scam/h12-baseurl.jpg)
+
+---
+
+## 3. Hồ Sơ Mắt Xích & Dòng Tiền Trục Lợi (Actor Profiles & Financial Exfiltration)
+
+Cuộc điều tra kỹ thuật an ninh mạng đã truy vết toàn bộ chuỗi cung ứng, từ các đối tượng môi giới, bot bán lẻ tự động cho đến người biên soạn tài liệu hướng dẫn kỹ thuật [56].
+
+### Các mắt xích nhân sự trong đường dây:
+
+* **Mắt xích phân phối (Reseller):** Tài khoản Telegram mang định danh `@maluen` (Bí danh hiển thị "Zix Fel") [56], đóng vai trò quảng bá và điều hướng người mua trong các hội nhóm lập trình.
+
+![Vật chứng Hình 1: Hồ sơ Telegram của Mắt xích phân phối @maluen (Bí danh 'Zix Fel')](/images/astra-scam/h1-reseller.png)
+
+* **Hạ tầng bán lẻ tự động:** Bot thương mại Telegram mang định danh `@infinityaistore_bot` [57], vận hành hệ thống xuất mã tự động và liên kết trực tiếp với endpoint `codex.nhtbgr.online/client/catalog`.
+
+![Vật chứng Hình 2: Giao diện Bot bán hàng tự động @infinityaistore_bot niêm yết các gói slot lừa đảo](/images/astra-scam/h2-bot.png)
+
+* **Đối tượng biên soạn tài liệu kỹ thuật (Tut Author):** Tài khoản Telegram mang định danh `@NeverMore2592` (Bí danh "Nhân") [58], người trực tiếp viết kịch bản `install.ps1`, hướng dẫn người dùng tắt cảnh báo PowerShell và quảng bá các thủ thuật vượt rào.
+
+![Vật chứng Hình 3: Hồ sơ đối tượng biên soạn tài liệu kỹ thuật lừa đảo @NeverMore2592 (Bí danh 'Nhân')](/images/astra-scam/h3-tut-author.png)
+
+### Bằng chứng giao dịch tài chính & Quảng bá lừa đảo:
+
+Nhóm đối tượng chào mời gói dịch vụ với lời hứa hẹn phi thực tế: *"Slot Astra SOL x10 - Up Chính Chủ KBH"* với giá chỉ 60.000 VNĐ [59]:
+
+![Vật chứng Hình 5: Bài đăng tiếp thị trên kênh Telegram chào bán 'Slot Astra SOL x10 - Up Chính Chủ KBH'](/images/astra-scam/h5-product.png)
+
+Dòng tiền được thu về qua tài khoản ngân hàng số CAKE mang tên thụ hưởng **NGUYEN VAN NHAN**, xác nhận mối liên hệ trực tiếp giữa tài khoản Telegram biên soạn tập lệnh và dòng tiền thu lợi bất chính [55]:
+
+![Vật chứng Hình 4: Bằng chứng giao dịch thanh toán 60.000 VNĐ qua ngân hàng số CAKE mang tên NGUYEN VAN NHAN](/images/astra-scam/h4-bank.jpg)
+
+Đáng chú ý nhất, trong các nhật ký hội thoại nội bộ bị rò rỉ, các đối tượng đã công khai khoe doanh số vượt mốc **30.000.000 VNĐ** (chưa tính các kênh thanh toán tiền điện tử) và thẳng thừng thừa nhận sản phẩm của mình bản chất là *"bịp"* [60]:
+
+![Vật chứng Hình 6: Bản ghi tin nhắn nội bộ khoe doanh số trên 30 triệu đồng và thú nhận bán hàng 'bịp'](/images/astra-scam/h6-profit-chat.jpg)
 
 ---
 
@@ -210,6 +248,9 @@ def filter_sse_response_stream(sse_line: str) -> str:
 ### Điểm mấu chốt của thủ đoạn Relabeling:
 * **Cơ chế Buffering:** Trên tệp sơ đồ hệ thống nội bộ của kẻ tấn công ghi rõ: `đổi ch/linxaq → gpt-6-astra (buffering: gpt-6-luna)` [34]. Mô hình thực tế xử lý tải là dòng Luna/Sol rẻ tiền, nhưng nhãn trả về phía giao diện người dùng luôn bị ép thành "GPT-6 Astra".
 * **Tước bỏ `system_fingerprint`:** OpenAI thiết kế trường `system_fingerprint` (ví dụ `fp_44709d6fcb`) trong phản hồi SSE để các ứng dụng khách xác minh xem trọng số mô hình có bị thay đổi ngầm hay không [35]. Việc proxy chủ động xóa bỏ trường này chính là bằng chứng đanh thép nhất cho ý đồ gian lận kỹ thuật có chủ đích [36].
+* **Tự thú từ phía người mua (Relabeling Admission):** Trong các diễn đàn tranh luận khi vụ việc bị phanh phui, chính những người mua và reseller đã lên tiếng thanh minh, vô tình xác nhận hành vi "đè tem" (relabeling) sang `gpt-5.6-luna` và khai thác trái phép hơn 400 tỷ token trên hạ tầng của OpenAI [62]:
+
+![Vật chứng Hình 10: Phát ngôn từ phía người mua tự thanh minh trên diễn đàn cộng đồng, thừa nhận hành vi 'đè tem' và khai thác hơn 400 tỷ token](/images/astra-scam/h10-excuse.jpg)
 
 ---
 
@@ -309,7 +350,18 @@ Kỹ thuật pháp y cao cấp nhất là phân tích sự phân bổ xác suấ
 | **...** | ... | ... | ... | ... |
 | **10** | **`gpt-6-astra` (Mô hình rao bán)** | GPT | **0.0%** [45] | 82.1% |
 
-Lời tự nhận diện danh tính có thể bị bẻ gãy bằng System Prompt, nhưng **phân phối xác suất thống kê của các token sinh ra là bất biến**. Xác suất 100.0% khẳng định bản chất kỹ thuật bên dưới là dòng Luna [46].
+Lời tự nhận diện danh tính có thể bị bẻ gãy bằng System Prompt, nhưng **phân phối xác suất thống kê của các token sinh ra là bất biến**. Xác suất 100.0% khẳng định bản chất kỹ thuật bên dưới là dòng Luna [46]:
+
+![Vật chứng Hình 11: Báo cáo phân tích xác suất Token ModelTrace — Xác nhận 100.0% mô hình gpt-5.6-luna, loại trừ hoàn toàn 0.0% gpt-6-astra](/images/astra-scam/h11-modeltrace.jpg)
+
+### Kịch bản D: Thử nghiệm Sinh mã Vector Trực quan (Generative SVG Benchmark)
+Bên cạnh các phép đo xác suất và mã lỗi, một bài kiểm tra trực quan kinh điển trong việc phân tầng năng lực các mô hình sinh mã là yêu cầu vẽ đồ họa vector: *"Generate a complex, beautiful SVG illustration of a pelican riding a bicycle"* [61].
+
+Sự chênh lệch giữa hai kết quả đầu ra bộc lộ rõ sự phân cấp thế hệ kiến trúc giữa mô hình giá rẻ và mô hình flagship:
+
+![Vật chứng Hình 7: Kết quả sinh mã SVG chim bồ nông đạp xe qua Proxy lừa đảo — Nét vẽ méo mó, cấu trúc xe đạp và cơ thể biến dạng, thể hiện năng lực hạn chế của mô hình phân khúc thấp](/images/astra-scam/h7-svg-fake.jpg)
+
+![Vật chứng Hình 8: Kết quả sinh mã SVG từ tài khoản GPT-6 Astra thật (OpenAI Pro x20) — Tỷ lệ vector chuẩn xác, độ chi tiết cao, giải phẫu cân đối và phối màu hoàn chỉnh](/images/astra-scam/h8-svg-real.jpg)
 
 ---
 
