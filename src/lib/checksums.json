@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-02T11:48:47.031Z",
+  "generatedAt": "2026-10-02T17:50:02.692Z",
   "builder": "KeiChan Automated Security Seal (Pre-Build)",
   "securityPolicy": "IMMUTABLE_BUILD_SEAL_V1",
   "totalFilesIndexed": 23,
-  "totalCodeBlocksIndexed": 27,
+  "totalCodeBlocksIndexed": 23,
   "hashes": {
     "eec582ac6522a6bfb67a020ec65504eb003436023c6ffe4ab77bdee46212c3b4": {
       "filename": "source_code.txt",
@@ -167,147 +167,75 @@
       "sourceFile": "ai-purpose-and-optimization.md",
       "verifiedAtBuild": true
     },
-    "397938c3e44e3c3460b8c45c7a3ebdb64dc04a4de09dd5779f9c31c2f513a701": {
+    "807834a2b62e0e909d67271723f642ff2665c9b12d8ea01b3306983f1a576b61": {
       "filename": "install.ps1",
       "lang": "",
-      "sha256": "397938c3e44e3c3460b8c45c7a3ebdb64dc04a4de09dd5779f9c31c2f513a701",
-      "lines": 20,
-      "sizeBytes": 1092,
+      "sha256": "807834a2b62e0e909d67271723f642ff2665c9b12d8ea01b3306983f1a576b61",
+      "lines": 17,
+      "sizeBytes": 1044,
       "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
       "verifiedAtBuild": true
     },
-    "db26c7ccf2d58e8243f8970ea126a55006e74105ae0eec3cdebd33fd14f83a14": {
+    "bcabc7a601995980872dcf688e957712789b808df05266efcff887019d33dd3f": {
       "filename": "install.ps1",
       "lang": "",
-      "sha256": "397938c3e44e3c3460b8c45c7a3ebdb64dc04a4de09dd5779f9c31c2f513a701",
-      "lines": 20,
-      "sizeBytes": 1092,
+      "sha256": "807834a2b62e0e909d67271723f642ff2665c9b12d8ea01b3306983f1a576b61",
+      "lines": 17,
+      "sizeBytes": 1044,
       "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
       "verifiedAtBuild": true
     },
-    "b3b627cd72ab8737c2f8af20d702b7aa260242d4019a7f4202d635f1e3675b9e": {
+    "46db546bb1875a0cc06ccd82e95e4552ee92cb2b771575ab0abf4568ac7c18f6": {
       "filename": "install.ps1",
       "lang": "powershell",
-      "sha256": "b3b627cd72ab8737c2f8af20d702b7aa260242d4019a7f4202d635f1e3675b9e",
-      "lines": 60,
-      "sizeBytes": 2500,
+      "sha256": "46db546bb1875a0cc06ccd82e95e4552ee92cb2b771575ab0abf4568ac7c18f6",
+      "lines": 23,
+      "sizeBytes": 975,
       "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
       "verifiedAtBuild": true
     },
-    "82d444b19f98b27fae3ced508bf27618efc34f6ec3a4a75ba16026a91462827d": {
+    "917b39e88f9d06505a5f7484ae7f88ede5dbd29f189ff207c7e754454aa08598": {
       "filename": "install.ps1",
       "lang": "powershell",
-      "sha256": "b3b627cd72ab8737c2f8af20d702b7aa260242d4019a7f4202d635f1e3675b9e",
-      "lines": 60,
-      "sizeBytes": 2500,
+      "sha256": "46db546bb1875a0cc06ccd82e95e4552ee92cb2b771575ab0abf4568ac7c18f6",
+      "lines": 23,
+      "sizeBytes": 975,
       "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
       "verifiedAtBuild": true
     },
-    "82d908ae0b393254d643765b7c24fbe6f1093a775c0377c79274ac6f8469d044": {
-      "filename": "script.py",
-      "lang": "python",
-      "sha256": "82d908ae0b393254d643765b7c24fbe6f1093a775c0377c79274ac6f8469d044",
-      "lines": 71,
-      "sizeBytes": 2816,
-      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
-      "verifiedAtBuild": true
-    },
-    "60dfb7f568371ca1a86a7db54df1f6ccb6def3148fcac7f25a7319e6476634b7": {
-      "filename": "script.py",
-      "lang": "python",
-      "sha256": "82d908ae0b393254d643765b7c24fbe6f1093a775c0377c79274ac6f8469d044",
-      "lines": 71,
-      "sizeBytes": 2816,
-      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
-      "verifiedAtBuild": true
-    },
-    "f3e3ece876f3d0acdd1aec789629c818c306808668b87d3edb6df4c21ad344b4": {
-      "filename": "codex_audit.py",
-      "lang": "python",
-      "sha256": "f3e3ece876f3d0acdd1aec789629c818c306808668b87d3edb6df4c21ad344b4",
-      "lines": 39,
-      "sizeBytes": 1465,
-      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
-      "verifiedAtBuild": true
-    },
-    "92a6ba8f6c838cceedc09d72b8e0c84829b01afb97c0fce6f79336aa665f56ca": {
-      "filename": "codex_audit.py",
-      "lang": "python",
-      "sha256": "f3e3ece876f3d0acdd1aec789629c818c306808668b87d3edb6df4c21ad344b4",
-      "lines": 39,
-      "sizeBytes": 1465,
-      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
-      "verifiedAtBuild": true
-    },
-    "01a73c4415ccbfe9912f2c8238814d0ca5ac56e43bf448cfcaf4cc7ccd9a39a7": {
-      "filename": "codex_audit.py",
-      "lang": "python",
-      "sha256": "01a73c4415ccbfe9912f2c8238814d0ca5ac56e43bf448cfcaf4cc7ccd9a39a7",
-      "lines": 29,
-      "sizeBytes": 1060,
-      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
-      "verifiedAtBuild": true
-    },
-    "9df7040bdfd72b7634d60a78f25beaf88d4349881709e64c2ce21ed4fe5ca991": {
-      "filename": "codex_audit.py",
-      "lang": "python",
-      "sha256": "01a73c4415ccbfe9912f2c8238814d0ca5ac56e43bf448cfcaf4cc7ccd9a39a7",
-      "lines": 29,
-      "sizeBytes": 1060,
-      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
-      "verifiedAtBuild": true
-    },
-    "52c91a8652ced98471a060f3e8bf53d43cad1eacaf47503f36491b508ee02497": {
-      "filename": "source_code.txt",
-      "lang": "http",
-      "sha256": "52c91a8652ced98471a060f3e8bf53d43cad1eacaf47503f36491b508ee02497",
-      "lines": 16,
-      "sizeBytes": 348,
-      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
-      "verifiedAtBuild": true
-    },
-    "d06b849b215536c4e8a0f7e97c0a409936a7378c6908338a56ed890838d28887": {
-      "filename": "source_code.txt",
-      "lang": "http",
-      "sha256": "52c91a8652ced98471a060f3e8bf53d43cad1eacaf47503f36491b508ee02497",
-      "lines": 16,
-      "sizeBytes": 348,
-      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
-      "verifiedAtBuild": true
-    },
-    "040e74c22e8c37d663848ba0c12e7811dffff8bfc198e5c4536c161e97f36164": {
+    "21d7eaa4ecc73fe4fa174108fc828ace7921b5df73e2b142a103dcdb992db16b": {
       "filename": "CodexKeyTool.sh",
       "lang": "bash",
-      "sha256": "040e74c22e8c37d663848ba0c12e7811dffff8bfc198e5c4536c161e97f36164",
-      "lines": 25,
-      "sizeBytes": 518,
+      "sha256": "21d7eaa4ecc73fe4fa174108fc828ace7921b5df73e2b142a103dcdb992db16b",
+      "lines": 12,
+      "sizeBytes": 276,
       "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
       "verifiedAtBuild": true
     },
-    "4e95ca03ae15a3944ec8f2a9a38cd49dcab9ae4c8ffc6e49b0345a2050507be6": {
+    "95681b5703f7baccaed933f7899796c623a98a78790c0da1843e2c17a6a73a22": {
       "filename": "CodexKeyTool.sh",
       "lang": "bash",
-      "sha256": "040e74c22e8c37d663848ba0c12e7811dffff8bfc198e5c4536c161e97f36164",
-      "lines": 25,
-      "sizeBytes": 518,
+      "sha256": "21d7eaa4ecc73fe4fa174108fc828ace7921b5df73e2b142a103dcdb992db16b",
+      "lines": 12,
+      "sizeBytes": 276,
       "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
       "verifiedAtBuild": true
     },
-    "56c9bbaa0f703176d68328e8fee73407ff98bdc8a07912bb1b504ba9f5d05486": {
+    "31ff8c8294b1cbef64bf5d4e9d7768d69a535b2b56fa7bb65a53dd245019051d": {
       "filename": "codex_audit.py",
       "lang": "python",
-      "sha256": "56c9bbaa0f703176d68328e8fee73407ff98bdc8a07912bb1b504ba9f5d05486",
-      "lines": 161,
-      "sizeBytes": 7982,
+      "sha256": "31ff8c8294b1cbef64bf5d4e9d7768d69a535b2b56fa7bb65a53dd245019051d",
+      "lines": 78,
+      "sizeBytes": 3086,
       "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
       "verifiedAtBuild": true
     },
-    "1e1ce5ab33ad883112cb45683839ae722a46173a921bc248e82aa4794d3303cf": {
+    "f707a51f7b7a72d3071ad8194488945962458e8a06faaf66aa5e02d0a15316c0": {
       "filename": "codex_audit.py",
       "lang": "python",
-      "sha256": "56c9bbaa0f703176d68328e8fee73407ff98bdc8a07912bb1b504ba9f5d05486",
-      "lines": 161,
-      "sizeBytes": 7982,
+      "sha256": "31ff8c8294b1cbef64bf5d4e9d7768d69a535b2b56fa7bb65a53dd245019051d",
+      "lines": 78,
+      "sizeBytes": 3086,
       "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
       "verifiedAtBuild": true
     },
