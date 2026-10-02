@@ -1,0 +1,34 @@
+name: Security Guard - PR & Modification Policy
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  verify-pr-author:
+    name: Enforce KeiChan Exclusive Authority
+    runs-on: ubuntu-latest
+    steps:
+      - name: Block External PR Modifications
+        run: |
+          echo "=========================================================="
+          echo "🔒 SECURITY BARRIER: ENFORCING EXCLUSIVE AUTHORSHIP"
+          echo "=========================================================="
+          PR_AUTHOR="${{ github.event.pull_request.user.login }}"
+          echo "Pull Request Author: $PR_AUTHOR"
+
+          ALLOWED_USERS=("webngoc04" "KeiChan")
+          IS_ALLOWED=false
+          for user in "${ALLOWED_USERS[@]}"; do
+            if [ "$PR_AUTHOR" = "$user" ]; then
+              IS_ALLOWED=true
+              break
+            fi
+          done
+
+          if [ "$IS_ALLOWED" != "true" ]; then
+            echo "::error title=External PR Rejected::External pull requests cannot be automatically applied or deployed on this repository."
+            echo "To protect website supply-chain integrity, all modifications must be authored directly by KeiChan (webngoc04)."
+            exit 1
+          fi
+          echo "✅ Pull request authorized by KeiChan ($PR_AUTHOR)."

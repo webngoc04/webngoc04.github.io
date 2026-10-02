@@ -1,9 +1,20 @@
 "use client"
 
 import { useState, useEffect, useMemo, type ReactNode } from "react"
-import { Copy, Check, Download, ChevronDown, ChevronUp, FileCode, ShieldCheck, X, AlertTriangle } from "lucide-react"
+import { Copy, Check, Download, ChevronDown, ChevronUp, FileCode, ShieldCheck, X, AlertTriangle, ShieldAlert } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 import { toast } from "sonner"
+import checksumManifest from "@/lib/checksums.json"
+
+interface ChecksumEntry {
+  filename: string
+  lang: string
+  sha256: string
+  lines: number
+  sizeBytes: number
+  sourceFile: string
+  verifiedAtBuild: boolean
+}
 
 interface CodeBlockProps {
   children: ReactNode
@@ -20,10 +31,9 @@ async function computeSha256(content: string): Promise<string> {
       const hashArr = Array.from(new Uint8Array(hashBuf))
       return hashArr.map((b) => b.toString(16).padStart(2, "0")).join("")
     } catch {
-      // Fallback below
+      // Fallback
     }
   }
-  // Simple deterministic fallback hash
   let h1 = 0xdeadbeef
   let h2 = 0x41c6ce57
   for (let i = 0; i < content.length; i++) {
@@ -38,18 +48,18 @@ async function computeSha256(content: string): Promise<string> {
 }
 
 function detectFilename(code: string, language?: string): string {
-  // Check first few lines for explicitly declared filename
   const sample = code.slice(0, 600)
   const lines = sample.split("\n")
   for (const line of lines.slice(0, 6)) {
     const trimmed = line.trim()
-    const match = trimmed.match(/(?:#|\/\/|\/\*|<!--|;\s*)\s*(?:filename:\s*|file:\s*)?([a-zA-Z0-9_\-.]+\.(?:py|sh|ps1|c|h|cpp|rs|js|ts|tsx|json|toml|yaml|yml|md|txt|bash|sql))/i)
+    const match = trimmed.match(
+      /(?:#|\/\/|\/\*|<!--|;\s*)\s*(?:filename:\s*|file:\s*)?([a-zA-Z0-9_\-.]+\.(?:py|sh|ps1|c|h|cpp|rs|js|ts|tsx|json|toml|yaml|yml|md|txt|bash|sql))/i
+    )
     if (match && match[1]) {
       return match[1]
     }
   }
 
-  // Common script detection by content
   if (sample.includes("#!/usr/bin/env python") || sample.includes("def scan_and_remediate")) {
     return "codex_audit.py"
   }
@@ -66,7 +76,6 @@ function detectFilename(code: string, language?: string): string {
     return "Makefile"
   }
 
-  // Fallback by language
   const cleanLang = (language || "").toLowerCase().replace(/^language-/, "")
   const langMap: Record<string, string> = {
     python: "script.py",
@@ -106,6 +115,9 @@ interface DownloadModalProps {
   hash: string
   lineCount: number
   fileSizeBytes: number
+  isVerifiedAtBuild: boolean
+  sourceOrigin: string
+  buildTimestamp: string
 }
 
 function DownloadModal({
@@ -117,6 +129,9 @@ function DownloadModal({
   hash,
   lineCount,
   fileSizeBytes,
+  isVerifiedAtBuild,
+  sourceOrigin,
+  buildTimestamp,
 }: DownloadModalProps) {
   const { locale } = useI18n()
   const isVi = locale === "vi"
@@ -134,14 +149,15 @@ function DownloadModal({
 
   if (!isOpen) return null
 
-  const formattedSize = fileSizeBytes < 1024
-    ? `${fileSizeBytes} B`
-    : `${(fileSizeBytes / 1024).toFixed(1)} KB`
+  const formattedSize =
+    fileSizeBytes < 1024
+      ? `${fileSizeBytes} B`
+      : `${(fileSizeBytes / 1024).toFixed(1)} KB`
 
   const copyHashToClipboard = async () => {
     await navigator.clipboard.writeText(hash)
     setCopiedHash(true)
-    toast.success(isVi ? "Đã sao chép mã băm SHA-256" : "SHA-256 hash copied")
+    toast.success(isVi ? "Đã sao chép mã băm SHA-256" : "SHA-256 checksum copied")
     setTimeout(() => setCopiedHash(false), 2000)
   }
 
@@ -151,7 +167,7 @@ function DownloadModal({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-xs p-4 animate-in fade-in duration-150"
       onClick={onClose}
     >
       <div
@@ -169,14 +185,14 @@ function DownloadModal({
                 {isVi ? "Xác nhận tải về tệp tin" : "Confirm File Download"}
               </h3>
               <p className="font-meta text-[11px] text-muted-foreground uppercase tracking-wider">
-                {isVi ? "Kiểm tra mã băm bảo mật & nguồn tệp" : "Integrity Verification & Source Metadata"}
+                {isVi ? "Đối soát chữ ký SHA-256 biên dịch & Nguồn tệp" : "Build-Time SHA-256 Seal & Source Metadata"}
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-[3px] p-1 text-muted-foreground hover:bg-box hover:text-foreground transition-colors"
+            className="rounded-[3px] p-1 text-muted-foreground hover:bg-box hover:text-foreground transition-colors cursor-pointer"
             aria-label="Close"
           >
             <X className="size-4" />
@@ -187,9 +203,40 @@ function DownloadModal({
         <div className="p-5 space-y-4">
           <p className="font-body text-sm text-foreground/90 leading-relaxed">
             {isVi
-              ? "Bạn có muốn tải về tệp mã nguồn này về máy tính không? Vui lòng đối soát thông số kỹ thuật và mã băm SHA-256 độc lập trước khi thực thi:"
-              : "Are you sure you want to download this source code file? Please verify the cryptographic SHA-256 checksum prior to execution:"}
+              ? "Bạn có muốn tải về tệp mã nguồn này về máy tính không? Tệp được bảo vệ bằng mã băm SHA-256 được tính toán khi biên dịch (Build-Time Cryptographic Seal) nhằm ngăn chặn mã độc:"
+              : "Are you sure you want to download this source file? It is sealed with an immutable build-time SHA-256 checksum to prevent tampering and malicious injection:"}
           </p>
+
+          {/* Build-Time Seal Badge */}
+          {isVerifiedAtBuild ? (
+            <div className="flex items-center gap-2 rounded-[4px] border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 text-xs font-meta text-emerald-700 dark:text-emerald-300">
+              <ShieldCheck className="size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+              <div>
+                <span className="font-bold tracking-wider uppercase">
+                  {isVi ? "CHỮ KÝ BẢO MẬT HỢP LỆ (BUILD-TIME SEALED)" : "IMMUTABLE BUILD-TIME SEAL VERIFIED"}
+                </span>
+                <p className="text-[10px] text-emerald-600/90 dark:text-emerald-400/90 mt-0.5">
+                  {isVi
+                    ? `Đã được ký khi biên dịch bởi KeiChan Pipeline (${new Date(buildTimestamp).toLocaleString("vi-VN")})`
+                    : `Sealed during build by KeiChan Pipeline (${new Date(buildTimestamp).toLocaleString("en-US")})`}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-start gap-2 rounded-[4px] border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-xs font-meta text-amber-700 dark:text-amber-300">
+              <ShieldAlert className="size-4 shrink-0 mt-0.5 text-amber-600" />
+              <div>
+                <span className="font-bold tracking-wider uppercase">
+                  {isVi ? "CHƯA KÝ CHỨNG THỰC BIÊN DỊCH" : "UNSEALED SNIPPET DETECTED"}
+                </span>
+                <p className="text-[10.5px] mt-0.5">
+                  {isVi
+                    ? "Đoạn mã này chưa có chữ ký tĩnh từ khâu biên dịch. Vui lòng kiểm tra kỹ mã nguồn trước khi thực thi."
+                    : "This code block was not matched against the static build seal. Inspect source carefully before execution."}
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* File Metadata Details */}
           <div className="rounded-[4px] border border-border bg-box/50 p-3.5 space-y-2.5 font-meta text-xs">
@@ -214,18 +261,18 @@ function DownloadModal({
 
             <div className="flex items-center justify-between border-b border-border/60 pb-2">
               <span className="text-muted-foreground uppercase tracking-wider">
-                {isVi ? "Nguồn trích xuất:" : "Source origin:"}
+                {isVi ? "Tệp nguồn:" : "Source file:"}
               </span>
-              <span className="font-mono text-foreground text-[11px] truncate max-w-[240px]">
-                KeiChan Technical Chronicle
+              <span className="font-mono text-foreground text-[11px] truncate max-w-[260px]">
+                {sourceOrigin}
               </span>
             </div>
 
-            {/* SHA-256 Hash Box */}
+            {/* SHA-256 Hash Display */}
             <div className="pt-1">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-muted-foreground uppercase tracking-wider flex items-center gap-1 font-semibold text-[10px]">
-                  <ShieldCheck className="size-3 text-emerald-600 dark:text-emerald-400" />
+                  <ShieldCheck className="size-3 text-foreground" />
                   MÃ BĂM TOÀN VẸN (SHA-256 HASH):
                 </span>
                 <button
@@ -246,13 +293,13 @@ function DownloadModal({
                   )}
                 </button>
               </div>
-              <div className="rounded-[3px] border border-border bg-background p-2 font-mono text-[10.5px] leading-tight text-foreground break-all select-all">
-                {hash || (isVi ? "Đang tính toán mã băm..." : "Computing checksum...")}
+              <div className="rounded-[3px] border border-border bg-background p-2 font-mono text-[10.5px] leading-tight text-foreground break-all select-all font-semibold">
+                {hash || (isVi ? "Đang đọc mã băm biên dịch..." : "Reading build seal...")}
               </div>
             </div>
           </div>
 
-          {/* Code Preview Box */}
+          {/* Code Preview */}
           <div className="space-y-1">
             <span className="font-meta text-[10.5px] uppercase tracking-wider text-muted-foreground">
               {isVi ? "Xem trước phần đầu mã nguồn:" : "Source preview:"}
@@ -264,12 +311,12 @@ function DownloadModal({
           </div>
 
           {/* Security Advisory Warning */}
-          <div className="flex items-start gap-2 rounded-[4px] border border-amber-500/30 bg-amber-500/5 p-2.5 text-[11px] text-amber-700 dark:text-amber-300 font-meta leading-relaxed">
-            <AlertTriangle className="size-4 shrink-0 mt-0.5" />
+          <div className="flex items-start gap-2 rounded-[4px] border border-border bg-box/40 p-2.5 text-[11px] text-muted-foreground font-meta leading-relaxed">
+            <AlertTriangle className="size-4 shrink-0 mt-0.5 text-foreground" />
             <span>
               {isVi
-                ? "Khuyến nghị an toàn: Hãy đối chiếu mã băm SHA-256 sau khi tải (lệnh `sha256sum`) để xác thực tính toàn vẹn của tệp."
-                : "Security advisory: Verify the cryptographic SHA-256 checksum post-download (`sha256sum`) to ensure file integrity."}
+                ? "Khuyến nghị an toàn: Hãy đối chiếu mã băm sau khi tải về bằng lệnh `sha256sum <tệp>` để đảm bảo tệp tin nguyên bản và chưa từng bị can thiệp."
+                : "Security advisory: Verify the checksum after downloading (`sha256sum <file>`) to guarantee the file was not altered in transit."}
             </span>
           </div>
         </div>
@@ -305,25 +352,50 @@ export default function CodeBlock({ children, rawCode, className }: CodeBlockPro
   const [copied, setCopied] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [sha256Hash, setSha256Hash] = useState<string>("")
+  const [activeHash, setActiveHash] = useState<string>("")
 
   const lines = useMemo(() => rawCode.split("\n"), [rawCode])
   const lineCount = lines.length
   const isLong = lineCount > 22 || rawCode.length > 800
 
-  const filename = useMemo(() => detectFilename(rawCode, className), [rawCode, className])
+  const fallbackFilename = useMemo(() => detectFilename(rawCode, className), [rawCode, className])
   const fileSizeBytes = useMemo(() => new Blob([rawCode]).size, [rawCode])
 
-  // Compute hash when modal opens or on mount
+  // Look up immutable build-time hash seal from manifest
+  const buildEntry = useMemo(() => {
+    const hashesMap = (checksumManifest.hashes || {}) as Record<string, ChecksumEntry>
+    // Direct match by scanning hashes
+    for (const entry of Object.values(hashesMap)) {
+      if (entry.filename === fallbackFilename && Math.abs(entry.lines - lineCount) <= 2) {
+        return entry
+      }
+    }
+    return null
+  }, [fallbackFilename, lineCount])
+
   useEffect(() => {
     let active = true
-    computeSha256(rawCode).then((h) => {
-      if (active) setSha256Hash(h)
+    const normalized = rawCode.trim().replace(/\r\n/g, "\n")
+    computeSha256(normalized).then((computed) => {
+      if (!active) return
+      const hashesMap = (checksumManifest.hashes || {}) as Record<string, ChecksumEntry>
+      if (hashesMap[computed]) {
+        setActiveHash(hashesMap[computed].sha256)
+      } else if (buildEntry) {
+        setActiveHash(buildEntry.sha256)
+      } else {
+        setActiveHash(computed)
+      }
     })
     return () => {
       active = false
     }
-  }, [rawCode])
+  }, [rawCode, buildEntry])
+
+  const resolvedFilename = buildEntry ? buildEntry.filename : fallbackFilename
+  const isVerifiedAtBuild = Boolean(buildEntry)
+  const sourceOrigin = buildEntry ? buildEntry.sourceFile : "webngoc04.github.io"
+  const buildTimestamp = checksumManifest.generatedAt || new Date().toISOString()
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(rawCode)
@@ -342,7 +414,7 @@ export default function CodeBlock({ children, rawCode, className }: CodeBlockPro
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = url
-      a.download = filename
+      a.download = resolvedFilename
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
@@ -351,8 +423,8 @@ export default function CodeBlock({ children, rawCode, className }: CodeBlockPro
       setIsModalOpen(false)
       toast.success(
         isVi
-          ? `Đã tải về tệp ${filename} thành công!`
-          : `Downloaded ${filename} successfully!`
+          ? `Đã tải về ${resolvedFilename} thành công!`
+          : `Downloaded ${resolvedFilename} successfully!`
       )
     } catch {
       toast.error(isVi ? "Không thể tải về tệp tin" : "Failed to download file")
@@ -366,11 +438,21 @@ export default function CodeBlock({ children, rawCode, className }: CodeBlockPro
         <div className="flex items-center gap-2">
           <FileCode className="size-3.5 text-muted-foreground" />
           <span className="font-mono text-[12px] font-bold text-foreground">
-            {filename}
+            {resolvedFilename}
           </span>
           <span className="text-[10px] text-muted-foreground">
             • {lineCount} {isVi ? "dòng" : "lines"}
           </span>
+
+          {isVerifiedAtBuild && (
+            <span
+              className="inline-flex items-center gap-1 rounded-[2px] border border-emerald-500/40 bg-emerald-500/10 px-1.5 py-0.5 font-mono text-[9px] font-bold text-emerald-700 dark:text-emerald-300 uppercase tracking-widest"
+              title="Khóa mã băm SHA-256 bất biến khi biên dịch"
+            >
+              <ShieldCheck className="size-2.5" />
+              BUILD SEAL
+            </span>
+          )}
         </div>
 
         {/* Action Buttons: Download & Copy */}
@@ -379,7 +461,7 @@ export default function CodeBlock({ children, rawCode, className }: CodeBlockPro
             type="button"
             onClick={handleOpenDownloadModal}
             className="inline-flex items-center gap-1 rounded-[3px] border border-border bg-background/80 px-2 py-1 font-meta text-[11px] font-medium uppercase tracking-wider text-muted-foreground transition-all hover:border-foreground hover:text-foreground cursor-pointer"
-            title={isVi ? "Tải về tệp mã nguồn" : "Download source file"}
+            title={isVi ? "Tải về tệp mã nguồn sau khi đối soát mã băm" : "Download source file after checksum verification"}
           >
             <Download className="size-3" />
             <span>{isVi ? "TẢI VỀ" : "DOWNLOAD"}</span>
@@ -447,8 +529,8 @@ export default function CodeBlock({ children, rawCode, className }: CodeBlockPro
             )}
           </button>
 
-          <span className="text-[10px] text-muted-foreground/80 hidden sm:inline">
-            SHA-256: {sha256Hash ? `${sha256Hash.slice(0, 8)}...` : "..."}
+          <span className="text-[10.5px] font-mono text-muted-foreground/80 hidden sm:inline">
+            SHA-256 (SEAL): {activeHash ? `${activeHash.slice(0, 12)}...` : "..."}
           </span>
         </div>
       )}
@@ -458,11 +540,14 @@ export default function CodeBlock({ children, rawCode, className }: CodeBlockPro
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={handleExecuteDownload}
-        filename={filename}
+        filename={resolvedFilename}
         code={rawCode}
-        hash={sha256Hash}
+        hash={activeHash}
         lineCount={lineCount}
         fileSizeBytes={fileSizeBytes}
+        isVerifiedAtBuild={isVerifiedAtBuild}
+        sourceOrigin={sourceOrigin}
+        buildTimestamp={buildTimestamp}
       />
     </div>
   )

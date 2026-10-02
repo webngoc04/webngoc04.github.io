@@ -1,0 +1,477 @@
+{
+  "generatedAt": "2026-10-02T11:18:13.919Z",
+  "builder": "KeiChan Automated Security Seal (Pre-Build)",
+  "securityPolicy": "IMMUTABLE_BUILD_SEAL_V1",
+  "totalFilesIndexed": 23,
+  "totalCodeBlocksIndexed": 27,
+  "hashes": {
+    "eec582ac6522a6bfb67a020ec65504eb003436023c6ffe4ab77bdee46212c3b4": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "eec582ac6522a6bfb67a020ec65504eb003436023c6ffe4ab77bdee46212c3b4",
+      "lines": 5,
+      "sizeBytes": 301,
+      "sourceFile": "ai-course-degradation-en.md",
+      "verifiedAtBuild": true
+    },
+    "f98f39dc68cc9d52eff1965270b44bc26a16e98bd58c877a4182c68e166a190a": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "eec582ac6522a6bfb67a020ec65504eb003436023c6ffe4ab77bdee46212c3b4",
+      "lines": 5,
+      "sizeBytes": 301,
+      "sourceFile": "ai-course-degradation-en.md",
+      "verifiedAtBuild": true
+    },
+    "10a18c54aa7e8686562c191efe90c7a48198d34ba87dfb5e71158f96b005ed3b": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "10a18c54aa7e8686562c191efe90c7a48198d34ba87dfb5e71158f96b005ed3b",
+      "lines": 5,
+      "sizeBytes": 380,
+      "sourceFile": "ai-course-degradation.md",
+      "verifiedAtBuild": true
+    },
+    "2517540ef61344ec96ca69a09fd2bbdb25c6a66e5610821c8ff1f4846bab8cd0": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "10a18c54aa7e8686562c191efe90c7a48198d34ba87dfb5e71158f96b005ed3b",
+      "lines": 5,
+      "sizeBytes": 380,
+      "sourceFile": "ai-course-degradation.md",
+      "verifiedAtBuild": true
+    },
+    "f50ac51cfe4f634a20c70f1f9ff60f09218450c3ada74ab309ef26e45abd9654": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "f50ac51cfe4f634a20c70f1f9ff60f09218450c3ada74ab309ef26e45abd9654",
+      "lines": 5,
+      "sizeBytes": 286,
+      "sourceFile": "ai-data-security-en.md",
+      "verifiedAtBuild": true
+    },
+    "2b4b1e4213ac6fa8528cba163304715401614afb457807e30d4271f3baab8b42": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "f50ac51cfe4f634a20c70f1f9ff60f09218450c3ada74ab309ef26e45abd9654",
+      "lines": 5,
+      "sizeBytes": 286,
+      "sourceFile": "ai-data-security-en.md",
+      "verifiedAtBuild": true
+    },
+    "ce3fb725f530e8c3241e5b6e4c52111546a17815e64014ad188b9af7b83509cb": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "ce3fb725f530e8c3241e5b6e4c52111546a17815e64014ad188b9af7b83509cb",
+      "lines": 5,
+      "sizeBytes": 326,
+      "sourceFile": "ai-data-security.md",
+      "verifiedAtBuild": true
+    },
+    "c122f5448e85c9ad3dea77f45c462610de2bad204ddccb11c895945a13ac75cc": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "ce3fb725f530e8c3241e5b6e4c52111546a17815e64014ad188b9af7b83509cb",
+      "lines": 5,
+      "sizeBytes": 326,
+      "sourceFile": "ai-data-security.md",
+      "verifiedAtBuild": true
+    },
+    "bdaa46ebc7af3a793d40563cd770f5b70cfc83f9f5dff775d97fc6d049473d29": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "bdaa46ebc7af3a793d40563cd770f5b70cfc83f9f5dff775d97fc6d049473d29",
+      "lines": 3,
+      "sizeBytes": 239,
+      "sourceFile": "ai-hallucination-en.md",
+      "verifiedAtBuild": true
+    },
+    "7bec84501a6bb7df4cceb3c3292419067d209fe55e9116f44fbe1293878640e2": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "bdaa46ebc7af3a793d40563cd770f5b70cfc83f9f5dff775d97fc6d049473d29",
+      "lines": 3,
+      "sizeBytes": 239,
+      "sourceFile": "ai-hallucination-en.md",
+      "verifiedAtBuild": true
+    },
+    "7f57fe367ae6864a9d129be597ef3ce8ff8d22d48ff5dcf338eb295d511b7832": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "7f57fe367ae6864a9d129be597ef3ce8ff8d22d48ff5dcf338eb295d511b7832",
+      "lines": 3,
+      "sizeBytes": 262,
+      "sourceFile": "ai-hallucination.md",
+      "verifiedAtBuild": true
+    },
+    "2f2bdb98d97047b1848461a24b25879eb84e60a3814a0c71ca66ba61f974af69": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "7f57fe367ae6864a9d129be597ef3ce8ff8d22d48ff5dcf338eb295d511b7832",
+      "lines": 3,
+      "sizeBytes": 262,
+      "sourceFile": "ai-hallucination.md",
+      "verifiedAtBuild": true
+    },
+    "1e0c3f1fa821a3cce7df2f1df23b8224a86edaf6582456193235f8fd5e2e927e": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "1e0c3f1fa821a3cce7df2f1df23b8224a86edaf6582456193235f8fd5e2e927e",
+      "lines": 4,
+      "sizeBytes": 282,
+      "sourceFile": "ai-purpose-and-optimization-en.md",
+      "verifiedAtBuild": true
+    },
+    "1df450cf35a54899251e3a2c8a7c182aa4f8c3312f34a8d416433ab8a92a5c30": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "1e0c3f1fa821a3cce7df2f1df23b8224a86edaf6582456193235f8fd5e2e927e",
+      "lines": 4,
+      "sizeBytes": 282,
+      "sourceFile": "ai-purpose-and-optimization-en.md",
+      "verifiedAtBuild": true
+    },
+    "e3e8d51940f2ed1359db075b70f89cd135ed216423af0184a889c40ad3de118d": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "e3e8d51940f2ed1359db075b70f89cd135ed216423af0184a889c40ad3de118d",
+      "lines": 4,
+      "sizeBytes": 323,
+      "sourceFile": "ai-purpose-and-optimization.md",
+      "verifiedAtBuild": true
+    },
+    "2786eb9ab3151daa47fb81e3b5b04ec44232121939af684e28f4d05add29d69c": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "e3e8d51940f2ed1359db075b70f89cd135ed216423af0184a889c40ad3de118d",
+      "lines": 4,
+      "sizeBytes": 323,
+      "sourceFile": "ai-purpose-and-optimization.md",
+      "verifiedAtBuild": true
+    },
+    "521f164118d65bfb3e7aaca71f9df266e689dfe0ab8f6bd882a8cec18323ce30": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "521f164118d65bfb3e7aaca71f9df266e689dfe0ab8f6bd882a8cec18323ce30",
+      "lines": 3,
+      "sizeBytes": 315,
+      "sourceFile": "ai-purpose-and-optimization.md",
+      "verifiedAtBuild": true
+    },
+    "212af8e2425bbcc7a5cb9f66eb1b30559b569a273a0ebb193b7d44bbf17e7793": {
+      "filename": "source_code.txt",
+      "lang": "",
+      "sha256": "521f164118d65bfb3e7aaca71f9df266e689dfe0ab8f6bd882a8cec18323ce30",
+      "lines": 3,
+      "sizeBytes": 315,
+      "sourceFile": "ai-purpose-and-optimization.md",
+      "verifiedAtBuild": true
+    },
+    "397938c3e44e3c3460b8c45c7a3ebdb64dc04a4de09dd5779f9c31c2f513a701": {
+      "filename": "install.ps1",
+      "lang": "",
+      "sha256": "397938c3e44e3c3460b8c45c7a3ebdb64dc04a4de09dd5779f9c31c2f513a701",
+      "lines": 20,
+      "sizeBytes": 1092,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "db26c7ccf2d58e8243f8970ea126a55006e74105ae0eec3cdebd33fd14f83a14": {
+      "filename": "install.ps1",
+      "lang": "",
+      "sha256": "397938c3e44e3c3460b8c45c7a3ebdb64dc04a4de09dd5779f9c31c2f513a701",
+      "lines": 20,
+      "sizeBytes": 1092,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "b3b627cd72ab8737c2f8af20d702b7aa260242d4019a7f4202d635f1e3675b9e": {
+      "filename": "install.ps1",
+      "lang": "powershell",
+      "sha256": "b3b627cd72ab8737c2f8af20d702b7aa260242d4019a7f4202d635f1e3675b9e",
+      "lines": 60,
+      "sizeBytes": 2500,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "82d444b19f98b27fae3ced508bf27618efc34f6ec3a4a75ba16026a91462827d": {
+      "filename": "install.ps1",
+      "lang": "powershell",
+      "sha256": "b3b627cd72ab8737c2f8af20d702b7aa260242d4019a7f4202d635f1e3675b9e",
+      "lines": 60,
+      "sizeBytes": 2500,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "82d908ae0b393254d643765b7c24fbe6f1093a775c0377c79274ac6f8469d044": {
+      "filename": "script.py",
+      "lang": "python",
+      "sha256": "82d908ae0b393254d643765b7c24fbe6f1093a775c0377c79274ac6f8469d044",
+      "lines": 71,
+      "sizeBytes": 2816,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "60dfb7f568371ca1a86a7db54df1f6ccb6def3148fcac7f25a7319e6476634b7": {
+      "filename": "script.py",
+      "lang": "python",
+      "sha256": "82d908ae0b393254d643765b7c24fbe6f1093a775c0377c79274ac6f8469d044",
+      "lines": 71,
+      "sizeBytes": 2816,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "f3e3ece876f3d0acdd1aec789629c818c306808668b87d3edb6df4c21ad344b4": {
+      "filename": "codex_audit.py",
+      "lang": "python",
+      "sha256": "f3e3ece876f3d0acdd1aec789629c818c306808668b87d3edb6df4c21ad344b4",
+      "lines": 39,
+      "sizeBytes": 1465,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "92a6ba8f6c838cceedc09d72b8e0c84829b01afb97c0fce6f79336aa665f56ca": {
+      "filename": "codex_audit.py",
+      "lang": "python",
+      "sha256": "f3e3ece876f3d0acdd1aec789629c818c306808668b87d3edb6df4c21ad344b4",
+      "lines": 39,
+      "sizeBytes": 1465,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "01a73c4415ccbfe9912f2c8238814d0ca5ac56e43bf448cfcaf4cc7ccd9a39a7": {
+      "filename": "codex_audit.py",
+      "lang": "python",
+      "sha256": "01a73c4415ccbfe9912f2c8238814d0ca5ac56e43bf448cfcaf4cc7ccd9a39a7",
+      "lines": 29,
+      "sizeBytes": 1060,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "9df7040bdfd72b7634d60a78f25beaf88d4349881709e64c2ce21ed4fe5ca991": {
+      "filename": "codex_audit.py",
+      "lang": "python",
+      "sha256": "01a73c4415ccbfe9912f2c8238814d0ca5ac56e43bf448cfcaf4cc7ccd9a39a7",
+      "lines": 29,
+      "sizeBytes": 1060,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "52c91a8652ced98471a060f3e8bf53d43cad1eacaf47503f36491b508ee02497": {
+      "filename": "source_code.txt",
+      "lang": "http",
+      "sha256": "52c91a8652ced98471a060f3e8bf53d43cad1eacaf47503f36491b508ee02497",
+      "lines": 16,
+      "sizeBytes": 348,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "d06b849b215536c4e8a0f7e97c0a409936a7378c6908338a56ed890838d28887": {
+      "filename": "source_code.txt",
+      "lang": "http",
+      "sha256": "52c91a8652ced98471a060f3e8bf53d43cad1eacaf47503f36491b508ee02497",
+      "lines": 16,
+      "sizeBytes": 348,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "040e74c22e8c37d663848ba0c12e7811dffff8bfc198e5c4536c161e97f36164": {
+      "filename": "CodexKeyTool.sh",
+      "lang": "bash",
+      "sha256": "040e74c22e8c37d663848ba0c12e7811dffff8bfc198e5c4536c161e97f36164",
+      "lines": 25,
+      "sizeBytes": 518,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "4e95ca03ae15a3944ec8f2a9a38cd49dcab9ae4c8ffc6e49b0345a2050507be6": {
+      "filename": "CodexKeyTool.sh",
+      "lang": "bash",
+      "sha256": "040e74c22e8c37d663848ba0c12e7811dffff8bfc198e5c4536c161e97f36164",
+      "lines": 25,
+      "sizeBytes": 518,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "56c9bbaa0f703176d68328e8fee73407ff98bdc8a07912bb1b504ba9f5d05486": {
+      "filename": "codex_audit.py",
+      "lang": "python",
+      "sha256": "56c9bbaa0f703176d68328e8fee73407ff98bdc8a07912bb1b504ba9f5d05486",
+      "lines": 161,
+      "sizeBytes": 7982,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "1e1ce5ab33ad883112cb45683839ae722a46173a921bc248e82aa4794d3303cf": {
+      "filename": "codex_audit.py",
+      "lang": "python",
+      "sha256": "56c9bbaa0f703176d68328e8fee73407ff98bdc8a07912bb1b504ba9f5d05486",
+      "lines": 161,
+      "sizeBytes": 7982,
+      "sourceFile": "ho-so-lua-dao-slot-gpt6-astra.md",
+      "verifiedAtBuild": true
+    },
+    "ad92ae019693f8e0bd798afdac0874dce3c24b8b9546aa33cf712d2dbe0ed6f1": {
+      "filename": "kernel_build.sh",
+      "lang": "bash",
+      "sha256": "ad92ae019693f8e0bd798afdac0874dce3c24b8b9546aa33cf712d2dbe0ed6f1",
+      "lines": 2,
+      "sizeBytes": 104,
+      "sourceFile": "linux-kernel-tips-en.md",
+      "verifiedAtBuild": true
+    },
+    "f293f43531f840ddfb595068dd42f7700c1b5797b75220be3fc9242baa2a30c6": {
+      "filename": "kernel_build.sh",
+      "lang": "bash",
+      "sha256": "ad92ae019693f8e0bd798afdac0874dce3c24b8b9546aa33cf712d2dbe0ed6f1",
+      "lines": 2,
+      "sizeBytes": 104,
+      "sourceFile": "linux-kernel-tips-en.md",
+      "verifiedAtBuild": true
+    },
+    "128797a20f7613916cf50eff21bedc9b6c2aa05ef61ebb8ab4e3cabb40dc53b6": {
+      "filename": "kernel_build.sh",
+      "lang": "bash",
+      "sha256": "128797a20f7613916cf50eff21bedc9b6c2aa05ef61ebb8ab4e3cabb40dc53b6",
+      "lines": 7,
+      "sizeBytes": 268,
+      "sourceFile": "linux-kernel-tips-en.md",
+      "verifiedAtBuild": true
+    },
+    "16a63b1f598d1be195954747a7f1f297650d8da291ebc753d97ee86151bf3eb0": {
+      "filename": "kernel_build.sh",
+      "lang": "bash",
+      "sha256": "128797a20f7613916cf50eff21bedc9b6c2aa05ef61ebb8ab4e3cabb40dc53b6",
+      "lines": 7,
+      "sizeBytes": 268,
+      "sourceFile": "linux-kernel-tips-en.md",
+      "verifiedAtBuild": true
+    },
+    "e1b8311ff3be3bdf09f101bd37b21442f6a9c0d020d9fb830a304bb5493f4716": {
+      "filename": "lkm_minimal.c",
+      "lang": "c",
+      "sha256": "e1b8311ff3be3bdf09f101bd37b21442f6a9c0d020d9fb830a304bb5493f4716",
+      "lines": 21,
+      "sizeBytes": 647,
+      "sourceFile": "linux-kernel-tips-en.md",
+      "verifiedAtBuild": true
+    },
+    "62f83bfd9b8d3b14231b3733c88548a12b7a42a7271e784cc4d09b02a2209cf1": {
+      "filename": "lkm_minimal.c",
+      "lang": "c",
+      "sha256": "e1b8311ff3be3bdf09f101bd37b21442f6a9c0d020d9fb830a304bb5493f4716",
+      "lines": 21,
+      "sizeBytes": 647,
+      "sourceFile": "linux-kernel-tips-en.md",
+      "verifiedAtBuild": true
+    },
+    "42cecb8599fb6695e9493b87a41bb1dcf7008ee94795ca715feec5f42b90ffdb": {
+      "filename": "lkm_minimal.c",
+      "lang": "makefile",
+      "sha256": "42cecb8599fb6695e9493b87a41bb1dcf7008ee94795ca715feec5f42b90ffdb",
+      "lines": 9,
+      "sizeBytes": 154,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "bbee79c3b16667517c0eeb61e08d36a9d19d08dded3639c182a02ba7aa3567d7": {
+      "filename": "lkm_minimal.c",
+      "lang": "makefile",
+      "sha256": "42cecb8599fb6695e9493b87a41bb1dcf7008ee94795ca715feec5f42b90ffdb",
+      "lines": 9,
+      "sizeBytes": 154,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "7c86afa73aae9ae387fe7ce6d3534ec4eb0542e0f37687a8334ac650df7b0acc": {
+      "filename": "lkm_minimal.c",
+      "lang": "bash",
+      "sha256": "7c86afa73aae9ae387fe7ce6d3534ec4eb0542e0f37687a8334ac650df7b0acc",
+      "lines": 8,
+      "sizeBytes": 199,
+      "sourceFile": "linux-kernel-tips-en.md",
+      "verifiedAtBuild": true
+    },
+    "09e4fc82db22e73b51c17319056fdca1251cf2f6c6e2f269f81e2ceec1c11471": {
+      "filename": "lkm_minimal.c",
+      "lang": "bash",
+      "sha256": "7c86afa73aae9ae387fe7ce6d3534ec4eb0542e0f37687a8334ac650df7b0acc",
+      "lines": 8,
+      "sizeBytes": 199,
+      "sourceFile": "linux-kernel-tips-en.md",
+      "verifiedAtBuild": true
+    },
+    "1c6aefbd6a7e1efb9e90fceff39dc040e3f5dd62cf571bf69959a0503f9000b8": {
+      "filename": "kernel_build.sh",
+      "lang": "bash",
+      "sha256": "1c6aefbd6a7e1efb9e90fceff39dc040e3f5dd62cf571bf69959a0503f9000b8",
+      "lines": 2,
+      "sizeBytes": 117,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "3073d7886efb0df9cf3cfc46f0446010c1a81e944f7bb28670abd90c7d015216": {
+      "filename": "kernel_build.sh",
+      "lang": "bash",
+      "sha256": "1c6aefbd6a7e1efb9e90fceff39dc040e3f5dd62cf571bf69959a0503f9000b8",
+      "lines": 2,
+      "sizeBytes": 117,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "8352a18137070dc6b52ae07bc125789a91a7a96f2876315e29bdb527d47b49ea": {
+      "filename": "kernel_build.sh",
+      "lang": "bash",
+      "sha256": "8352a18137070dc6b52ae07bc125789a91a7a96f2876315e29bdb527d47b49ea",
+      "lines": 7,
+      "sizeBytes": 280,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "f4c9d1e3117959e794f0f12b65c539d4296d9c51f7cb2e727b8558299e5a7e9a": {
+      "filename": "kernel_build.sh",
+      "lang": "bash",
+      "sha256": "8352a18137070dc6b52ae07bc125789a91a7a96f2876315e29bdb527d47b49ea",
+      "lines": 7,
+      "sizeBytes": 280,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "efa619ec050a88f7585dadae65fbe8c8ee724977a872bd6d062e848f48f4252a": {
+      "filename": "lkm_minimal.c",
+      "lang": "c",
+      "sha256": "efa619ec050a88f7585dadae65fbe8c8ee724977a872bd6d062e848f48f4252a",
+      "lines": 21,
+      "sizeBytes": 625,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "7d3a1946e4eff1568a2446b7f6c9caa9a882e787255889eb49de000df1b41764": {
+      "filename": "lkm_minimal.c",
+      "lang": "c",
+      "sha256": "efa619ec050a88f7585dadae65fbe8c8ee724977a872bd6d062e848f48f4252a",
+      "lines": 21,
+      "sizeBytes": 625,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "233d7496d62ea76342bd667c6da75409e9a3074ee88fa6f687a742824554955e": {
+      "filename": "lkm_minimal.c",
+      "lang": "bash",
+      "sha256": "233d7496d62ea76342bd667c6da75409e9a3074ee88fa6f687a742824554955e",
+      "lines": 8,
+      "sizeBytes": 223,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "7f04c5c51d328624beb75b242f46beaf3005a82d806e45e1fb315104555c735e": {
+      "filename": "lkm_minimal.c",
+      "lang": "bash",
+      "sha256": "233d7496d62ea76342bd667c6da75409e9a3074ee88fa6f687a742824554955e",
+      "lines": 8,
+      "sizeBytes": 223,
+      "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    }
+  }
+}
