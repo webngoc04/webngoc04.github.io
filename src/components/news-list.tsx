@@ -10,13 +10,13 @@ interface NewsListProps {
 }
 
 const MARKET_TICKERS = [
-  { label: "GDP VN Q3", value: "+7,43%", change: "Vượt dự báo", isPositive: true },
-  { label: "Tỷ giá SBV", value: "24.094", change: "+13 đ", isPositive: false },
-  { label: "Vàng SJC", value: "84,0 tr/l", change: "Neo đỉnh", isPositive: true },
-  { label: "Spot Gold", value: "$2.661", change: "+1,15%", isPositive: true },
-  { label: "Dầu Brent", value: "$74,80", change: "+1,60%", isPositive: false },
-  { label: "FDI 9T", value: "$17,3B", change: "+8,9%", isPositive: true },
-  { label: "Xuất siêu", value: "+$20,8B", change: "Thặng dư cao", isPositive: true },
+  { label: "VN-Index", value: "1.737,71", change: "-0,66% (Phiên 5)", isPositive: false },
+  { label: "Khối ngoại", value: "-3.298 tỷ", change: "Bán ròng mạnh", isPositive: false },
+  { label: "Tỷ giá SBV", value: "25.624", change: "Tăng tỷ giá", isPositive: false },
+  { label: "USD VCB", value: "26.190", change: "Bán ra", isPositive: false },
+  { label: "Vàng SJC", value: "144,1 tr/l", change: "Chốt phiên", isPositive: false },
+  { label: "Dầu Brent", value: "$102,60", change: "+3,2% (Vượt $102)", isPositive: false },
+  { label: "TP.HCM Q3", value: "+9,86%", change: "Tăng trưởng cao", isPositive: true },
 ]
 
 export default function NewsList({ news }: NewsListProps) {

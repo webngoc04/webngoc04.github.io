@@ -169,10 +169,10 @@ export default function Image() {
             <div style={{ display: "flex", gap: "28px" }}>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <span style={{ fontFamily: "PublicSans", fontSize: "10px", color: "#888880", textTransform: "uppercase" }}>
-                  GDP VN Q3/2024
+                  VN-INDEX
                 </span>
                 <span style={{ fontFamily: "PublicSans", fontWeight: 700, fontSize: "15px", color: "#111" }}>
-                  +7,43% YoY
+                  1.737,71
                 </span>
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
@@ -180,7 +180,7 @@ export default function Image() {
                   TỶ GIÁ SBV
                 </span>
                 <span style={{ fontFamily: "PublicSans", fontWeight: 700, fontSize: "15px", color: "#111" }}>
-                  24.094 VND
+                  25.624 VND
                 </span>
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
@@ -188,7 +188,7 @@ export default function Image() {
                   VÀNG SJC
                 </span>
                 <span style={{ fontFamily: "PublicSans", fontWeight: 700, fontSize: "15px", color: "#111" }}>
-                  84,0 Trđ/L
+                  144,1 Trđ/L
                 </span>
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
@@ -196,7 +196,7 @@ export default function Image() {
                   DẦU BRENT
                 </span>
                 <span style={{ fontFamily: "PublicSans", fontWeight: 700, fontSize: "15px", color: "#111" }}>
-                  $74,80/bbl
+                  $102,60/bbl
                 </span>
               </div>
             </div>
