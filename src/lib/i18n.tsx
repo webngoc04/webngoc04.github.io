@@ -30,10 +30,13 @@ function getNestedValue(obj: Record<string, unknown>, key: string): string | und
 }
 
 function getInitialLocale(): Locale {
-  if (typeof window === "undefined") return "en"
+  if (typeof window === "undefined") return "vi"
   const saved = localStorage.getItem("locale")
   if (saved === "en" || saved === "vi") return saved
-  return "en"
+  if (typeof navigator !== "undefined" && navigator.language && navigator.language.startsWith("en")) {
+    return "en"
+  }
+  return "vi"
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {

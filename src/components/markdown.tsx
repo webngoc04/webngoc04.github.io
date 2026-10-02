@@ -56,8 +56,6 @@ function CopyButton({ code }: { code: string }) {
 }
 
 export function Markdown({ content }: { content: string }) {
-  let hasRenderedLead = false
-
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
@@ -91,15 +89,9 @@ export function Markdown({ content }: { content: string }) {
           )
         },
         p: ({ children, ...props }) => {
-          const isLead = !hasRenderedLead
-          if (isLead) {
-            hasRenderedLead = true
-          }
           return (
             <p
-              className={`font-body text-[17px] sm:text-[18px] leading-[1.68] text-foreground/95 mb-6 text-left ${
-                isLead ? "drop-cap-lead" : ""
-              }`}
+              className="font-body text-[17px] sm:text-[18px] leading-[1.68] text-foreground/95 mb-6 text-left"
               {...props}
             >
               {children}

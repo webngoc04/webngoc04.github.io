@@ -1,8 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { ArrowLeft, Share2 } from "lucide-react"
 import { Markdown } from "@/components/markdown"
 import { useI18n } from "@/lib/i18n"
@@ -16,27 +14,7 @@ interface BlogPostProps {
 
 export default function BlogPost({ post }: BlogPostProps) {
   const { t, locale } = useI18n()
-  const router = useRouter()
-  const prevLocale = useRef(locale)
   const tocItems = extractTOC(post.content)
-
-  useEffect(() => {
-    if (prevLocale.current === locale) return
-    prevLocale.current = locale
-
-    let targetSlug: string
-    if (locale === "en" && !post.slug.endsWith("-en")) {
-      targetSlug = `${post.slug}-en`
-    } else if (locale === "vi" && post.slug.endsWith("-en")) {
-      targetSlug = post.slug.replace(/-en$/, "")
-    } else {
-      return
-    }
-
-    fetch(`/blog/${targetSlug}/`, { method: "HEAD" }).then((res) => {
-      if (res.ok) router.push(`/blog/${targetSlug}/`)
-    })
-  }, [locale, post.slug, router])
 
   const dateLocale = locale === "vi" ? "vi-VN" : "en-US"
   const formattedDate = new Date(post.date).toLocaleDateString(dateLocale, {

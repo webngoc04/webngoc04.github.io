@@ -16,21 +16,25 @@ export default function BlogList({ posts }: BlogListProps) {
   const { t, locale } = useI18n()
 
   const dateLocale = locale === "vi" ? "vi-VN" : "en-US"
-  const localePosts = useMemo(() => posts.filter((post) => post.lang === locale), [posts, locale])
-
+  const [selectedLang, setSelectedLang] = useState<"all" | "vi" | "en">("all")
   const [search, setSearch] = useState("")
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [page, setPage] = useState(1)
 
+  const langFilteredPosts = useMemo(() => {
+    if (selectedLang === "all") return posts
+    return posts.filter((post) => post.lang === selectedLang)
+  }, [posts, selectedLang])
+
   const allTags = useMemo(() => {
     const tagCount = new Map<string, number>()
-    localePosts.forEach((post) => post.tags.forEach((tag) => tagCount.set(tag, (tagCount.get(tag) || 0) + 1)))
+    langFilteredPosts.forEach((post) => post.tags.forEach((tag) => tagCount.set(tag, (tagCount.get(tag) || 0) + 1)))
     return Array.from(tagCount.entries()).sort((a, b) => b[1] - a[1]).map(([tag]) => tag)
-  }, [localePosts])
+  }, [langFilteredPosts])
 
   const filteredPosts = useMemo(() => {
-    let result = localePosts
+    let result = langFilteredPosts
     if (search.trim()) {
       const q = search.toLowerCase()
       result = result.filter(
@@ -44,7 +48,7 @@ export default function BlogList({ posts }: BlogListProps) {
       result = result.filter((post) => post.tags.includes(selectedTag))
     }
     return result
-  }, [localePosts, search, selectedTag])
+  }, [langFilteredPosts, search, selectedTag])
 
   const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE))
   const currentPage = Math.min(page, totalPages)
@@ -80,7 +84,7 @@ export default function BlogList({ posts }: BlogListProps) {
             {locale === "vi" ? "BÁO CÁO & CHUYÊN LUẬN" : "DISPATCHES & REPORTS"}
           </span>
           <span className="font-meta text-[11px] uppercase tracking-widest text-muted-foreground">
-            {localePosts.length} {locale === "vi" ? "BÀI VIẾT" : "ARTICLES"}
+            {filteredPosts.length} {locale === "vi" ? "BÀI VIẾT" : "ARTICLES"}
           </span>
         </div>
 
@@ -99,6 +103,43 @@ export default function BlogList({ posts }: BlogListProps) {
           FONTSHARE FILTER & CONTROL BAR
           ======================================================== */}
       <div className="mb-8 space-y-4">
+        {/* Language Filter Tabs */}
+        <div className="flex flex-wrap items-center gap-1.5 pb-1">
+          <button
+            type="button"
+            onClick={() => { setSelectedLang("all"); setPage(1); }}
+            className={`rounded-[3px] px-3 py-1 font-meta text-xs uppercase tracking-wider transition-colors ${
+              selectedLang === "all"
+                ? "bg-foreground text-background font-semibold"
+                : "border border-border bg-box/60 text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {locale === "vi" ? `Tất cả bài viết (${posts.length})` : `All Dispatches (${posts.length})`}
+          </button>
+          <button
+            type="button"
+            onClick={() => { setSelectedLang("vi"); setPage(1); }}
+            className={`rounded-[3px] px-3 py-1 font-meta text-xs uppercase tracking-wider transition-colors ${
+              selectedLang === "vi"
+                ? "bg-foreground text-background font-semibold"
+                : "border border-border bg-box/60 text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Tiếng Việt ({posts.filter(p => p.lang === "vi").length})
+          </button>
+          <button
+            type="button"
+            onClick={() => { setSelectedLang("en"); setPage(1); }}
+            className={`rounded-[3px] px-3 py-1 font-meta text-xs uppercase tracking-wider transition-colors ${
+              selectedLang === "en"
+                ? "bg-foreground text-background font-semibold"
+                : "border border-border bg-box/60 text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            English ({posts.filter(p => p.lang === "en").length})
+          </button>
+        </div>
+
         {/* Search input + View Switcher */}
         <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
           <div className="relative flex-1">
@@ -169,10 +210,10 @@ export default function BlogList({ posts }: BlogListProps) {
                 : "border-border bg-box/60 text-muted-foreground hover:border-foreground hover:text-foreground"
             }`}
           >
-            ALL ({localePosts.length})
+            ALL ({langFilteredPosts.length})
           </button>
           {allTags.map((tag) => {
-            const count = localePosts.filter((p) => p.tags.includes(tag)).length
+            const count = langFilteredPosts.filter((p) => p.tags.includes(tag)).length
             const isSelected = selectedTag === tag
             return (
               <button
@@ -238,9 +279,14 @@ export default function BlogList({ posts }: BlogListProps) {
                 <div>
                   {/* Card Header */}
                   <div className="flex items-center justify-between gap-2 mb-3 border-b border-border pb-2.5 font-meta text-xs text-muted-foreground">
-                    <span className="font-semibold uppercase tracking-wider text-foreground">
-                      {primaryCategory}
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-semibold uppercase tracking-wider text-foreground">
+                        {primaryCategory}
+                      </span>
+                      <span className="rounded-[2px] border border-border/80 bg-box px-1.5 py-0.5 font-mono text-[9px] uppercase font-bold text-muted-foreground">
+                        {post.lang}
+                      </span>
+                    </div>
                     <div className="flex items-center gap-2">
                       <time dateTime={post.date} className="text-[11px]">
                         {new Date(post.date).toLocaleDateString(dateLocale, {
@@ -302,6 +348,9 @@ export default function BlogList({ posts }: BlogListProps) {
                   <div className="flex items-center gap-2 font-meta text-[11px] text-muted-foreground mb-1.5">
                     <span className="font-semibold uppercase tracking-wider text-foreground">
                       {primaryCategory}
+                    </span>
+                    <span className="rounded-[2px] border border-border/80 bg-box px-1.5 py-0.5 font-mono text-[9px] uppercase font-bold text-muted-foreground">
+                      {post.lang}
                     </span>
                     <span>•</span>
                     <time dateTime={post.date}>
