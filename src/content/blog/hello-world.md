@@ -1,36 +1,36 @@
 ---
-title: "Inaugural Dispatch: Systems Engineering, Open Source, and Software Craft"
+title: "Báo Cáo Khởi Đầu: Kỹ Nghệ Hệ Thống, Mã Nguồn Mở Và Tư Duy Lập Trình"
 date: "2026-05-30"
-description: "Welcome to KeiChan's engineering dispatches: An introductory note on low-level systems programming, Linux kernel internals, and the philosophy behind this publication."
+description: "Chào mừng bạn đến với chuyên san kỹ thuật của KeiChan: Những ghi chép đầu tiên về lập trình hệ thống tầng thấp, nhân Linux kernel và triết lý kỹ thuật đằng sau ấn phẩm này."
 tags: ["Intro", "SystemsEngineering", "Linux", "OpenSource"]
 author: "KeiChan"
-lang: "en"
+lang: "vi"
 ---
 
-Welcome to the inaugural dispatch of this publication. 
+Chào mừng bạn đến với chuyên luận khởi đầu của ấn phẩm kỹ thuật này.
 
-This platform was conceived as an independent technical chronicle—a digital space dedicated to documenting the rigorous craft of low-level systems programming, Linux kernel internals, and reliable distributed software architecture.
-
----
-
-## 1. Professional Focus and Engineering Substrates
-
-I am **KeiChan**, a software engineer passionate about understanding computing systems from the silicon boundary up to the distributed application layer.
-
-My primary technical domains include:
-
-* **Kernel & Low-Level Subsystems:** Linux kernel internals, Loadable Kernel Modules (LKMs), memory management, and virtualized system debugging.
-* **Modern Web & Architecture:** High-performance web applications built on TypeScript, React, and Next.js, emphasizing strict typings and deterministic state machines.
-* **Systems Infrastructure & Self-Hosting:** Autonomous infrastructure, containerization, resilient CI/CD pipelines, and private networking.
+Không gian này được tạo ra như một biên niên sử kỹ thuật độc lập — một nơi dành riêng để ghi lại hành trình tìm hiểu và thực hành nghiêm túc về lập trình hệ thống tầng thấp, kiến trúc nhân Linux kernel, và thiết kế phần mềm phân tán bền vững.
 
 ---
 
-## 2. The Purpose of This Publication
+## 1. Định Hướng Kỹ Thuật Và Nền Tảng Trọng Tâm
 
-In an era dominated by superficial algorithmic summaries and transient technological hype, deep technical understanding is increasingly rare. This blog exists to counter that trend by emphasizing:
+Tôi là **KeiChan**, một kỹ sư phần mềm đam mê tìm hiểu cách hệ thống máy tính vận hành từ ranh giới phần cứng bán dẫn đến các tầng ứng dụng phân tán.
 
-1. **Foundational Depth Over Superficial Breadth:** Exploring how software operates at the machine level rather than merely assembling third-party wrappers.
-2. **Empirical Technical Rigor:** Sharing operational post-mortems, verified benchmark methodologies, and reproducible code samples.
-3. **The Open Source Commons:** Respecting the timeless ethos of hacker culture, long-term codebase stewardship, and peer-reviewed collaboration.
+Các lĩnh vực kỹ thuật trọng tâm của tôi bao gồm:
 
-Thank you for joining this journey into software craft and systems resilience.
+* **Nhân Linux & Hệ thống Tầng Thấp:** Kiến trúc nhân Linux kernel, Loadable Kernel Modules (LKMs), quản lý bộ nhớ và gỡ lỗi hệ thống trên môi trường ảo hóa.
+* **Kiến Trúc Web Hiện Đại:** Ứng dụng web hiệu năng cao xây dựng trên TypeScript, React và Next.js, đề cao hệ thống kiểu dữ liệu chặt chẽ và máy trạng thái xác định.
+* **Hạ Tầng Hệ Thống & Tự Vận Hành:** Quản trị hạ tầng tự chủ, container hóa, đường ống CI/CD có khả năng phục hồi và mạng riêng tư.
+
+---
+
+## 2. Mục Đích Của Ấn Phẩm Này
+
+Trong thời đại tràn ngập các bản tóm tắt thuật toán hời hợt và các làn sóng công nghệ nhất thời, sự thấu hiểu kỹ thuật sâu sắc ngày càng trở nên hiếm hoi. Blog này ra đời nhằm hướng tới ba giá trị cốt lõi:
+
+1. **Chiều Sâu Nền Tảng Thay Vì Bề Nổi Thoáng Qua:** Khám phá cách phần mềm thực sự hoạt động ở cấp độ máy móc thay vì chỉ ghép nối các thư viện bọc ngoài của bên thứ ba.
+2. **Tính Nghiêm Ngặt Và Kiểm Chứng Thực Nghiệm:** Chia sẻ các báo cáo phân tích sự cố thực tế, phương pháp đo lường hiệu năng có thể đối chứng và mã nguồn kiểm thử chạy được.
+3. **Tinh Thần Mã Nguồn Mở:** Tôn trọng văn hóa hacker nguyên bản, trách nhiệm bảo tồn mã nguồn lâu dài và sự hợp tác bình đẳng giữa các kỹ sư.
+
+Cảm ơn bạn đã cùng đồng hành trong hành trình khám phá vẻ đẹp của kỹ nghệ phần mềm và hệ thống.

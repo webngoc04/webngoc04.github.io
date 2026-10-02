@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useMemo, useCallback } from "react"
+import { useState, useMemo, useCallback, useEffect } from "react"
 import { Search, ChevronLeft, ChevronRight, X, LayoutGrid, List, ArrowUpRight } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 import type { BlogPost } from "@/lib/blog"
@@ -21,14 +21,25 @@ export default function BlogList({ posts }: BlogListProps) {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [page, setPage] = useState(1)
 
+  // Filter posts strictly matching the current locale ("vi" -> Vietnamese posts only, "en" -> English posts only)
+  const localizedPosts = useMemo(() => {
+    return posts.filter((post) => post.lang === locale)
+  }, [posts, locale])
+
+  // Reset pagination and active tag filter when locale changes
+  useEffect(() => {
+    setPage(1)
+    setSelectedTag(null)
+  }, [locale])
+
   const allTags = useMemo(() => {
     const tagCount = new Map<string, number>()
-    posts.forEach((post) => post.tags.forEach((tag) => tagCount.set(tag, (tagCount.get(tag) || 0) + 1)))
+    localizedPosts.forEach((post) => post.tags.forEach((tag) => tagCount.set(tag, (tagCount.get(tag) || 0) + 1)))
     return Array.from(tagCount.entries()).sort((a, b) => b[1] - a[1]).map(([tag]) => tag)
-  }, [posts])
+  }, [localizedPosts])
 
   const filteredPosts = useMemo(() => {
-    let result = posts
+    let result = localizedPosts
     if (search.trim()) {
       const q = search.toLowerCase()
       result = result.filter(
@@ -42,7 +53,7 @@ export default function BlogList({ posts }: BlogListProps) {
       result = result.filter((post) => post.tags.includes(selectedTag))
     }
     return result
-  }, [posts, search, selectedTag])
+  }, [localizedPosts, search, selectedTag])
 
   const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE))
   const currentPage = Math.min(page, totalPages)
@@ -167,10 +178,10 @@ export default function BlogList({ posts }: BlogListProps) {
                 : "border-border bg-box/60 text-muted-foreground hover:border-foreground hover:text-foreground"
             }`}
           >
-            ALL ({posts.length})
+            ALL ({localizedPosts.length})
           </button>
           {allTags.map((tag) => {
-            const count = posts.filter((p) => p.tags.includes(tag)).length
+            const count = localizedPosts.filter((p) => p.tags.includes(tag)).length
             const isSelected = selectedTag === tag
             return (
               <button

@@ -62,9 +62,18 @@ export default async function BlogPostPage({
 
   if (!post) notFound()
 
+  let alternateSlug: string | null = null
+  if (post.lang === "vi") {
+    const enSlug = `${slug}-en`
+    if (getPostBySlug(enSlug)) alternateSlug = enSlug
+  } else if (post.lang === "en") {
+    const viSlug = slug.replace(/-en$/, "")
+    if (viSlug !== slug && getPostBySlug(viSlug)) alternateSlug = viSlug
+  }
+
   return (
     <main className="mx-auto max-w-[720px] px-6 pt-24 sm:pt-28 pb-16">
-      <BlogPost post={post} />
+      <BlogPost post={post} alternateSlug={alternateSlug} />
     </main>
   )
 }

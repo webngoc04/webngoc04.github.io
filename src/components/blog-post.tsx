@@ -10,9 +10,10 @@ import { toast } from "sonner"
 
 interface BlogPostProps {
   post: BlogPost
+  alternateSlug?: string | null
 }
 
-export default function BlogPost({ post }: BlogPostProps) {
+export default function BlogPost({ post, alternateSlug }: BlogPostProps) {
   const { t, locale } = useI18n()
   const tocItems = extractTOC(post.content)
 
@@ -57,15 +58,26 @@ export default function BlogPost({ post }: BlogPostProps) {
           <span>{t("blog.backToBlog") || "RETURN TO DISPATCHES"}</span>
         </Link>
 
-        <button
-          type="button"
-          onClick={handleShare}
-          className="flex items-center gap-1.5 rounded-[3px] border border-border bg-box px-2.5 py-1 font-meta text-[11px] font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
-          title="Share dispatch"
-        >
-          <Share2 className="size-3" />
-          <span className="hidden sm:inline">SHARE</span>
-        </button>
+        <div className="flex items-center gap-2">
+          {alternateSlug && (
+            <Link
+              href={`/blog/${alternateSlug}/`}
+              className="flex items-center gap-1.5 rounded-[3px] border border-border bg-box px-2.5 py-1 font-meta text-[11px] font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+            >
+              <span>{post.lang === "vi" ? "READ IN EN" : "BẢN TIẾNG VIỆT"}</span>
+            </Link>
+          )}
+
+          <button
+            type="button"
+            onClick={handleShare}
+            className="flex items-center gap-1.5 rounded-[3px] border border-border bg-box px-2.5 py-1 font-meta text-[11px] font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+            title="Share dispatch"
+          >
+            <Share2 className="size-3" />
+            <span className="hidden sm:inline">SHARE</span>
+          </button>
+        </div>
       </div>
 
       <article className="editorial-container" itemScope itemType="https://schema.org/BlogPosting">
