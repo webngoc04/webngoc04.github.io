@@ -1,11 +1,12 @@
 {
   "nav": {
     "home": "Trang chủ",
+    "news": "Tin tức",
+    "blog": "Blog",
     "about": "Giới thiệu",
     "skills": "Kỹ năng",
     "projects": "Dự án",
     "contact": "Liên hệ",
-    "blog": "Blog",
     "docs": "Docs"
   },
   "hero": {

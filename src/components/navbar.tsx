@@ -14,10 +14,11 @@ export default function Navbar() {
 
   const navItems = [
     { label: t("nav.home") || "INDEX", href: "/" },
+    { label: t("nav.news") || "NEWS", href: "/news/" },
+    { label: t("nav.blog") || "DISPATCHES", href: "/blog/" },
     { label: t("nav.about") || "ABOUT", href: "/#about" },
     { label: t("nav.skills") || "CAPABILITIES", href: "/#skills" },
     { label: t("nav.projects") || "PROJECTS", href: "/#projects" },
-    { label: t("nav.blog") || "DISPATCHES", href: "/blog/" },
     { label: t("nav.contact") || "CONTACT", href: "/#contact" },
   ]
 

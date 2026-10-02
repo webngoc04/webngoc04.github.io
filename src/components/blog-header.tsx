@@ -20,9 +20,28 @@ export default function BlogHeader() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-2">
-          <LanguageSwitcher />
-          <ThemeToggle />
+        <div className="flex items-center gap-2 sm:gap-4">
+          <div className="hidden md:flex items-center gap-1 font-meta text-xs">
+            <Link
+              href="/news/"
+              className="flex items-center gap-1.5 rounded-[3px] px-2.5 py-1 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <span>TIN TỨC</span>
+            </Link>
+            <Link
+              href="/blog/"
+              className="flex items-center gap-1.5 rounded-[3px] bg-box px-2.5 py-1 text-foreground font-semibold border border-border"
+            >
+              <span>DISPATCHES</span>
+            </Link>
+          </div>
+
+          <div className="h-4 w-px bg-border hidden md:block" />
+
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>
