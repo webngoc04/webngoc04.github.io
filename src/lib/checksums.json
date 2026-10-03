@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-03T07:58:39.458Z",
+  "generatedAt": "2026-10-03T08:24:08.784Z",
   "builder": "KeiChan Automated Security Seal (Pre-Build)",
   "securityPolicy": "IMMUTABLE_BUILD_SEAL_V1",
-  "totalFilesIndexed": 23,
-  "totalCodeBlocksIndexed": 23,
+  "totalFilesIndexed": 25,
+  "totalCodeBlocksIndexed": 25,
   "hashes": {
     "eec582ac6522a6bfb67a020ec65504eb003436023c6ffe4ab77bdee46212c3b4": {
       "filename": "source_code.txt",
@@ -399,6 +399,42 @@
       "lines": 8,
       "sizeBytes": 223,
       "sourceFile": "linux-kernel-tips.md",
+      "verifiedAtBuild": true
+    },
+    "a0224dd9c6b984e3ae59292b380890aa155720b0eaf8d79d35f748597db38556": {
+      "filename": "user_controller.ts",
+      "lang": "typescript",
+      "sha256": "a0224dd9c6b984e3ae59292b380890aa155720b0eaf8d79d35f748597db38556",
+      "lines": 38,
+      "sizeBytes": 1539,
+      "sourceFile": "security-blindness-in-development-en.md",
+      "verifiedAtBuild": true
+    },
+    "2a3c1ff7f596176ab14fac4899f8229713a2b96e0b084ce77563155c4692e272": {
+      "filename": "user_controller.ts",
+      "lang": "typescript",
+      "sha256": "a0224dd9c6b984e3ae59292b380890aa155720b0eaf8d79d35f748597db38556",
+      "lines": 38,
+      "sizeBytes": 1539,
+      "sourceFile": "security-blindness-in-development-en.md",
+      "verifiedAtBuild": true
+    },
+    "3be6f959a0127163694c468de179be978c129395ea8a8d9b751991e4a18c4ce7": {
+      "filename": "user_controller.ts",
+      "lang": "typescript",
+      "sha256": "3be6f959a0127163694c468de179be978c129395ea8a8d9b751991e4a18c4ce7",
+      "lines": 35,
+      "sizeBytes": 1674,
+      "sourceFile": "security-blindness-in-development.md",
+      "verifiedAtBuild": true
+    },
+    "a0fed7bf4ebdbda1c2f1b669f1dcb849a05b4a799def285301b06e3d53316331": {
+      "filename": "user_controller.ts",
+      "lang": "typescript",
+      "sha256": "3be6f959a0127163694c468de179be978c129395ea8a8d9b751991e4a18c4ce7",
+      "lines": 35,
+      "sizeBytes": 1674,
+      "sourceFile": "security-blindness-in-development.md",
       "verifiedAtBuild": true
     }
   }
