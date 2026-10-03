@@ -99,10 +99,10 @@ Tại máy chủ trung gian `codex.nhtbgr.online`, kẻ tấn công dựng một
 ### 2.3. Mắt xích phân phối và dòng tiền trục lợi
 * **Kênh phân phối:** Quảng bá qua tài khoản Telegram `@maluen` (Zix Fel) và bot bán hàng tự động `@infinityaistore_bot`.
 * **Đối tượng kỹ thuật:** Tài khoản Telegram `@NeverMore2592` (bí danh "Nhân"), người trực tiếp viết kịch bản `install.ps1`.
-* **Dòng tiền:** Tiền thanh toán 60.000 VNĐ chảy về tài khoản ngân hàng số CAKE mang tên **NGUYEN VAN NHAN**. Trong các đoạn tin nhắn nội bộ bị rò rỉ, các đối tượng đã khoe doanh số hơn 30 triệu đồng và thẳng thừng thừa nhận sản phẩm của mình là "bịp".
+* **Dòng tiền:** Tiền thanh toán 60.000 VNĐ chảy về tài khoản ngân hàng số CAKE mang tên **TRAN LE MINH LONG**. Trong các đoạn tin nhắn nội bộ bị rò rỉ, các đối tượng đã khoe doanh số hơn 30 triệu đồng và thẳng thừng thừa nhận sản phẩm của mình là "bịp".
 
 ![Giao diện bot bán hàng tự động](/images/astra-scam/h2-bot.png)
-![Giao dịch chuyển khoản qua CAKE NGUYEN VAN NHAN](/images/astra-scam/h4-bank.jpg)
+![Giao dịch chuyển khoản qua CAKE TRAN LE MINH LONG](/images/astra-scam/h4-bank.jpg)
 ![Tin nhắn nội bộ khoe doanh số và thừa nhận hàng bịp](/images/astra-scam/h6-profit-chat.jpg)
 
 ---
